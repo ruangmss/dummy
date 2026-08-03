@@ -1,0 +1,64 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 16px;
+  text-align: center;
+  border-radius: var(--radius-xl);
+  background-color: var(--primary);
+  font-weight: 500;
+  color: var(--white);
+  transition: background-color 0.2s ease;
+}
+
+.button.secondary {
+  background-color: var(--muted-bg);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.button.danger {
+  background-color: var(--danger);
+}
+
+.button.loading,
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.button.loading::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-full);
+  animation: button-spinner 0.8s linear infinite;
+}
+
+@keyframes button-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--primary-hover);
+  }
+
+  .button.secondary:hover {
+    background-color: var(--muted-bg-hover);
+  }
+
+  .button.danger:hover {
+    background-color: var(--danger-hover);
+  }
+
+  .button.loading:hover,
+  .button:disabled:hover {
+    background-color: var(--primary);
+  }
+}

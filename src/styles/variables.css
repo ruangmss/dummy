@@ -12,16 +12,19 @@
 
   /* Cores */
   --primary: #1d4ed8;
+  --primary-hover: #1e40af;
   --primary-light: #eff6ff;
   --foreground: #111;
   --muted: #6b7280;
-  --muted-bg: #f3f4f6;
+  --muted-bg: #eceff3;
+  --muted-bg-hover: #e2e8f0;
   --success: #10b981;
   --warning: #f59e0b;
-  --error: #ef4444;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
   --background: #f7f7f5;
-  --border: #e5e7eb;
-  --card: #fff;
+  --border: #dfe3e8;
+  --white: #fff;
   --green: #16a34a;
   --green-bg: #dcfce7;
   --yellow: #d97706;
