@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 2rem 1.5rem;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+}

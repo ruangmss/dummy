@@ -1,0 +1,46 @@
+:root {
+  /* Fontes */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Outfit', sans-serif;
+
+  /* Tipografia */
+  --display-xl: 400 3rem/1.1 var(--font-heading);
+  --heading-lg: 700 2.25rem/1.2 var(--font-body);
+  --heading-md: 600 1.5rem/1.3 var(--font-body);
+  --body-md: 400 1rem/1.5 var(--font-body);
+  --body-sm: 400 0.75rem/1.5 var(--font-body);
+
+  /* Cores */
+  --primary: #1d4ed8;
+  --primary-light: #eff6ff;
+  --foreground: #111;
+  --muted: #6b7280;
+  --muted-bg: #f3f4f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --background: #f7f7f5;
+  --border: #e5e7eb;
+  --card: #fff;
+  --green: #16a34a;
+  --green-bg: #dcfce7;
+  --yellow: #d97706;
+  --yellow-bg: #fef3c7;
+
+  /* Espaçamentos */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
