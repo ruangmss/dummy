@@ -1,0 +1,107 @@
+.header-bg {
+  border-bottom: 1px solid var(--border);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  align-items: center;
+  padding: 12px 24px !important;
+  font: var(--body-sm);
+}
+
+.header a {
+  padding: 6px 10px;
+  border-radius: var(--radius-lg);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.header-logo {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  font: var(--heading-md);
+}
+
+.header-logo span span {
+  color: var(--primary);
+}
+
+.header-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.header-buttons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-list {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.header-logo-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.header-logo-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+.header-search {
+  background-color: var(--muted-bg);
+  border-radius: var(--radius-xl);
+  padding: 10px 16px 10px 40px;
+  max-width: 400px;
+  min-width: 180px;
+  width: 100%;
+  background-image: url(../../assets/icons/search.svg);
+  background-repeat: no-repeat;
+  background-position: 4% 50%;
+  background-size: 16px;
+}
+
+.header-list a.active {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.header-buttons a.active {
+  background-color: var(--muted-bg);
+}
+
+.header-buttons a.active .header-icon {
+  stroke: var(--foreground);
+}
+
+.header-icon {
+  transition: stroke 0.2s ease;
+}
+
+@media (hover: hover) {
+  header a:hover {
+    color: var(--foreground);
+  }
+
+  .header-buttons a:hover .header-icon {
+    stroke: var(--foreground);
+  }
+}

@@ -5,10 +5,11 @@
 
   /* Tipografia */
   --display-xl: 400 3rem/1.1 var(--font-heading);
-  --heading-lg: 700 2.25rem/1.2 var(--font-body);
-  --heading-md: 600 1.5rem/1.3 var(--font-body);
+  --heading-lg: 700 1.75rem/1.2 var(--font-body);
+  --heading-md: 600 1.125rem/1.3 var(--font-body);
   --body-md: 400 1rem/1.5 var(--font-body);
-  --body-sm: 400 0.75rem/1.5 var(--font-body);
+  --body-sm: 400 0.875rem/1.5 var(--font-body);
+  --body-2sm: 400 0.75rem/1.5 var(--font-body);
 
   /* Cores */
   --primary: #1d4ed8;

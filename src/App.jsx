@@ -8,7 +8,7 @@ import Categories from './pages/Categories/Categories';
 import Search from './pages/Search/Search';
 import NotFound from './pages/NotFound/NotFound';
 import User from './pages/User/User';
-import Cart from './pages/Cart/Cart';
+import Bag from './pages/Bag/Bag';
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/categorias" element={<Categories />} />
           <Route path="/pesquisa" element={<Search />} />
           <Route path="/usuario" element={<User />} />
-          <Route path="/carrinho" element={<Cart />} />
+          <Route path="/sacola" element={<Bag />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

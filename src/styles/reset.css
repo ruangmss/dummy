@@ -41,3 +41,13 @@ button {
   justify-content: center;
   cursor: pointer;
 }
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
