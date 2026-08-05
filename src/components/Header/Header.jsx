@@ -7,6 +7,7 @@ import BagIcon from '../../assets/icons/bag.svg?react';
 import UserIcon from '../../assets/icons/user.svg?react';
 import { Link, NavLink, useMatch } from 'react-router-dom';
 import useMedia from '../../hooks/useMedia';
+import Input from '../Input/Input';
 
 const Header = () => {
   const mobile = useMedia('(max-width: 768px)');
@@ -35,11 +36,14 @@ const Header = () => {
           </nav>
         )}
 
-        {!mobile && <input className="header-search" type="text" placeholder="Buscar produtos..." />}
+        {!mobile && <Input className="search" type="text" placeholder="Buscar produtos..." />}
 
         <div className="header-buttons">
           {mobile && (
-            <button onClick={() => setMobileSearch(!mobileSearch)} className={`header-search-mobile-icon`}>
+            <button
+              onClick={() => setMobileSearch((mobileSearch) => !mobileSearch)}
+              className={`header-search-mobile-icon`}
+            >
               <img src={search} alt="Ícone de pesquisa" />
             </button>
           )}
@@ -53,7 +57,7 @@ const Header = () => {
 
           {mobile && (
             <button
-              onClick={() => setMobileNav(!mobileNav)}
+              onClick={() => setMobileNav((mobileNav) => !mobileNav)}
               className={`header-list-mobile-icon ${mobileNav ? 'opened' : ''}`}
             >
               <img src={menu} alt="Ícone de menu" />
@@ -76,7 +80,7 @@ const Header = () => {
 
       {mobile && (
         <div className={`header-search-mobile-bg ${mobileSearch ? 'opened' : ''}`}>
-          <input className="header-search" type="text" placeholder="Buscar produtos..." />
+          <Input className="search" type="text" placeholder="Buscar produtos..." />
         </div>
       )}
     </header>

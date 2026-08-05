@@ -79,16 +79,6 @@
   background-color: var(--primary-light);
 }
 
-.header-search {
-  width: 100%;
-  min-width: 180px;
-  max-width: 400px;
-  padding: 10px 16px 10px 40px;
-  background: var(--muted-bg) url('../../assets/icons/search.svg') no-repeat 16px center;
-  background-size: 16px;
-  border-radius: var(--radius-xl);
-}
-
 .header-buttons {
   gap: var(--spacing-sm);
 }
@@ -116,12 +106,6 @@
 }
 
 @media (max-width: 768px) {
-  .header-search {
-    min-width: 0;
-    max-width: 100%;
-    font: var(--body-sm);
-  }
-
   .header-buttons {
     gap: 0;
   }

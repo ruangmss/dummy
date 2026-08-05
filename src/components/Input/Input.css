@@ -1,0 +1,70 @@
+.input {
+  padding: 10px 16px;
+  background-color: var(--muted-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  min-width: 180px;
+  max-width: 400px;
+}
+
+.input.search {
+  padding-left: 40px;
+  background-image: url('../../assets/icons/search.svg');
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  background-size: 16px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input.password {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 44px;
+  background-image: url('../../assets/icons/lock.svg');
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  background-size: 16px;
+}
+
+.visibility-button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.visibility-button svg {
+  height: 16px;
+  width: 16px;
+  transition:
+    stroke 2s ease,
+    scale 0.2s ease;
+}
+
+@media (hover: hover) {
+  .visibility-button:hover svg {
+    stroke: var(--foreground);
+    scale: 1.05;
+  }
+}
+
+@media (max-width: 768px) {
+  .input {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    font: var(--body-sm);
+  }
+}
