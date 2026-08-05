@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
+import Product from './pages/Home/Product/Product';
 import Categories from './pages/Categories/Categories';
 import Search from './pages/Search/Search';
 import NotFound from './pages/NotFound/NotFound';
@@ -20,6 +21,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/produtos" element={<Products />} />
+          <Route path="/produto/:id" element={<Product />} />
           <Route path="/categorias" element={<Categories />} />
           <Route path="/pesquisa" element={<Search />} />
           <Route path="/usuario" element={<User />} />
