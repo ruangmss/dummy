@@ -9,16 +9,15 @@
 }
 
 .input.search {
-  padding-left: 40px;
-  background-image: url('../../assets/icons/search.svg');
-  background-repeat: no-repeat;
-  background-position: 16px center;
-  background-size: 16px;
+  padding-right: 44px;
 }
 
 .input-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
+  min-width: 180px;
   max-width: 400px;
 }
 
@@ -32,7 +31,8 @@
   background-size: 16px;
 }
 
-.visibility-button {
+.visibility-button,
+.search-button {
   position: absolute;
   top: 50%;
   right: 10px;
@@ -40,13 +40,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
   padding: 0;
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.visibility-button svg {
+.visibility-button svg,
+.search-button svg {
+  display: block;
   height: 16px;
   width: 16px;
   transition:
@@ -55,16 +59,21 @@
 }
 
 @media (hover: hover) {
-  .visibility-button:hover svg {
+  .visibility-button:hover svg,
+  .search-button:hover svg {
     stroke: var(--foreground);
     scale: 1.05;
   }
 }
 
 @media (max-width: 768px) {
-  .input {
+  .input,
+  .input-wrapper {
     min-width: 0 !important;
     max-width: 100% !important;
+  }
+
+  .input {
     font: var(--body-sm);
   }
 }

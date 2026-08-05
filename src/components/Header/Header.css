@@ -79,6 +79,12 @@
   background-color: var(--primary-light);
 }
 
+.header > form {
+  flex: 1;
+  width: 100%;
+  max-width: 400px;
+}
+
 .header-buttons {
   gap: var(--spacing-sm);
 }
