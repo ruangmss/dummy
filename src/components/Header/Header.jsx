@@ -39,10 +39,7 @@ const Header = () => {
 
         <div className="header-buttons">
           {mobile && (
-            <button
-              onClick={() => setMobileSearch(!mobileSearch)}
-              className={`header-list-search-icon ${mobileNav ? 'opened' : ''}`}
-            >
+            <button onClick={() => setMobileSearch(!mobileSearch)} className={`header-search-mobile-icon`}>
               <img src={search} alt="Ícone de pesquisa" />
             </button>
           )}
@@ -74,6 +71,12 @@ const Header = () => {
               <NavLink to="/categorias">Categorias</NavLink>
             </ul>
           </nav>
+        </div>
+      )}
+
+      {mobile && (
+        <div className={`header-search-mobile-bg ${mobileSearch ? 'opened' : ''}`}>
+          <input className="header-search" type="text" placeholder="Buscar produtos..." />
         </div>
       )}
     </header>
