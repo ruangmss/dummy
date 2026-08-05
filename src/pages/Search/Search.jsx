@@ -5,7 +5,7 @@ import useFetch from '../../hooks/useFetch';
 
 const Search = () => {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get('q');
+  const query = searchParams.get('q').toLowerCase().trim();
   const { data, request, loading, error } = useFetch();
 
   React.useEffect(() => {
