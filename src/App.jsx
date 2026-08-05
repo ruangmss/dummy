@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
 import Categories from './pages/Categories/Categories';
@@ -26,6 +27,8 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+
+      <Footer />
     </BrowserRouter>
   );
 };
