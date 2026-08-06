@@ -39,7 +39,8 @@
 
 .header-logo {
   gap: var(--spacing-sm);
-  font: var(--heading-md);
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .header-logo span span {

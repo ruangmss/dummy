@@ -23,6 +23,12 @@ body {
   flex: 1;
 }
 
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
 .section-title h2 {
   font: var(--heading-lg);
 }

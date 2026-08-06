@@ -17,7 +17,7 @@ const BestSeller = () => {
   }, [request]);
 
   return (
-    <section className="best-sellers container">
+    <section className="best-sellers container section">
       <div className="section-title">
         <span>Em destaque</span>
         <h2>Mais Vendidos</h2>
