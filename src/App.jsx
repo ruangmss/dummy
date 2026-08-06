@@ -15,22 +15,24 @@ import Bag from './pages/Bag/Bag';
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
+      <div className="app">
+        <Header />
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/produtos" element={<Products />} />
-          <Route path="/produto/:id" element={<Product />} />
-          <Route path="/categorias" element={<Categories />} />
-          <Route path="/pesquisa" element={<Search />} />
-          <Route path="/usuario" element={<User />} />
-          <Route path="/sacola" element={<Bag />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/produtos" element={<Products />} />
+            <Route path="/produto/:id" element={<Product />} />
+            <Route path="/categorias" element={<Categories />} />
+            <Route path="/pesquisa" element={<Search />} />
+            <Route path="/usuario" element={<User />} />
+            <Route path="/sacola" element={<Bag />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 };

@@ -12,3 +12,13 @@ html {
 body {
   min-height: 100vh;
 }
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
