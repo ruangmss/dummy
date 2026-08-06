@@ -3,6 +3,7 @@ import './BestSeller.css';
 import useFetch from '../../../../hooks/useFetch';
 import { PRODUCTS_GET } from '../../../../api/api';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
+import { Link } from 'react-router-dom';
 
 const BestSeller = () => {
   const { data, request, error, loading } = useFetch();
@@ -18,9 +19,15 @@ const BestSeller = () => {
 
   return (
     <section className="best-sellers container section">
-      <div className="section-title">
-        <span>Em destaque</span>
-        <h2>Mais Vendidos</h2>
+      <div className="section-top">
+        <div>
+          <span>Em destaque</span>
+          <h2>Mais Vendidos</h2>
+        </div>
+
+        <Link href="./produtos">
+          Ver todos <span>→</span>
+        </Link>
       </div>
 
       <div className="best-sellers-products">

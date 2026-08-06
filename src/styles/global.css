@@ -29,12 +29,36 @@ body {
   gap: var(--spacing-xl);
 }
 
-.section-title h2 {
+.section-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.section-top a {
+  align-self: end;
+  font: var(--body-sm);
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: 5px !important;
+}
+
+.section-top span {
+  transition: transform 0.2s ease;
+}
+
+.section-top h2 {
   font: var(--heading-lg);
 }
 
-.section-title span {
+.section-top span {
   color: var(--primary);
   font: var(--body-sm);
   font-weight: 600;
+}
+
+@media (hover: hover) {
+  .section-top a:hover span {
+    transform: translateX(2px);
+  }
 }
