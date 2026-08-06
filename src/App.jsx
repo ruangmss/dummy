@@ -11,6 +11,7 @@ import Search from './pages/Search/Search';
 import NotFound from './pages/NotFound/NotFound';
 import User from './pages/User/User';
 import Bag from './pages/Bag/Bag';
+import Category from './pages/Category/Category';
 
 const App = () => {
   return (
@@ -23,7 +24,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/produtos" element={<Products />} />
             <Route path="/produto/:id" element={<Product />} />
-            <Route path="/categorias" element={<Categories />} />
+            <Route path="/categorias/" element={<Categories />} />
+            <Route path="/categoria/:category" element={<Category />} />
             <Route path="/pesquisa" element={<Search />} />
             <Route path="/usuario" element={<User />} />
             <Route path="/sacola" element={<Bag />} />

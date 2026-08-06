@@ -5,7 +5,6 @@ import { PRODUCTS_GET } from '../../../../api/api';
 import useFetch from '../../../../hooks/useFetch';
 
 const Hero = () => {
-  const [products, setProducts] = React.useState(null);
   const { data, request, error, loading } = useFetch();
 
   React.useEffect(() => {

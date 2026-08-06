@@ -25,7 +25,7 @@ const BestSeller = () => {
           <h2>Mais Vendidos</h2>
         </div>
 
-        <Link href="./produtos">
+        <Link to="./produtos">
           Ver todos <span>→</span>
         </Link>
       </div>
