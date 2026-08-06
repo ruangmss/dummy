@@ -3,6 +3,7 @@
   gap: var(--spacing-lg);
   flex-wrap: wrap;
   place-content: center;
+  padding-top: 64px !important;
 }
 
 .attribute {

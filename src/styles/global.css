@@ -22,3 +22,13 @@ body {
 .app-main {
   flex: 1;
 }
+
+.section-title h2 {
+  font: var(--heading-lg);
+}
+
+.section-title span {
+  color: var(--primary);
+  font: var(--body-sm);
+  font-weight: 600;
+}
