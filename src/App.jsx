@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
-import Product from './pages/Home/Product/Product';
+import Product from './pages/Product/Product';
 import Categories from './pages/Categories/Categories';
 import Search from './pages/Search/Search';
 import NotFound from './pages/NotFound/NotFound';

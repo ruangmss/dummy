@@ -1,0 +1,56 @@
+.attributes {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  place-content: center;
+}
+
+.attribute {
+  padding: 15px 20px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+  min-width: 300px;
+}
+
+.attribute strong {
+  color: var(--foreground);
+  font: var(--body-md);
+  font-weight: 600;
+}
+
+.attribute p {
+  font: var(--body-sm);
+}
+
+#shipping {
+  background-color: var(--primary-light);
+}
+
+#shipping p {
+  color: var(--primary);
+}
+
+#discount {
+  background-color: var(--yellow-bg);
+}
+
+#discount p {
+  color: var(--yellow);
+}
+
+#exchange {
+  background-color: var(--green-bg);
+}
+
+#exchange p {
+  color: var(--green);
+}
+
+@media (max-width: 480px) {
+  .attribute {
+    min-width: 0;
+    width: 100%;
+  }
+}
