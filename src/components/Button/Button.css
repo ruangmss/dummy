@@ -45,20 +45,15 @@
 }
 
 @media (hover: hover) {
-  .button:hover {
+  .button:not(:disabled):not(.loading):hover {
     background-color: var(--primary-hover);
   }
 
-  .button.secondary:hover {
+  .button.secondary:not(:disabled):not(.loading):hover {
     background-color: var(--muted-bg-hover);
   }
 
-  .button.danger:hover {
+  .button.danger:not(:disabled):not(.loading):hover {
     background-color: var(--danger-hover);
-  }
-
-  .button.loading:hover,
-  .button:disabled:hover {
-    background-color: var(--primary);
   }
 }
