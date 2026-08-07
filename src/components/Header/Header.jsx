@@ -8,6 +8,7 @@ import UserIcon from '../../assets/icons/user.svg?react';
 import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
 import useMedia from '../../hooks/useMedia';
 import Input from '../Input/Input';
+import { ToastContext } from '../../contexts/ToastContext';
 
 const Header = () => {
   const mobile = useMedia('(max-width: 768px)');
@@ -15,6 +16,7 @@ const Header = () => {
   const [mobileNav, setMobileNav] = React.useState(false);
   const [mobileSearch, setMobileSearch] = React.useState(false);
   const [search, setSearch] = React.useState('');
+  const showToast = React.useContext(ToastContext);
 
   function submitSearch(event) {
     event.preventDefault();
@@ -22,7 +24,7 @@ const Header = () => {
     const normalizedSearch = search.trim();
 
     if (!normalizedSearch) {
-      navigate('/');
+      showToast('fail', 'Insira caracteres para efetuar uma pesquisa.');
       return;
     }
 
