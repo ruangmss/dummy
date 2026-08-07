@@ -1,6 +1,6 @@
 .toast {
   position: fixed;
-  top: 20px;
+  top: 15px;
   right: 24px;
   z-index: 9999;
   min-width: 200px;
@@ -45,7 +45,8 @@
 
 @media (max-width: 480px) {
   .toast {
-    max-width: 220px;
-    min-width: 0;
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+    max-width: 280px;
+    right: -1px;
   }
 }
