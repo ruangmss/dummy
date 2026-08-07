@@ -16,7 +16,7 @@ const Categories = () => {
       <div className="section-top">
         <div>
           <span>Navegue e descubra</span>
-          <h2>Categoria</h2>
+          <h2>Categorias</h2>
         </div>
 
         <Link to="./categorias">

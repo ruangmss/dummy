@@ -1,0 +1,55 @@
+.email-registration {
+  max-width: 1000px;
+  padding: 50px;
+  background: linear-gradient(140deg, #1e3a8a 0%, #172554 55%, #0f172a 100%);
+  justify-self: center;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  color: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.email-registration h2 {
+  font: var(--heading-lg);
+}
+
+.email-registration-right {
+  font: var(--body-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.email-registration button {
+  font-weight: 600;
+  color: var(--primary) !important;
+  max-width: 100px;
+  padding: 5px 10px;
+}
+
+.email-registration input {
+  background-color: transparent !important;
+  width: 100% !important;
+  color: var(--white) !important;
+}
+
+.email-registration input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .email-registration {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .email-registration button {
+    max-width: none;
+  }
+}

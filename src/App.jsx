@@ -12,29 +12,32 @@ import NotFound from './pages/NotFound/NotFound';
 import User from './pages/User/User';
 import Bag from './pages/Bag/Bag';
 import Category from './pages/Category/Category';
+import { ToastProvider } from './contexts/ToastContext';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="app">
-        <Header />
+      <ToastProvider>
+        <div className="app">
+          <Header />
 
-        <main className="app-main">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/produtos" element={<Products />} />
-            <Route path="/produto/:id" element={<Product />} />
-            <Route path="/categorias/" element={<Categories />} />
-            <Route path="/categoria/:category" element={<Category />} />
-            <Route path="/pesquisa" element={<Search />} />
-            <Route path="/usuario" element={<User />} />
-            <Route path="/sacola" element={<Bag />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
+          <main className="app-main">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/produtos" element={<Products />} />
+              <Route path="/produto/:id" element={<Product />} />
+              <Route path="/categorias/" element={<Categories />} />
+              <Route path="/categoria/:category" element={<Category />} />
+              <Route path="/pesquisa" element={<Search />} />
+              <Route path="/usuario" element={<User />} />
+              <Route path="/sacola" element={<Bag />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </ToastProvider>
     </BrowserRouter>
   );
 };

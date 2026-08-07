@@ -10,13 +10,7 @@ const Input = ({ className = '', placeholder, type = 'text', value, onChange }) 
   if (className === 'search') {
     return (
       <div className="input-wrapper">
-        <input
-          type={type}
-          value={value}
-          onChange={onChange}
-          className="input search"
-          placeholder={placeholder}
-        />
+        <input type={type} value={value} onChange={onChange} className="input search" placeholder={placeholder} />
 
         <button type="submit" className="search-button" aria-label="Buscar">
           <Search />
