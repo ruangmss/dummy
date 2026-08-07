@@ -1,0 +1,56 @@
+.hero-product-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  color: var(--foreground);
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero-product-card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: var(--muted-bg);
+  border-radius: var(--radius-md);
+}
+
+.hero-product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-product-card h3 {
+  overflow: hidden;
+  font: var(--body-sm);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-product-card span {
+  color: var(--muted);
+  font: var(--body-2sm);
+}
+
+.hero-product-card .hero-product-card-price {
+  color: var(--primary);
+  font: var(--body-sm);
+  font-weight: 600;
+}
+
+@media (hover: hover) {
+  .hero-product-card:hover {
+    background-color: var(--muted-bg-hover);
+    transform: translateY(-2px);
+  }
+}

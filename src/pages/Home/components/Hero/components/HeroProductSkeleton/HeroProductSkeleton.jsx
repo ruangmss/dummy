@@ -1,4 +1,3 @@
-import React from 'react';
 import './HeroProductSkeleton.css';
 
 const HeroProductSkeleton = () => {
