@@ -9,13 +9,13 @@ const Input = ({ className = '', placeholder, type = 'text', value, onChange, on
 
   if (className === 'search') {
     return (
-      <div className="search">
+      <div className="input-wrapper search">
         <input
           type={type}
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className="input"
+          className="input search"
           placeholder={placeholder}
         />
 
