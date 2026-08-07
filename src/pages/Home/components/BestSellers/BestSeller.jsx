@@ -33,7 +33,7 @@ const BestSeller = () => {
 
       <div className="best-sellers-products">
         {loading
-          ? Array.from({ length: 8 }).map((_, index) => <ProductCardSkeleton key={index} />)
+          ? Array.from({ length: 8 }).map((_, index) => <ProductCardSkeleton key={index} />) // Cria um array de 8 posições
           : data?.products?.map((product) => <ProductCard key={product.id} product={product} />)}
       </div>
     </section>

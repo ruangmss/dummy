@@ -3,6 +3,7 @@ import './Hero.css';
 import { Link } from 'react-router-dom';
 import { PRODUCTS_GET } from '../../../../api/api';
 import useFetch from '../../../../hooks/useFetch';
+import HeroProductSkeleton from '../../../../components/Skeletons/HeroProductSkeleton/HeroProductSkeleton';
 
 const Hero = () => {
   const { data, request, error, loading } = useFetch();
@@ -38,17 +39,19 @@ const Hero = () => {
         </div>
 
         <div className="hero-right">
-          {data?.products?.map((product) => (
-            <Link key={product.id} to={`/produto/${product.id}`}>
-              <div>
-                <img src={product.thumbnail} alt={product.title} />
-              </div>
+          {loading
+            ? Array.from({ length: 3 }).map((_, index) => <HeroProductSkeleton key={index} />)
+            : data?.products?.map((product) => (
+                <Link key={product.id} to={`/produto/${product.id}`}>
+                  <div>
+                    <img src={product.thumbnail} alt={product.title} />
+                  </div>
 
-              <h3>{product.title}</h3>
-              <span>R$ {product.price}</span>
-              <span>★ {product.rating}</span>
-            </Link>
-          ))}
+                  <h3>{product.title}</h3>
+                  <span>R$ {product.price}</span>
+                  <span>★ {product.rating}</span>
+                </Link>
+              ))}
         </div>
       </div>
     </section>
