@@ -3,14 +3,23 @@ import './EmailRegistration.css';
 import Input from '../../../../components/Input/Input';
 import Button from '../../../../components/Button/Button';
 import { ToastContext } from '../../../../contexts/ToastContext';
+import useForm from '../../../../hooks/useForm';
 
 const EmailRegistration = () => {
   const showToast = React.useContext(ToastContext);
+  const email = useForm('email');
 
   function showDummyValidation(event) {
     event.preventDefault();
+    const validation = email.validate();
+
+    if (!validation.valid) {
+      showToast('fail', validation.message);
+      return;
+    }
+
     showToast('success', 'Cadastro efetuado com sucesso!');
-    event.target.reset();
+    email.reset();
   }
 
   return (
@@ -22,8 +31,15 @@ const EmailRegistration = () => {
         </div>
 
         <div className="email-registration-right">
-          <Input placeholder="seu@email.com" type="email" />
-          <Button text="Cadastrar-me" type="secondary email-registration-button" />
+          <Input
+            type="email"
+            placeholder="seu@email.com"
+            required
+            value={email.value}
+            onChange={email.onChange}
+            onBlur={email.onBlur}
+          />
+          <Button text="Cadastrar-me" type="secondary email-registration-button" disabled={email.value.length < 1} />
         </div>
       </div>
     </form>

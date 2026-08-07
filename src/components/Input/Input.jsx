@@ -4,13 +4,20 @@ import Eye from '../../assets/icons/eye.svg?react';
 import ClosedEye from '../../assets/icons/closed-eye.svg?react';
 import Search from '../../assets/icons/search.svg?react';
 
-const Input = ({ className = '', placeholder, type = 'text', value, onChange }) => {
+const Input = ({ className = '', placeholder, type = 'text', value, onChange, onBlur }) => {
   const [visible, setVisible] = React.useState(false);
 
   if (className === 'search') {
     return (
-      <div className="input-wrapper">
-        <input type={type} value={value} onChange={onChange} className="input search" placeholder={placeholder} />
+      <div className="search">
+        <input
+          type={type}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          className="input"
+          placeholder={placeholder}
+        />
 
         <button type="submit" className="search-button" aria-label="Buscar">
           <Search />
@@ -21,18 +28,26 @@ const Input = ({ className = '', placeholder, type = 'text', value, onChange }) 
 
   if (type !== 'password') {
     return (
-      <input type={type} value={value} onChange={onChange} className={`input ${className}`} placeholder={placeholder} />
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        className={`input ${className}`}
+        placeholder={placeholder}
+      />
     );
   }
 
   return (
-    <div className="input-wrapper">
+    <div className="password-container">
       <input
-        className={`input password`}
+        className="input password"
         placeholder={placeholder}
         type={visible ? 'text' : 'password'}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
       />
 
       <button type="button" className="visibility-button" onClick={() => setVisible((visible) => !visible)}>
