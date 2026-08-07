@@ -4,6 +4,7 @@ import useFetch from '../../../../hooks/useFetch';
 import { PRODUCTS_GET } from '../../../../api/api';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
+import ProductCardSkeleton from '../../../../components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
 
 const BestSeller = () => {
   const { data, request, error, loading } = useFetch();
@@ -25,15 +26,15 @@ const BestSeller = () => {
           <h2>Mais Vendidos</h2>
         </div>
 
-        <Link to="./produtos">
+        <Link to="/produtos">
           Ver todos <span>→</span>
         </Link>
       </div>
 
       <div className="best-sellers-products">
-        {data?.products?.map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
+        {loading
+          ? Array.from({ length: 8 }).map((_, index) => <ProductCardSkeleton key={index} />)
+          : data?.products?.map((product) => <ProductCard key={product.id} product={product} />)}
       </div>
     </section>
   );
