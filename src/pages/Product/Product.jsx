@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { PRODUCT_GET } from "../../api/api";
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
+import Content from "./components/Content/Content";
 
 const Product = () => {
   const { id } = useParams();
@@ -21,6 +22,7 @@ const Product = () => {
     return (
       <article className="product">
         <Breadcrumb product={data} />
+        <Content product={data} />
       </article>
     );
   }
