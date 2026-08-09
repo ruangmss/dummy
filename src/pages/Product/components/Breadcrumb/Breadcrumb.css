@@ -1,0 +1,38 @@
+.product-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 24px !important;
+}
+
+.product-breadcrumb li {
+  display: flex;
+  align-items: center;
+  font: var(--body-2sm);
+  color: var(--muted);
+}
+
+.product-breadcrumb li:last-child {
+  display: initial;
+}
+
+.product-breadcrumb li img {
+  width: 14px;
+  height: 14px;
+}
+
+.product-breadcrumb a {
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+
+.product-breadcrumb span {
+  color: var(--foreground);
+  padding: 5px;
+}
+
+@media (hover: hover) {
+  .product-breadcrumb a:hover {
+    color: var(--primary);
+  }
+}
