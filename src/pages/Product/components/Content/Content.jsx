@@ -1,39 +1,30 @@
-import React from "react";
-import "./Content.css";
-import freight from "../../../../assets/icons/freight.svg";
-import shield from "../../../../assets/icons/shield.svg";
-import Bag from "../../../../assets/icons/bag.svg?react";
+import React from 'react';
+import './Content.css';
+import freight from '../../../../assets/icons/freight.svg';
+import shield from '../../../../assets/icons/shield.svg';
+import Bag from '../../../../assets/icons/bag.svg?react';
 
 const Content = ({ product }) => {
   const hasDiscount = product.discountPercentage > 0;
   let originalPrice = 0;
 
   if (hasDiscount) {
-    originalPrice = (
-      product.price /
-      (1 - product.discountPercentage / 100)
-    ).toFixed(2);
+    originalPrice = (product.price / (1 - product.discountPercentage / 100)).toFixed(2);
   }
 
   return (
     <div className="product-content container">
       <div className="product-content-image">
-        <img
-          src={product.thumbnail}
-          alt={`Imagem do produto ${product.title}`}
-        />
+        <img src={product.thumbnail} alt={`Imagem do produto ${product.title}`} />
       </div>
 
       <div className="product-content-general">
         <div className="product-content-top">
           <span className="product-content-category">
-            {product.category.charAt(0).toUpperCase() +
-              product.category.slice(1)}
+            {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
           </span>
-          <span className="product-content-brand">{product.brand}</span>
-          <span className="product-content-stock">
-            Em estoque: {product.stock}
-          </span>
+          {product.brand && <span className="product-content-brand">{product.brand}</span>}
+          <span className="product-content-stock">Em estoque: {product.stock}</span>
         </div>
 
         <div className="product-content-data">
@@ -62,8 +53,7 @@ const Content = ({ product }) => {
 
         <ul className="product-content-benefits">
           <li>
-            <img src={freight} alt="Ícone de frete" /> Entrega em até duas
-            semanas
+            <img src={freight} alt="Ícone de frete" /> Entrega em até duas semanas
           </li>
           <li>
             <img src={shield} alt="Ícone de escudo" /> Um ano de garantia
@@ -81,7 +71,7 @@ const Content = ({ product }) => {
 
           <button className="product-content-cart-button">
             <Bag />
-            Adicionar ao Carrinho
+            Adicionar à Sacola
           </button>
         </div>
       </div>
