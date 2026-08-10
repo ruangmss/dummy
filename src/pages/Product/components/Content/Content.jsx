@@ -6,6 +6,7 @@ import Bag from '../../../../assets/icons/bag.svg?react';
 
 const Content = ({ product }) => {
   const [quantity, setQuantity] = React.useState(0);
+  const [image, setImage] = React.useState(product.images[0]);
   const hasDiscount = product.discountPercentage > 0;
   let originalPrice = 0;
 
@@ -15,8 +16,24 @@ const Content = ({ product }) => {
 
   return (
     <div className="product-content container">
-      <div className="product-content-image">
-        <img src={product.thumbnail} alt={`Imagem do produto ${product.title}`} />
+      <div className="product-content-images">
+        <div className="product-content-active-image">
+          <img src={image} alt={`Imagem do produto ${product.title}`} />
+        </div>
+
+        {product.images.length > 1 && (
+          <nav>
+            <ul className="product-content-images-list">
+              {product.images.map((productImage, index) => (
+                <li key={productImage} className={`product-image ${productImage === image ? 'active-photo' : ''}`}>
+                  <button type="button" onClick={() => setImage(productImage)}>
+                    <img src={productImage} alt={`Imagem ${index + 1} do produto ${product.title}`} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </div>
 
       <div className="product-content-general">
@@ -35,13 +52,11 @@ const Content = ({ product }) => {
             ★ {product.rating} ({product.reviews.length})
           </span>
 
-          <strong>
-            R$ {product.price} {originalPrice && <span>{originalPrice}</span>}
-          </strong>
+          <strong>R$ {product.price.toFixed(2).replace('.', ',')}</strong>
 
           {originalPrice && (
             <span className="product-content-saving">
-              Você economiza R$ {(originalPrice - product.price).toFixed(2)}!
+              Você economiza R$ {(originalPrice - product.price).toFixed(2).replace('.', ',')}!
             </span>
           )}
         </div>
@@ -74,7 +89,7 @@ const Content = ({ product }) => {
             </button>
           </div>
 
-          <button className="product-content-cart-button">
+          <button className="product-content-cart-button" type="button">
             <Bag />
             Adicionar à Sacola
           </button>

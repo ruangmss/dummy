@@ -4,16 +4,46 @@
   gap: var(--spacing-3xl);
 }
 
-.product-content-image {
+.product-content-active-image {
   display: flex;
-  flex: 1;
   background-color: var(--muted-bg);
   place-content: center;
   border-radius: var(--radius-lg);
   padding: 20px;
 }
-.product-content-image img {
+
+.product-content-active-image img {
   object-fit: cover;
+  max-width: 420px;
+  width: 100%;
+}
+
+.product-content-images {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  flex: 1;
+}
+
+.product-content-images-list {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.product-image.active-photo {
+  border: 2px solid var(--primary);
+}
+
+.product-image {
+  padding: 10px;
+  background-color: var(--muted-bg);
+  border-radius: var(--spacing-lg);
+  place-content: center;
+  display: flex;
+}
+
+.product-image img {
+  max-width: 80px;
 }
 
 .product-content-general {
