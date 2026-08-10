@@ -5,6 +5,7 @@ import shield from '../../../../assets/icons/shield.svg';
 import Bag from '../../../../assets/icons/bag.svg?react';
 
 const Content = ({ product }) => {
+  const [quantity, setQuantity] = React.useState(0);
   const hasDiscount = product.discountPercentage > 0;
   let originalPrice = 0;
 
@@ -64,9 +65,13 @@ const Content = ({ product }) => {
 
         <div className="product-content-shopping">
           <div className="product-content-quantity">
-            <button>-</button>
-            <span>0</span>
-            <button>+</button>
+            <button disabled={quantity === 0} onClick={() => setQuantity((quantity) => quantity - 1)}>
+              -
+            </button>
+            <span>{quantity}</span>
+            <button disabled={quantity === product.stock} onClick={() => setQuantity((quantity) => quantity + 1)}>
+              +
+            </button>
           </div>
 
           <button className="product-content-cart-button">
