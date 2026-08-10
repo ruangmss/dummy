@@ -15,7 +15,9 @@ const ProductCard = ({ product }) => {
       <Link to={`/produto/${product.id}`}>
         <div className="product-card-image">
           <img src={product.thumbnail} alt={`Imagem do produto ${product.title}`} />
-          {hasDiscount && <span className="product-card-discount">- {product.discountPercentage.toFixed(1)}%</span>}
+          {hasDiscount && (
+            <span className="product-card-discount">- {product.discountPercentage.toFixed(1).replace('.', ',')}%</span>
+          )}
         </div>
 
         <div className="product-card-content">
@@ -31,8 +33,8 @@ const ProductCard = ({ product }) => {
           </div>
 
           <div className="product-card-content-bottom">
-            <strong>R$ {product.price}</strong>
-            {originalPrice && <span>R$ {originalPrice}</span>}
+            <strong>R$ {product.price.toFixed(2).replace('.', ',')}</strong>
+            {originalPrice && <span>R$ {originalPrice.replace('.', ',')}</span>}
           </div>
         </div>
       </Link>
