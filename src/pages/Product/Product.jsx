@@ -1,9 +1,10 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
-import { PRODUCT_GET } from "../../api/api";
-import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
-import Content from "./components/Content/Content";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+import { PRODUCT_GET } from '../../api/api';
+import Breadcrumb from './components/Breadcrumb/Breadcrumb';
+import Content from './components/Content/Content';
+import Reviews from './components/Reviews/Reviews';
 
 const Product = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const Product = () => {
       <article className="product">
         <Breadcrumb product={data} />
         <Content product={data} />
+        <Reviews product={data} />
       </article>
     );
   }
