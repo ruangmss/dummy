@@ -10,7 +10,9 @@ const HeroProductCard = ({ product }) => {
 
       <h3>{product.title}</h3>
       <span className="hero-product-card-price">R$ {product.price}</span>
-      <span>★ {product.rating}</span>
+      <span>
+        <span className="star">★</span> {product.rating}
+      </span>
     </Link>
   );
 };

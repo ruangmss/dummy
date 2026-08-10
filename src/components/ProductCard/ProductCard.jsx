@@ -29,7 +29,9 @@ const ProductCard = ({ product }) => {
 
             <h3>{product.title}</h3>
 
-            <span>★ {product.rating}</span>
+            <span>
+              <span className="star">★</span> {product.rating}
+            </span>
           </div>
 
           <div className="product-card-content-bottom">

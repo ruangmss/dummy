@@ -57,6 +57,11 @@ body {
   font-weight: 600;
 }
 
+.star {
+  color: var(--star);
+  margin-right: 2px;
+}
+
 @media (hover: hover) {
   .section-top a:hover span {
     transform: translateX(2px);

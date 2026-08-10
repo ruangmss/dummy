@@ -169,6 +169,15 @@
   stroke: var(--white);
 }
 
+.product-content-data-rating {
+  display: flex;
+  gap: 5px;
+}
+
+.product-content-data-rating span {
+  margin: 0 !important;
+}
+
 .product-content hr {
   border: 0;
   height: 1px;

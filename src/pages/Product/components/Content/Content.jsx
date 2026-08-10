@@ -48,8 +48,8 @@ const Content = ({ product }) => {
         <div className="product-content-data">
           <h1>{product.title}</h1>
 
-          <span>
-            ★ {product.rating} ({product.reviews.length})
+          <span className="product-content-data-rating">
+            <span className="star">★</span> <span>{product.rating}</span> <span>({product.reviews.length})</span>
           </span>
 
           <strong>R$ {product.price.toFixed(2).replace('.', ',')}</strong>

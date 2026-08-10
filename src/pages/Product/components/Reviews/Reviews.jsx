@@ -19,7 +19,9 @@ const Reviews = ({ product }) => {
                 </div>
               </div>
 
-              <span>★ {review.rating.toFixed(1)}</span>
+              <span>
+                <span className="star">★</span> {review.rating.toFixed(1)}
+              </span>
             </div>
 
             <p>{review.comment}</p>
