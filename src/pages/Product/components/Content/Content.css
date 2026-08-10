@@ -169,6 +169,12 @@
   stroke: var(--white);
 }
 
+.product-content hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--border);
+}
+
 @media (hover: hover) {
   .product-content-cart-button:hover {
     background-color: var(--primary-hover);
