@@ -42,7 +42,7 @@ const Content = ({ product }) => {
             {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
           </span>
           {product.brand && <span className="product-content-brand">{product.brand}</span>}
-          <span className="product-content-stock">Em estoque: {product.stock}</span>
+          <span className="product-content-stock">Estoque: {product.stock}</span>
         </div>
 
         <div className="product-content-data">
