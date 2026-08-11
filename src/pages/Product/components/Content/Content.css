@@ -11,6 +11,7 @@
   border-radius: var(--radius-lg);
   padding: 20px;
   flex: 1;
+  position: relative;
 }
 
 .product-content-active-image img {
@@ -187,6 +188,18 @@
   border: 0;
   height: 1px;
   background-color: var(--border);
+}
+
+.product-content-discount {
+  position: absolute;
+  top: 16px;
+  left: 0px;
+  padding: 2px 8px;
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  background-color: var(--danger);
+  font: var(--body-2sm);
+  font-weight: 600;
+  color: var(--white);
 }
 
 @media (hover: hover) {

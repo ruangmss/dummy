@@ -19,6 +19,11 @@ const Content = ({ product }) => {
       <div className="product-content-images">
         <div className="product-content-active-image">
           <img src={image} alt={`Imagem do produto ${product.title}`} />
+          {hasDiscount && (
+            <span className="product-content-discount">
+              - {product.discountPercentage.toFixed(1).replace('.', ',')}%
+            </span>
+          )}
         </div>
 
         {product.images.length > 1 && (
