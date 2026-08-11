@@ -6,6 +6,7 @@ import Breadcrumb from './components/Breadcrumb/Breadcrumb';
 import Content from './components/Content/Content';
 import Reviews from './components/Reviews/Reviews';
 import ReletadProducts from './components/ReletadProducts/ReletadProducts';
+import ProductSkeleton from '../../components/Skeletons/ProductSkeleton/ProductSkeleton';
 
 const Product = () => {
   const { id } = useParams();
@@ -17,8 +18,14 @@ const Product = () => {
       await request(url, options);
     }
 
+    window.scrollTo(0, 0);
+
     fetchProduct();
   }, [id, request]);
+
+  if (loading) {
+    return <ProductSkeleton />;
+  }
 
   if (data) {
     return (
@@ -30,6 +37,8 @@ const Product = () => {
       </article>
     );
   }
+
+  return null;
 };
 
 export default Product;

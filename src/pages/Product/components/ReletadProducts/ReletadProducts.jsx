@@ -4,6 +4,7 @@ import useFetch from '../../../../hooks/useFetch';
 import { PRODUCTS_GET } from '../../../../api/api';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
+import ProductCardSkeleton from '../../../../components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
 
 const ReletadProducts = ({ product }) => {
   const { data, request, error, loading } = useFetch();
@@ -19,6 +20,10 @@ const ReletadProducts = ({ product }) => {
 
     fetchReletadProducts();
   }, [product, request]);
+
+  if (loading) {
+    return <ProductCardSkeleton />;
+  }
 
   if (data) {
     return (
@@ -46,6 +51,8 @@ const ReletadProducts = ({ product }) => {
       </section>
     );
   }
+
+  return null;
 };
 
 export default ReletadProducts;
