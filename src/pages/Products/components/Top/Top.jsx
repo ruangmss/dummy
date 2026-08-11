@@ -26,7 +26,7 @@ const Top = ({ query, sort, order, setQuery, setSort, setOrder, setSearch }) => 
 
   return (
     <div className="container top">
-      <h2>Catálogo de Produtos</h2>
+      <h1>Catálogo de Produtos</h1>
 
       <form className="top-filters" onSubmit={searchProduct}>
         <div className="top-search">

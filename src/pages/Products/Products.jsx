@@ -2,6 +2,8 @@ import React from 'react';
 import Top from './components/Top/Top';
 import { PRODUCTS_GET } from '../../api/api';
 import useFetch from '../../hooks/useFetch';
+import Catalog from './components/Catalog/Catalog';
+import Error from '../../components/Error/Error';
 
 const Products = () => {
   const [query, setQuery] = React.useState('');
@@ -13,29 +15,42 @@ const Products = () => {
 
   React.useEffect(() => {
     async function fetchProducts() {
-      const { url, options } = PRODUCTS_GET({ query: search, page: page, sortBy: sort, order: order, page: page });
-      const { json } = await request(url, options);
-
-      console.log(json);
+      const { url, options } = PRODUCTS_GET({
+        query: search,
+        page: page,
+        sortBy: sort,
+        order: order,
+        page: page,
+        limit: 0,
+      });
+      await request(url, options);
     }
 
     fetchProducts();
   }, [request, page, sort, order, page, search]);
 
-  return (
-    <>
-      <Top
-        search={search}
-        query={query}
-        sort={sort}
-        order={order}
-        setQuery={setQuery}
-        setSort={setSort}
-        setOrder={setOrder}
-        setSearch={setSearch}
-      />
-    </>
-  );
+  if (error) {
+    return <Error error={error} />;
+  }
+
+  if (data || loading) {
+    return (
+      <>
+        <Top
+          search={search}
+          query={query}
+          sort={sort}
+          order={order}
+          setQuery={setQuery}
+          setSort={setSort}
+          setOrder={setOrder}
+          setSearch={setSearch}
+        />
+
+        <Catalog data={data} loading={loading} />
+      </>
+    );
+  }
 };
 
 export default Products;

@@ -3,9 +3,10 @@
   flex-direction: column;
   gap: var(--spacing-lg);
   font: var(--body-sm);
+  padding-bottom: 0px !important;
 }
 
-.top h2 {
+.top h1 {
   font: var(--heading-lg);
 }
 
