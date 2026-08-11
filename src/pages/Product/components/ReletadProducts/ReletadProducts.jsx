@@ -24,7 +24,7 @@ const ReletadProducts = ({ product }) => {
     return (
       <section className="container reletad-products section">
         <div className="section-top">
-          <h2>Mais Vendidos</h2>
+          <h2>Produtos Relacionados</h2>
 
           <Link to={`/categoria/${product.category}`}>
             Ver todos <span>→</span>
