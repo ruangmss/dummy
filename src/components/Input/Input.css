@@ -62,7 +62,7 @@
   .visibility-button:hover svg,
   .search-button:hover svg {
     stroke: var(--foreground);
-    scale: 1.05;
+    scale: 1.06;
   }
 }
 
