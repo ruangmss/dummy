@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
+  if (product.stock === 0) {
+    return null;
+  }
+
   const hasDiscount = product.discountPercentage > 0;
   const lastUnits = product.stock <= 10;
   let originalPrice = 0;
@@ -19,7 +23,7 @@ const ProductCard = ({ product }) => {
           {hasDiscount && (
             <span className="product-card-discount">- {product.discountPercentage.toFixed(1).replace('.', ',')}%</span>
           )}
-          {lastUnits && <span className="product-card-last-units">Últimos {product.stock}</span>}
+          {lastUnits && <span className="product-card-last-units">Restante: {product.stock}</span>}
         </div>
 
         <div className="product-card-content">

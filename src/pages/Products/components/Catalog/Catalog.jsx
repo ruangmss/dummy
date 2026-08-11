@@ -6,7 +6,7 @@ import './Catalog.css';
 const Catalog = ({ data, loading }) => {
   return (
     <section className="container catalog">
-      <span>{data?.products?.length} produtos encontrados</span>
+      <span>{data?.products?.filter((product) => product.stock > 0).length} produtos encontrados</span>
 
       <div className="catalog-products">
         {loading
