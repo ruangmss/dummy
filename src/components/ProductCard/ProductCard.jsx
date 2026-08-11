@@ -4,6 +4,7 @@ import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const hasDiscount = product.discountPercentage > 0;
+  const lastUnities = product.stock <= 10;
   let originalPrice = 0;
 
   if (hasDiscount) {
@@ -18,6 +19,7 @@ const ProductCard = ({ product }) => {
           {hasDiscount && (
             <span className="product-card-discount">- {product.discountPercentage.toFixed(1).replace('.', ',')}%</span>
           )}
+          {lastUnities && <span className="product-card-last-unities">Últimos {product.stock}</span>}
         </div>
 
         <div className="product-card-content">

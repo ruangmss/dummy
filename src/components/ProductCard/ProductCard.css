@@ -50,13 +50,25 @@
 .product-card-discount {
   position: absolute;
   top: 16px;
-  left: -1px;
+  left: 0px;
   padding: 2px 8px;
   border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
   background-color: var(--danger);
   font: var(--body-2sm);
   font-weight: 600;
   color: var(--white);
+}
+
+.product-card-last-unities {
+  position: absolute;
+  top: 48px;
+  left: 0px;
+  padding: 2px 8px;
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  background-color: var(--yellow-bg);
+  font: var(--body-2sm);
+  font-weight: 600;
+  color: var(--yellow);
 }
 
 .product-card-content-top {
