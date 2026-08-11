@@ -79,8 +79,8 @@
 }
 
 .product-content-stock {
-  background-color: var(--green-bg);
-  color: var(--green);
+  background-color: var(--yellow-bg);
+  color: var(--yellow);
 }
 
 .product-content-data {
