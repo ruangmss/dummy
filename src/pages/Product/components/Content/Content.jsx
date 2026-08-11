@@ -52,7 +52,9 @@ const Content = ({ product }) => {
             <span className="star">★</span> <span>{product.rating}</span> <span>({product.reviews.length})</span>
           </span>
 
-          <strong>R$ {product.price.toFixed(2).replace('.', ',')}</strong>
+          <strong>
+            R$ {product.price.toFixed(2).replace('.', ',')} <span>{originalPrice.replace('.', ',')}</span>
+          </strong>
 
           {originalPrice && (
             <span className="product-content-saving">
