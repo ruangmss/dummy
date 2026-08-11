@@ -91,7 +91,11 @@ const Content = ({ product }) => {
             </button>
           </div>
 
-          <button className="product-content-cart-button" type="button">
+          <button
+            className="product-content-cart-button"
+            type="button"
+            disabled={quantity > product.stock || quantity === 0}
+          >
             <Bag />
             Adicionar à Sacola
           </button>

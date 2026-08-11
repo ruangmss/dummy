@@ -169,6 +169,11 @@
   stroke: var(--white);
 }
 
+.product-content-cart-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
 .product-content-data-rating {
   display: flex;
   gap: 5px;
@@ -195,6 +200,10 @@
 
   .product-content-quantity button:disabled {
     background-color: initial;
+  }
+
+  .product-content-cart-button:disabled:hover {
+    background-color: var(--primary);
   }
 }
 
