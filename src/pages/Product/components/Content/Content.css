@@ -80,7 +80,7 @@
 
 .product-content-stock {
   background-color: var(--yellow-bg);
-  color: var(--yellow);
+  color: var(--green);
 }
 
 .product-content-data {
@@ -203,20 +203,12 @@
 }
 
 @media (hover: hover) {
-  .product-content-cart-button:hover {
+  .product-content-cart-button:not(:disabled):hover {
     background-color: var(--primary-hover);
   }
 
-  .product-content-quantity button:hover {
+  .product-content-quantity button:not(:disabled):hover {
     background-color: var(--muted-bg);
-  }
-
-  .product-content-quantity button:disabled {
-    background-color: initial;
-  }
-
-  .product-content-cart-button:disabled:hover {
-    background-color: var(--primary);
   }
 }
 

@@ -4,6 +4,7 @@ import { PRODUCTS_GET } from '../../api/api';
 import useFetch from '../../hooks/useFetch';
 import Catalog from './components/Catalog/Catalog';
 import Error from '../../components/Error/Error';
+import Pagination from './components/Pagination/Pagination';
 
 const Products = () => {
   const [query, setQuery] = React.useState('');
@@ -17,21 +18,26 @@ const Products = () => {
     async function fetchProducts() {
       const { url, options } = PRODUCTS_GET({
         query: search,
-        page: page,
         sortBy: sort,
         order: order,
-        page: page,
         limit: 0,
       });
       await request(url, options);
     }
 
     fetchProducts();
-  }, [request, page, sort, order, page, search]);
+  }, [request, sort, order, page, search]);
 
   if (error) {
     return <Error error={error} />;
   }
+
+  const itemsPerPage = 12;
+  const totalProducts = data?.products?.length ?? 0;
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const currentProducts = data?.products?.slice(start, end) ?? [];
 
   if (data || loading) {
     return (
@@ -47,7 +53,8 @@ const Products = () => {
           setSearch={setSearch}
         />
 
-        <Catalog data={data} loading={loading} />
+        <Catalog products={currentProducts} loading={loading} data={data} />
+        <Pagination totalPages={totalPages} page={page} setPage={setPage} />
       </>
     );
   }

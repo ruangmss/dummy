@@ -3,7 +3,7 @@ import ProductCard from '../../../../components/ProductCard/ProductCard';
 import ProductCardSkeleton from '../../../../components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
 import './Catalog.css';
 
-const Catalog = ({ data, loading }) => {
+const Catalog = ({ products, loading, data }) => {
   return (
     <section className="container catalog">
       <span>{data?.products?.filter((product) => product.stock > 0).length} produtos encontrados</span>
@@ -11,7 +11,7 @@ const Catalog = ({ data, loading }) => {
       <div className="catalog-products">
         {loading
           ? Array.from({ length: 12 }).map((_, index) => <ProductCardSkeleton key={index} />) // Cria um array de 8 posições
-          : data?.products?.map((product) => <ProductCard key={product.id} product={product} />)}
+          : products?.map((product) => <ProductCard key={product.id} product={product} />)}
       </div>
     </section>
   );
