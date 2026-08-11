@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { PRODUCTS_GET } from '../../../../api/api';
 import useFetch from '../../../../hooks/useFetch';
 import HeroProductCard from './components/HeroProductCard/HeroProductCard';
-import HeroProductSkeleton from './components/HeroProductSkeleton/HeroProductSkeleton';
+import HeroProductSkeleton from '../../../../components/Skeletons/HeroProductSkeleton/HeroProductSkeleton';
 
 const Hero = () => {
   const { data, request, error, loading } = useFetch();
@@ -17,6 +17,10 @@ const Hero = () => {
 
     fetchProducts();
   }, [request]);
+
+  if (error) {
+    return null;
+  }
 
   return (
     <section className="hero-bg">

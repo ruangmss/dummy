@@ -5,6 +5,7 @@ import { PRODUCTS_GET } from '../../../../api/api';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
 import ProductCardSkeleton from '../../../../components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
+import Error from '../../../../components/Error/Error';
 
 const BestSeller = () => {
   const { data, request, error, loading } = useFetch();
@@ -17,6 +18,10 @@ const BestSeller = () => {
 
     fetchProducts();
   }, [request]);
+
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <section className="best-sellers container section">

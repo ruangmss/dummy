@@ -29,13 +29,7 @@ const Product = () => {
   }
 
   if (error) {
-    return (
-      <Error
-        error={
-          'Ocorreu um erro no carregamento do produto. Tente novamente mais tarde e se o erro persistir, entre em contato com a equipe de desenvolvimento.'
-        }
-      />
-    );
+    return <Error error={error} />;
   }
 
   if (data) {

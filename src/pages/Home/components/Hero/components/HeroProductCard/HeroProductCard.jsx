@@ -9,7 +9,7 @@ const HeroProductCard = ({ product }) => {
       </div>
 
       <h3>{product.title}</h3>
-      <span className="hero-product-card-price">R$ {product.price}</span>
+      <span className="hero-product-card-price">R$ {product.price.toFixed(2).replace('.', ',')}</span>
       <span>
         <span className="star">★</span> {product.rating}
       </span>
