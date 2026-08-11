@@ -21,10 +21,6 @@ const ReletadProducts = ({ product }) => {
     fetchReletadProducts();
   }, [product, request]);
 
-  if (loading) {
-    return <ProductCardSkeleton />;
-  }
-
   if (data) {
     return (
       <section className="container reletad-products section">
