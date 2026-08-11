@@ -7,6 +7,7 @@ import Content from './components/Content/Content';
 import Reviews from './components/Reviews/Reviews';
 import ReletadProducts from './components/ReletadProducts/ReletadProducts';
 import ProductSkeleton from '../../components/Skeletons/ProductSkeleton/ProductSkeleton';
+import Error from '../../components/Error/Error';
 
 const Product = () => {
   const { id } = useParams();
@@ -25,6 +26,16 @@ const Product = () => {
 
   if (loading) {
     return <ProductSkeleton />;
+  }
+
+  if (error) {
+    return (
+      <Error
+        error={
+          'Ocorreu um erro no carregamento do produto. Tente novamente mais tarde e se o erro persistir, entre em contato com a equipe de desenvolvimento.'
+        }
+      />
+    );
   }
 
   if (data) {
