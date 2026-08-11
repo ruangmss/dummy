@@ -1,0 +1,21 @@
+.releted-products-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.reletad-products h2 {
+  font: var(--heading-lg);
+}
+
+@media (max-width: 992px) {
+  .releted-products-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .releted-products-list {
+    grid-template-columns: 1fr;
+  }
+}

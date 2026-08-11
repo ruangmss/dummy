@@ -5,6 +5,7 @@ import { PRODUCT_GET } from '../../api/api';
 import Breadcrumb from './components/Breadcrumb/Breadcrumb';
 import Content from './components/Content/Content';
 import Reviews from './components/Reviews/Reviews';
+import ReletadProducts from './components/ReletadProducts/ReletadProducts';
 
 const Product = () => {
   const { id } = useParams();
@@ -25,6 +26,7 @@ const Product = () => {
         <Breadcrumb product={data} />
         <Content product={data} />
         <Reviews product={data} />
+        <ReletadProducts product={data} />
       </article>
     );
   }
