@@ -67,3 +67,15 @@ body {
     transform: translateX(2px);
   }
 }
+
+@media (max-width: 480px) {
+  .section-top {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .section-top a {
+    padding: 0 !important;
+    align-self: start;
+  }
+}

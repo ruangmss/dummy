@@ -3,6 +3,7 @@ import './ReletadProducts.css';
 import useFetch from '../../../../hooks/useFetch';
 import { PRODUCTS_GET } from '../../../../api/api';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
+import { Link } from 'react-router-dom';
 
 const ReletadProducts = ({ product }) => {
   const { data, request, error, loading } = useFetch();
@@ -22,7 +23,13 @@ const ReletadProducts = ({ product }) => {
   if (data) {
     return (
       <section className="container reletad-products section">
-        <h2>Produtos Relacionados</h2>
+        <div className="section-top">
+          <h2>Mais Vendidos</h2>
+
+          <Link to={`/categoria/${product.category}`}>
+            Ver todos <span>→</span>
+          </Link>
+        </div>
 
         <nav>
           <ul className="releted-products-list">
