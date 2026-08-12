@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Top from './components/Top/Top';
 import { PRODUCTS_GET } from '../../api/api';
 import useFetch from '../../hooks/useFetch';
@@ -7,21 +8,82 @@ import Error from '../../components/Error/Error';
 import Pagination from './components/Pagination/Pagination';
 
 const Products = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [query, setQuery] = React.useState('');
-  const [search, setSearch] = React.useState('');
-  const [sort, setSort] = React.useState('');
-  const [order, setOrder] = React.useState('asc');
-  const [page, setPage] = React.useState(1);
+  const search = searchParams.get('search') || '';
+  const sort = searchParams.get('sort') || '';
+  const order = searchParams.get('order') || 'asc';
+  const page = Number(searchParams.get('page')) || 1;
+
   const { data, request, loading, error } = useFetch();
+
+  function updateParam(name, value) {
+    setSearchParams((params) => {
+      if (value) {
+        params.set(name, value);
+      } else {
+        params.delete(name);
+      }
+
+      return params;
+    });
+  }
+
+  function setSearch(value) {
+    setSearchParams((params) => {
+      if (value) {
+        params.set('search', value);
+      } else {
+        params.delete('search');
+      }
+
+      params.set('page', 1);
+
+      return params;
+    });
+  }
+
+  function setSort(value) {
+    setSearchParams((params) => {
+      if (value) {
+        params.set('sort', value);
+      } else {
+        params.delete('sort');
+      }
+
+      params.set('page', 1);
+
+      return params;
+    });
+  }
+
+  function setOrder(value) {
+    setSearchParams((params) => {
+      params.set('order', value);
+      params.set('page', 1);
+
+      return params;
+    });
+  }
+
+  function setPage(value) {
+    setSearchParams((params) => {
+      params.set('page', value);
+
+      return params;
+    });
+  }
 
   React.useEffect(() => {
     async function fetchProducts() {
       const { url, options } = PRODUCTS_GET({
         query: search,
         sortBy: sort,
-        order: order,
+        order,
         limit: 0,
       });
+
       await request(url, options);
     }
 
@@ -59,11 +121,14 @@ const Products = () => {
           setSearch={setSearch}
         />
 
-        <Catalog products={currentProducts} loading={loading} data={data} />
-        <Pagination totalPages={totalPages} page={page} setPage={setPage} />
+        <Catalog products={currentProducts} loading={loading} data={data} search={search} />
+
+        <Pagination totalPages={totalPages} page={page} setPage={setPage} products={currentProducts} />
       </>
     );
   }
+
+  return null;
 };
 
 export default Products;

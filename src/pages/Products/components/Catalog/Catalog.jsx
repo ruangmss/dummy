@@ -2,8 +2,13 @@ import React from 'react';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import ProductCardSkeleton from '../../../../components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
 import './Catalog.css';
+import Error from '../../../../components/Error/Error';
 
-const Catalog = ({ products, loading, data }) => {
+const Catalog = ({ products, loading, data, search }) => {
+  if (products.length === 0 && search) {
+    return <Error error={`Nenhum produto com a especificação "${search}".`} />;
+  }
+
   return (
     <section className="container catalog">
       <span>{data?.products?.length} produtos encontrados</span>
