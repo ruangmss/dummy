@@ -59,7 +59,7 @@ body {
 }
 
 .star {
-  color: var(--star);
+  color: var(--star) !important;
   margin-right: 2px;
 }
 

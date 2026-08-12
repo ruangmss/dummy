@@ -10,6 +10,10 @@
     box-shadow 0.2s ease;
 }
 
+.product-card.sold-out {
+  opacity: 0.7;
+}
+
 .product-card > a {
   display: flex;
   flex-direction: column;
@@ -111,7 +115,7 @@
     box-shadow: var(--shadow);
   }
 
-  .product-card button:hover {
+  .product-card:not(.product-card.sold-out) button:hover {
     background-color: var(--primary-hover);
   }
 }

@@ -8,6 +8,7 @@ const Content = ({ product }) => {
   const [quantity, setQuantity] = React.useState(0);
   const [image, setImage] = React.useState(product.images[0]);
   const hasDiscount = product.discountPercentage > 0;
+  const soldOut = product.stock === 0;
   let originalPrice = 0;
 
   if (hasDiscount) {
@@ -101,8 +102,8 @@ const Content = ({ product }) => {
             type="button"
             disabled={quantity > product.stock || quantity === 0}
           >
-            <Bag />
-            Adicionar à Sacola
+            {soldOut ? '' : <Bag />}
+            {`${soldOut ? 'Produto Esgotado' : 'Adicionar à Sacola'}`}
           </button>
         </div>
       </div>

@@ -30,6 +30,7 @@
 .product-content-images-list {
   display: flex;
   gap: var(--spacing-lg);
+  flex-wrap: wrap;
 }
 
 .product-image.active-photo {
@@ -45,7 +46,7 @@
 }
 
 .product-image img {
-  max-width: 80px;
+  max-width: 50px;
 }
 
 .product-content-general {
@@ -80,7 +81,7 @@
 
 .product-content-stock {
   background-color: var(--yellow-bg);
-  color: var(--green);
+  color: var(--yellow);
 }
 
 .product-content-data {
@@ -212,7 +213,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .product-content {
     grid-template-columns: 1fr;
     gap: var(--spacing-xl);

@@ -4,7 +4,8 @@ import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const hasDiscount = product.discountPercentage > 0;
-  const lastUnits = product.stock <= 10;
+  const lastUnits = product.stock <= 10 && product.stock > 0;
+  const soldOut = product.stock === 0;
   let originalPrice = 0;
 
   if (hasDiscount) {
@@ -12,7 +13,7 @@ const ProductCard = ({ product }) => {
   }
 
   return (
-    <article className="product-card">
+    <article className={`product-card ${soldOut ? 'sold-out' : ''}`}>
       <Link to={`/produto/${product.id}`}>
         <div className="product-card-image">
           <img src={product.thumbnail} alt={`Imagem do produto ${product.title}`} />
@@ -20,6 +21,7 @@ const ProductCard = ({ product }) => {
             <span className="product-card-discount">- {product.discountPercentage.toFixed(1).replace('.', ',')}%</span>
           )}
           {lastUnits && <span className="product-card-last-units">Restante: {product.stock}</span>}
+          {soldOut && <span className="product-card-last-units">Esgotado</span>}
         </div>
 
         <div className="product-card-content">
@@ -43,7 +45,9 @@ const ProductCard = ({ product }) => {
         </div>
       </Link>
 
-      <button type="button">+</button>
+      <button type="button" disabled={soldOut}>
+        +
+      </button>
     </article>
   );
 };
