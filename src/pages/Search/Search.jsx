@@ -1,29 +1,17 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PRODUCTS_GET } from '../../api/api';
-import useFetch from '../../hooks/useFetch';
+import Products from '../../pages/Products/Products';
+import Error from '../../components/Error/Error';
 
 const Search = () => {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get('q').toLowerCase().trim();
-  const { data, request, loading, error } = useFetch();
+  const query = searchParams.get('q')?.toLowerCase().trim() || '';
 
-  React.useEffect(() => {
-    if (!query) {
-      return;
-    }
+  if (!query) {
+    return <Error error="Nenhum termo de busca informado." />;
+  }
 
-    async function fetchSearch() {
-      const { url, options } = PRODUCTS_GET({ query: query, limit: 15 });
-      const { json } = await request(url, options);
-
-      console.log('JSON: ', json);
-    }
-
-    fetchSearch();
-  }, [query, request]);
-
-  return <div>Search</div>;
+  return <Products headerSearch={query} />;
 };
 
 export default Search;

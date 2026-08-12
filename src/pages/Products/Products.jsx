@@ -7,9 +7,9 @@ import Catalog from './components/Catalog/Catalog';
 import Error from '../../components/Error/Error';
 import Pagination from './components/Pagination/Pagination';
 
-const Products = ({ category }) => {
+const Products = ({ category, headerSearch }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search') || '';
+  const search = headerSearch || searchParams.get('search') || '';
   const sort = searchParams.get('sort') || '';
   const order = searchParams.get('order') || 'asc';
   const page = Number(searchParams.get('page')) || 1;
