@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
-  if (product.stock === 0) {
-    return null;
-  }
-
   const hasDiscount = product.discountPercentage > 0;
   const lastUnits = product.stock <= 10;
   let originalPrice = 0;
