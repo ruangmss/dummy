@@ -26,7 +26,13 @@ const Products = () => {
     }
 
     fetchProducts();
-  }, [request, sort, order, page, search]);
+  }, [request, sort, order, search]);
+
+  React.useEffect(() => {
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  }, [page]);
 
   if (error) {
     return <Error error={error} />;
