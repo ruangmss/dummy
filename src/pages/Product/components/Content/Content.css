@@ -215,6 +215,12 @@
 
 @media (max-width: 992px) {
   .product-content {
+    gap: var(--spacing-2xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-content {
     grid-template-columns: 1fr;
     gap: var(--spacing-xl);
   }
