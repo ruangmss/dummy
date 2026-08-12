@@ -9,8 +9,7 @@ const Top = ({ query, sort, order, setQuery, setSort, setOrder, setSearch }) => 
   function separateSort(event) {
     const [newSort, newOrder] = event.target.value.split('-');
 
-    setSort(newSort);
-    setOrder(newOrder);
+    setSort(newSort, newOrder);
   }
 
   function searchProduct(event) {

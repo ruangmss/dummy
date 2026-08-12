@@ -44,12 +44,14 @@ const Products = () => {
     });
   }
 
-  function setSort(value) {
+  function setSort(sort, order) {
     setSearchParams((params) => {
-      if (value) {
-        params.set('sort', value);
+      if (sort) {
+        params.set('sort', sort);
+        params.set('order', order);
       } else {
         params.delete('sort');
+        params.delete('order');
       }
 
       params.set('page', 1);
