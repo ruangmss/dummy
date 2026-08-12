@@ -3,7 +3,7 @@ import './Top.css';
 import { ToastContext } from '../../../../contexts/ToastContext';
 import Search from '../../../../assets/icons/search.svg?react';
 
-const Top = ({ query, sort, order, setQuery, setSort, setOrder, setSearch }) => {
+const Top = ({ query, sort, order, category, setQuery, setSort, setSearch }) => {
   const showToast = React.useContext(ToastContext);
 
   function separateSort(event) {
@@ -25,7 +25,7 @@ const Top = ({ query, sort, order, setQuery, setSort, setOrder, setSearch }) => 
 
   return (
     <div className="container top">
-      <h1>Catálogo de Produtos</h1>
+      {category ? <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1> : <h1>Catálogo de Produtos</h1>}
 
       <form className="top-filters" onSubmit={searchProduct}>
         <div className="top-search">
@@ -40,7 +40,7 @@ const Top = ({ query, sort, order, setQuery, setSort, setOrder, setSearch }) => 
           </button>
         </div>
 
-        <select value={sort && order ? `${sort}-${order}` : ''} onChange={separateSort}>
+        <select value={sort ? `${sort}-${order}` : ''} onChange={separateSort}>
           <option value="">Selecione</option>
           <option value="price-asc">Menor preço</option>
           <option value="price-desc">Maior preço</option>

@@ -7,28 +7,20 @@ import Catalog from './components/Catalog/Catalog';
 import Error from '../../components/Error/Error';
 import Pagination from './components/Pagination/Pagination';
 
-const Products = () => {
+const Products = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const [query, setQuery] = React.useState('');
   const search = searchParams.get('search') || '';
   const sort = searchParams.get('sort') || '';
   const order = searchParams.get('order') || 'asc';
   const page = Number(searchParams.get('page')) || 1;
+  const [query, setQuery] = React.useState(search);
 
   const { data, request, loading, error } = useFetch();
 
-  function updateParam(name, value) {
-    setSearchParams((params) => {
-      if (value) {
-        params.set(name, value);
-      } else {
-        params.delete(name);
-      }
-
-      return params;
-    });
-  }
+  const products =
+    category && search
+      ? (data?.products?.filter((product) => product.title.toLowerCase().includes(search.toLowerCase())) ?? [])
+      : (data?.products ?? []);
 
   function setSearch(value) {
     setSearchParams((params) => {
@@ -60,15 +52,6 @@ const Products = () => {
     });
   }
 
-  function setOrder(value) {
-    setSearchParams((params) => {
-      params.set('order', value);
-      params.set('page', 1);
-
-      return params;
-    });
-  }
-
   function setPage(value) {
     setSearchParams((params) => {
       params.set('page', value);
@@ -84,13 +67,14 @@ const Products = () => {
         sortBy: sort,
         order,
         limit: 0,
+        category,
       });
 
       await request(url, options);
     }
 
     fetchProducts();
-  }, [request, sort, order, search]);
+  }, [request, sort, order, search, category]);
 
   React.useEffect(() => {
     requestAnimationFrame(() => {
@@ -103,11 +87,11 @@ const Products = () => {
   }
 
   const itemsPerPage = 12;
-  const totalProducts = data?.products?.length ?? 0;
+  const totalProducts = products.length;
   const totalPages = Math.ceil(totalProducts / itemsPerPage);
   const start = (page - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  const currentProducts = data?.products?.slice(start, end) ?? [];
+  const currentProducts = products.slice(start, end);
 
   if (data || loading) {
     return (
@@ -119,13 +103,13 @@ const Products = () => {
           order={order}
           setQuery={setQuery}
           setSort={setSort}
-          setOrder={setOrder}
           setSearch={setSearch}
+          category={category}
         />
 
-        <Catalog products={currentProducts} loading={loading} data={data} search={search} />
+        <Catalog products={currentProducts} loading={loading} search={search} allProducts={products} />
 
-        <Pagination totalPages={totalPages} page={page} setPage={setPage} products={currentProducts} />
+        <Pagination totalPages={totalPages} page={page} setPage={setPage} products={currentProducts} error={error} />
       </>
     );
   }

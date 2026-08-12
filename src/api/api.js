@@ -16,12 +16,12 @@ export function PRODUCTS_GET({ page = 1, limit = 12, category = '', query = '', 
 
   let endpoint = '/products';
 
-  if (query) {
-    endpoint = '/products/search';
-    params.set('q', query);
-  } else if (category) {
+  if (category) {
     // Codifica a categoria para que caracteres especiais sejam válidos na URL
     endpoint = `/products/category/${encodeURIComponent(category)}`;
+  } else if (query) {
+    endpoint = '/products/search';
+    params.set('q', query);
   }
 
   return {
