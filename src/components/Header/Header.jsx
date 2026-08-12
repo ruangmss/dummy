@@ -5,7 +5,7 @@ import menu from '../../assets/icons/menu.svg';
 import searchIcon from '../../assets/icons/search.svg';
 import BagIcon from '../../assets/icons/bag.svg?react';
 import UserIcon from '../../assets/icons/user.svg?react';
-import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useMedia from '../../hooks/useMedia';
 import Input from '../Input/Input';
 import { ToastContext } from '../../contexts/ToastContext';
@@ -13,10 +13,17 @@ import { ToastContext } from '../../contexts/ToastContext';
 const Header = () => {
   const mobile = useMedia('(max-width: 768px)');
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileNav, setMobileNav] = React.useState(false);
   const [mobileSearch, setMobileSearch] = React.useState(false);
   const [search, setSearch] = React.useState('');
   const showToast = React.useContext(ToastContext);
+
+  React.useEffect(() => {
+    if (location.pathname !== '/pesquisa') {
+      setSearch('');
+    }
+  }, [location.pathname, location.search]);
 
   function submitSearch(event) {
     event.preventDefault();
