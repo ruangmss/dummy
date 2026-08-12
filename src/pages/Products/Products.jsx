@@ -93,6 +93,10 @@ const Products = ({ category }) => {
   const end = start + itemsPerPage;
   const currentProducts = products.slice(start, end);
 
+  if (totalPages > 0 && page > totalPages && !loading) {
+    return <Error error={`Página ${page} não encontrada.`} />;
+  }
+
   if (data || loading) {
     return (
       <>
