@@ -4,8 +4,8 @@ import ProductCardSkeleton from '../../../../components/Skeletons/ProductCardSke
 import './Catalog.css';
 import Error from '../../../../components/Error/Error';
 
-const Catalog = ({ products, loading, data, search, allProducts }) => {
-  if (products.length === 0 && search && !loading) {
+const Catalog = ({ products, loading, search, allProducts, noSearchResults }) => {
+  if (noSearchResults) {
     return <Error error={`Nenhum produto com a especificação "${search}".`} />;
   }
 

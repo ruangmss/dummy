@@ -4,7 +4,7 @@ import { ToastContext } from '../../../../contexts/ToastContext';
 import Search from '../../../../assets/icons/search.svg?react';
 import Breadcrumb from './Breadcrumb/Breadcrumb';
 
-const Top = ({ query, sort, order, category, headerSearch, setQuery, setSort, setSearch }) => {
+const Top = ({ query, sort, order, category, headerSearch, disableSort, setQuery, setSort, setSearch }) => {
   const showToast = React.useContext(ToastContext);
 
   function separateSort(event) {
@@ -48,7 +48,7 @@ const Top = ({ query, sort, order, category, headerSearch, setQuery, setSort, se
           </div>
         )}
 
-        <select value={sort ? `${sort}-${order}` : ''} onChange={separateSort}>
+        <select value={sort ? `${sort}-${order}` : ''} onChange={separateSort} disabled={disableSort}>
           <option value="">Selecione</option>
           <option value="price-asc">Menor preço</option>
           <option value="price-desc">Maior preço</option>

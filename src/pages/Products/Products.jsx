@@ -92,6 +92,7 @@ const Products = ({ category, headerSearch }) => {
   const start = (page - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const currentProducts = products.slice(start, end);
+  const noSearchResults = products.length === 0 && search && !loading;
 
   if (totalPages > 0 && page > totalPages && !loading) {
     return <Error error={`Página ${page} não encontrada.`} />;
@@ -101,6 +102,7 @@ const Products = ({ category, headerSearch }) => {
     return (
       <>
         <Top
+          disableSort={Boolean(noSearchResults)}
           headerSearch={headerSearch}
           search={search}
           query={query}
@@ -112,7 +114,13 @@ const Products = ({ category, headerSearch }) => {
           category={category}
         />
 
-        <Catalog products={currentProducts} loading={loading} search={search} allProducts={products} />
+        <Catalog
+          products={currentProducts}
+          loading={loading}
+          search={search}
+          allProducts={products}
+          noSearchResults={Boolean(noSearchResults)}
+        />
 
         <Pagination totalPages={totalPages} page={page} setPage={setPage} products={currentProducts} error={error} />
       </>
