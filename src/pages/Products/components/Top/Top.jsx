@@ -29,15 +29,11 @@ const Top = ({ query, sort, order, category, headerSearch, setQuery, setSort, se
       {category ? <Breadcrumb category={category} /> : ''}
 
       {!headerSearch &&
-        (category ? (
-          <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
-        ) : (
-          <h1>Catálogo de Produtos</h1>
-        ))}
+        (category ? <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1> : <h1>Catálogo de Produtos</h1>)}
 
       <form className={`top-filters ${headerSearch ? 'top-filters-header-search' : ''}`} onSubmit={searchProduct}>
         {headerSearch ? (
-          <h1>{headerSearch}</h1>
+          <h1>{headerSearch.toUpperCase()}</h1>
         ) : (
           <div className="top-search">
             <input
