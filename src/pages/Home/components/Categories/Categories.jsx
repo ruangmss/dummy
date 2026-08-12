@@ -4,10 +4,10 @@ import Beauty from '../../../../assets/icons/beauty.svg?react';
 import Fragrances from '../../../../assets/icons/fragrances.svg?react';
 import Furniture from '../../../../assets/icons/furniture.svg?react';
 import Groceries from '../../../../assets/icons/groceries.svg?react';
-import Home from '../../../../assets/icons/home.svg?react';
-import Kitchen from '../../../../assets/icons/kitchen.svg?react';
-import Laptop from '../../../../assets/icons/laptop.svg?react';
-import Shirt from '../../../../assets/icons/shirt.svg?react';
+import Home from '../../../../assets/icons/home-decoration.svg?react';
+import Kitchen from '../../../../assets/icons/kitchen-accessories.svg?react';
+import Laptop from '../../../../assets/icons/laptops.svg?react';
+import Shirt from '../../../../assets/icons/mens-shirts.svg?react';
 import './Categories.css';
 
 const Categories = () => {
@@ -27,32 +27,32 @@ const Categories = () => {
       <div className="categories-items">
         <Link to="/categoria/beauty" className="categorie">
           <Beauty alt="Ícone de beleza" />
-          <span>Beleza</span>
+          <span>Beauty</span>
         </Link>
 
         <Link to="/categoria/fragrances" className="categorie">
           <Fragrances alt="Ícone de fragrância" />
-          <span>Perfumaria</span>
+          <span>Fragrances</span>
         </Link>
 
         <Link to="/categoria/furniture" className="categorie">
           <Furniture alt="Ícone de mobília" />
-          <span>Mobília</span>
+          <span>Furniture</span>
         </Link>
 
         <Link to="/categoria/groceries" className="categorie">
           <Groceries alt="Ícone de alimentação" />
-          <span>Alimentação</span>
+          <span>Groceries</span>
         </Link>
 
         <Link to="/categoria/home-decoration" className="categorie">
           <Home alt="Ícone de casa" />
-          <span>Decoração</span>
+          <span>Home Decoration</span>
         </Link>
 
         <Link to="/categoria/kitchen-accessories" className="categorie">
           <Kitchen alt="Ícone de cozinha" />
-          <span>Cozinha</span>
+          <span>Kitchen Accessories</span>
         </Link>
 
         <Link to="/categoria/laptops" className="categorie">
@@ -62,7 +62,7 @@ const Categories = () => {
 
         <Link to="/categoria/mens-shirts" className="categorie">
           <Shirt alt="Ícone de camisa masculina" />
-          <span>Camisas</span>
+          <span>Mens Shirts</span>
         </Link>
       </div>
     </section>
