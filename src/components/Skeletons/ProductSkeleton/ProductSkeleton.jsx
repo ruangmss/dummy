@@ -3,7 +3,7 @@ import './ProductSkeleton.css';
 
 const ProductSkeleton = () => {
   return (
-    <article className="product-skeleton" aria-label="Carregando produto" aria-busy="true">
+    <article className="product-skeleton">
       <div className="product-skeleton-breadcrumb container">
         <span className="skeleton" />
         <span className="skeleton" />

@@ -19,7 +19,7 @@ const Input = ({ className = '', placeholder, type = 'text', value, onChange, on
           placeholder={placeholder}
         />
 
-        <button type="submit" className="search-button" aria-label="Buscar">
+        <button type="submit" className="search-button">
           <Search />
         </button>
       </div>

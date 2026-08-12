@@ -38,7 +38,7 @@ const Top = ({ query, sort, order, category, setQuery, setSort, setSearch }) => 
             onChange={(event) => setQuery(event.target.value)}
           />
 
-          <button type="submit" className="top-search-button" aria-label="Buscar produtos">
+          <button type="submit" className="top-search-button">
             <Search />
           </button>
         </div>
