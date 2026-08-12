@@ -2,6 +2,7 @@ import React from 'react';
 import './Top.css';
 import { ToastContext } from '../../../../contexts/ToastContext';
 import Search from '../../../../assets/icons/search.svg?react';
+import Breadcrumb from './Breadcrumb/Breadcrumb';
 
 const Top = ({ query, sort, order, category, setQuery, setSort, setSearch }) => {
   const showToast = React.useContext(ToastContext);
@@ -25,6 +26,8 @@ const Top = ({ query, sort, order, category, setQuery, setSort, setSearch }) => 
 
   return (
     <div className="container top">
+      {category ? <Breadcrumb category={category} /> : ''}
+
       {category ? <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1> : <h1>Catálogo de Produtos</h1>}
 
       <form className="top-filters" onSubmit={searchProduct}>
