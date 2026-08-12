@@ -46,7 +46,17 @@
 .top-filters {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: var(--spacing-md);
+}
+
+.top-filters-header-search {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.top-filters-header-search h1 {
+  overflow-wrap: anywhere;
 }
 
 .top select {

@@ -4,7 +4,7 @@ import { ToastContext } from '../../../../contexts/ToastContext';
 import Search from '../../../../assets/icons/search.svg?react';
 import Breadcrumb from './Breadcrumb/Breadcrumb';
 
-const Top = ({ query, sort, order, category, setQuery, setSort, setSearch }) => {
+const Top = ({ query, sort, order, category, headerSearch, setQuery, setSort, setSearch }) => {
   const showToast = React.useContext(ToastContext);
 
   function separateSort(event) {
@@ -28,20 +28,29 @@ const Top = ({ query, sort, order, category, setQuery, setSort, setSearch }) => 
     <div className="container top">
       {category ? <Breadcrumb category={category} /> : ''}
 
-      {category ? <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1> : <h1>Catálogo de Produtos</h1>}
+      {!headerSearch &&
+        (category ? (
+          <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
+        ) : (
+          <h1>Catálogo de Produtos</h1>
+        ))}
 
-      <form className="top-filters" onSubmit={searchProduct}>
-        <div className="top-search">
-          <input
-            placeholder="Busque utilizando uma palavra chave..."
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
+      <form className={`top-filters ${headerSearch ? 'top-filters-header-search' : ''}`} onSubmit={searchProduct}>
+        {headerSearch ? (
+          <h1>{headerSearch}</h1>
+        ) : (
+          <div className="top-search">
+            <input
+              placeholder="Busque utilizando uma palavra chave..."
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
 
-          <button type="submit" className="top-search-button">
-            <Search />
-          </button>
-        </div>
+            <button type="submit" className="top-search-button">
+              <Search />
+            </button>
+          </div>
+        )}
 
         <select value={sort ? `${sort}-${order}` : ''} onChange={separateSort}>
           <option value="">Selecione</option>

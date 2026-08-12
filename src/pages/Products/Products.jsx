@@ -101,6 +101,7 @@ const Products = ({ category, headerSearch }) => {
     return (
       <>
         <Top
+          headerSearch={headerSearch}
           search={search}
           query={query}
           sort={sort}
