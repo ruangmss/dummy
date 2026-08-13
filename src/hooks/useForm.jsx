@@ -28,7 +28,7 @@ const useForm = (type) => {
     if (currentValue.length === 0) {
       return {
         valid: false,
-        message: 'Por favor, preencha o campo.',
+        message: 'Por favor, preencha este campo.',
       };
     }
 
@@ -57,7 +57,7 @@ const useForm = (type) => {
     setValue(target.value);
 
     if (error) {
-      setError(getValidation(target.value).message);
+      setError(getValidation(target.value).message); // Valida o input enquanto houver erro
     }
   }
 
@@ -70,8 +70,11 @@ const useForm = (type) => {
     setError(null);
   }
 
+  const valid = getValidation().valid;
+
   return {
     value,
+    valid,
     error,
     onChange,
     onBlur,
