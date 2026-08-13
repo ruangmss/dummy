@@ -73,6 +73,53 @@
   width: 100%;
 }
 
+.login-form-information {
+  text-align: center;
+}
+
+.login-form-information p {
+  color: var(--muted);
+  font: var(--body-sm);
+}
+
+.login-form-information a {
+  color: var(--foreground);
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.login hr {
+  border: none;
+  height: 1px;
+  background-color: var(--border);
+  width: 100%;
+}
+
+.login-form-credentials {
+  padding: 10px;
+  border-radius: var(--radius-lg);
+  background-color: var(--muted-bg);
+  font: var(--body-sm);
+  color: var(--muted);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (hover: hover) {
+  .login-form-information a:hover {
+    color: var(--primary);
+  }
+
+  .login-form-credentials:hover {
+    color: var(--primary);
+    background-color: var(--primary-light);
+  }
+}
+
 @media (max-width: 768px) {
   .login {
     gap: var(--spacing-lg);

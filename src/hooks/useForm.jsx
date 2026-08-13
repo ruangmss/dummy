@@ -85,6 +85,7 @@ const useForm = (type) => {
     onBlur,
     validate,
     reset,
+    setValue,
   };
 };
 

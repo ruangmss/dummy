@@ -35,6 +35,11 @@ const Login = () => {
     }
   }
 
+  function setData() {
+    username.setValue('emilys');
+    password.setValue('emilyspass');
+  }
+
   return (
     <div className="container login-bg">
       <div className="login">
@@ -60,8 +65,9 @@ const Login = () => {
               value={username.value}
               onChange={username.onChange}
               onBlur={username.onBlur}
-              error={username.error}
+              error={!username.valid && username.error}
             />
+
             <Input
               className="form-input"
               label="Senha"
@@ -72,7 +78,7 @@ const Login = () => {
               value={password.value}
               onChange={password.onChange}
               onBlur={password.onBlur}
-              error={password.error}
+              error={!password.valid && password.error}
             />
           </div>
 
@@ -83,6 +89,23 @@ const Login = () => {
             <Button text="Login" type={loading ? 'loading' : ''} disabled={!validForm || loading} />
           </div>
         </form>
+
+        <hr />
+
+        <div className="login-form-information">
+          <p>
+            Nota: a{' '}
+            <a href="https://dummyjson.com/" target="_blank" rel="noopener noreferrer">
+              DummyJSON
+            </a>{' '}
+            apenas simula o cadastro e não adiciona novos usuários de forma permanente. Portanto, para fazer login,
+            utilize as credenciais abaixo.
+          </p>
+        </div>
+
+        <button className="login-form-credentials" onClick={() => setData()}>
+          Usuário: emilys | Senha: emilyspass
+        </button>
 
         <FormError error={error && `Ocorreu um erro no login: ${error}`} />
       </div>
