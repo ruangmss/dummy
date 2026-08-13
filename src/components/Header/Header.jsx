@@ -63,8 +63,7 @@ const Header = () => {
         {!mobile && (
           <form onSubmit={submitSearch}>
             <Input
-              className="search"
-              type="text"
+              variant="search"
               placeholder="Buscar produtos..."
               value={search}
               onChange={({ target }) => setSearch(target.value)}
@@ -115,8 +114,7 @@ const Header = () => {
       {mobile && (
         <form onSubmit={submitSearch} className={`header-search-mobile-bg ${mobileSearch ? 'opened' : ''}`}>
           <Input
-            className="search"
-            type="text"
+            variant="search"
             placeholder="Buscar produtos..."
             value={search}
             onChange={({ target }) => setSearch(target.value)}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Top.css';
 import { ToastContext } from '../../../../contexts/ToastContext';
-import Search from '../../../../assets/icons/search.svg?react';
+import Input from '../../../../components/Input/Input';
 import Breadcrumb from './Breadcrumb/Breadcrumb';
 
 const Top = ({ query, sort, order, category, headerSearch, disableSort, setQuery, setSort, setSearch }) => {
@@ -35,17 +35,13 @@ const Top = ({ query, sort, order, category, headerSearch, disableSort, setQuery
         {headerSearch ? (
           <h1>{headerSearch.toUpperCase()}</h1>
         ) : (
-          <div className="top-search">
-            <input
-              placeholder="Busque utilizando uma palavra chave..."
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-
-            <button type="submit" className="top-search-button">
-              <Search />
-            </button>
-          </div>
+          <Input
+            variant="search"
+            fullWidth
+            placeholder="Busque utilizando uma palavra chave..."
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
         )}
 
         <select value={sort ? `${sort}-${order}` : ''} onChange={separateSort} disabled={disableSort}>

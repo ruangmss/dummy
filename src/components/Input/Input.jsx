@@ -1,58 +1,69 @@
 import React from 'react';
 import './Input.css';
-import Eye from '../../assets/icons/eye.svg?react';
-import ClosedEye from '../../assets/icons/closed-eye.svg?react';
-import Search from '../../assets/icons/search.svg?react';
+import EyeIcon from '../../assets/icons/eye.svg?react';
+import ClosedEyeIcon from '../../assets/icons/closed-eye.svg?react';
+import LockIcon from '../../assets/icons/lock.svg?react';
+import MailIcon from '../../assets/icons/mail.svg?react';
+import SearchIcon from '../../assets/icons/search.svg?react';
+import UserIcon from '../../assets/icons/user.svg?react';
 
-const Input = ({ className = '', placeholder, type = 'text', value, onChange, onBlur }) => {
-  const [visible, setVisible] = React.useState(false);
+const variantIcons = {
+  email: MailIcon,
+  password: LockIcon,
+  user: UserIcon,
+};
 
-  if (className === 'search') {
-    return (
-      <div className="input-wrapper search">
-        <input
-          type={type}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-          className="input search"
-          placeholder={placeholder}
-        />
+const Input = ({ ref, className = '', fullWidth = false, icon, id, label, type = 'text', variant, ...inputProps }) => {
+  const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const generatedId = React.useId();
 
-        <button type="submit" className="search-button">
-          <Search />
-        </button>
-      </div>
-    );
-  }
+  const resolvedVariant = variant ?? (type === 'email' || type === 'password' ? type : 'text');
+  const isPassword = resolvedVariant === 'password';
+  const isSearch = resolvedVariant === 'search';
 
-  if (type !== 'password') {
-    return (
-      <input
-        type={type}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        className={`input ${className}`}
-        placeholder={placeholder}
-      />
-    );
-  }
+  const Icon = icon ?? variantIcons[resolvedVariant];
+  const inputType = isPassword && passwordVisible ? 'text' : isSearch ? 'search' : type;
+  const inputId = id ?? (label ? generatedId : undefined);
 
   return (
-    <div className="password-container">
-      <input
-        className="input password"
-        placeholder={placeholder}
-        type={visible ? 'text' : 'password'}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
+    <div className={`input-container input-${resolvedVariant}-container${fullWidth ? ' input-full-width' : ''}`}>
+      {label && (
+        <label className="input-label" htmlFor={inputId}>
+          {label}
+        </label>
+      )}
 
-      <button type="button" className="visibility-button" onClick={() => setVisible((visible) => !visible)}>
-        {visible ? <Eye /> : <ClosedEye />}
-      </button>
+      <div className="input-content">
+        {Icon && (
+          <span className="input-icon">
+            <Icon />
+          </span>
+        )}
+
+        <input
+          {...inputProps}
+          ref={ref}
+          id={inputId}
+          type={inputType}
+          className={`input input-${resolvedVariant} ${className}`.trim()}
+        />
+
+        {isPassword && (
+          <button
+            type="button"
+            className="input-password-button"
+            onClick={() => setPasswordVisible((visible) => !visible)}
+          >
+            {passwordVisible ? <EyeIcon /> : <ClosedEyeIcon />}
+          </button>
+        )}
+
+        {isSearch && (
+          <button type="submit" className="input-search-button">
+            <SearchIcon />
+          </button>
+        )}
+      </div>
     </div>
   );
 };
