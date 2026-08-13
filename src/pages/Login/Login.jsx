@@ -80,7 +80,7 @@ const Login = () => {
             <Link to="/cadastro" className="button secondary">
               Cadastrar-se
             </Link>
-            <Button text="Login" type={loading ? 'loading' : ''} disabled={!validForm} />
+            <Button text="Login" type={loading ? 'loading' : ''} disabled={!validForm || loading} />
           </div>
         </form>
 

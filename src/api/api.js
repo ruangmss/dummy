@@ -71,6 +71,17 @@ export function AUTH_USER_GET(token) {
   };
 }
 
+export function USER_ADD_POST(user) {
+  return {
+    url: `${BASE_URL}/users/add`,
+    options: {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    },
+  };
+}
+
 export function USER_GET(id) {
   return {
     url: `${BASE_URL}/users/${id}`,

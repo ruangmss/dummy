@@ -1,0 +1,84 @@
+.registration-bg {
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  padding: 32px;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-lg);
+  max-width: 800px;
+  width: 100%;
+}
+
+.registration-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.registration-header h1 {
+  font: var(--heading-lg);
+}
+
+.registration-header p {
+  color: var(--muted);
+  font: var(--body-sm);
+}
+
+.registration-header a {
+  color: var(--foreground);
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.registration-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.registration-form > button {
+  max-width: 300px;
+}
+
+@media (hover: hover) {
+  .registration-header a:hover {
+    color: var(--primary);
+  }
+}
+
+@media (max-width: 768px) {
+  .registration {
+    gap: var(--spacing-lg);
+  }
+
+  .registration-form {
+    gap: var(--spacing-lg);
+  }
+
+  .registration-inputs {
+    gap: var(--spacing-sm);
+  }
+
+  .registration-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-form > button {
+    max-width: 100%;
+  }
+}

@@ -14,6 +14,7 @@ import Bag from './pages/Bag/Bag';
 import Category from './pages/Category/Category';
 import Login from './pages/Login/Login';
 import { ToastProvider } from './contexts/ToastContext';
+import Registration from './pages/Registration/Registration';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
               <Route path="/usuario" element={<User />} />
               <Route path="/sacola" element={<Bag />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/cadastro" element={<Registration />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
