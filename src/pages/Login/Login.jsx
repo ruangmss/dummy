@@ -36,7 +36,7 @@ const Login = () => {
   }
 
   return (
-    <section className="container login-bg">
+    <div className="container login-bg">
       <div className="login">
         <div className="login-header">
           <div className="login-header-icon">
@@ -86,7 +86,7 @@ const Login = () => {
 
         <FormError error={error && `Ocorreu um erro no login: ${error}`} />
       </div>
-    </section>
+    </div>
   );
 };
 
