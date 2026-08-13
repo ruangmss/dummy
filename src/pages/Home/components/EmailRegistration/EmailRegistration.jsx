@@ -39,7 +39,7 @@ const EmailRegistration = () => {
             onChange={email.onChange}
             onBlur={email.onBlur}
           />
-          <Button text="Cadastrar-me" type="secondary email-registration-button" disabled={email.value.length < 1} />
+          <Button text="Cadastrar" type="secondary email-registration-button" disabled={email.value.length < 1} />
         </div>
       </div>
     </form>
