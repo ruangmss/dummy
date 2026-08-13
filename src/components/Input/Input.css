@@ -12,8 +12,14 @@
 }
 
 .input-label {
-  font: var(--body-sm);
+  color: var(--muted);
+  font: var(--body-2sm);
   font-weight: 600;
+}
+
+.input-error {
+  color: var(--danger);
+  font: var(--body-2sm);
 }
 
 .input-content {
@@ -30,6 +36,12 @@
   background-color: var(--muted-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
+  font: var(--body-sm);
+}
+
+.form-input {
+  background-color: var(--white);
+  border-color: var(--muted);
 }
 
 .input-icon {
@@ -106,9 +118,5 @@
   .input-container {
     min-width: 0;
     max-width: 100%;
-  }
-
-  .input {
-    font: var(--body-sm);
   }
 }

@@ -13,7 +13,7 @@ const variantIcons = {
   user: UserIcon,
 };
 
-const Input = ({ ref, className = '', fullWidth = false, icon, id, label, type = 'text', variant, ...inputProps }) => {
+const Input = ({ className = '', error, fullWidth = false, icon, id, label, type = 'text', variant, ...inputProps }) => {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
   const generatedId = React.useId();
 
@@ -42,7 +42,6 @@ const Input = ({ ref, className = '', fullWidth = false, icon, id, label, type =
 
         <input
           {...inputProps}
-          ref={ref}
           id={inputId}
           type={inputType}
           className={`input input-${resolvedVariant} ${className}`.trim()}
@@ -64,6 +63,8 @@ const Input = ({ ref, className = '', fullWidth = false, icon, id, label, type =
           </button>
         )}
       </div>
+
+      {error && <span className="input-error">{error}</span>}
     </div>
   );
 };
