@@ -11,7 +11,7 @@ import FormError from '../../components/FormError/FormError';
 import { ToastContext } from '../../contexts/ToastContext';
 
 const Login = () => {
-  const username = useForm();
+  const username = useForm('user');
   const password = useForm();
   const { data, error, request, loading } = useFetch();
   const validForm = username.valid && password.valid;
@@ -25,7 +25,7 @@ const Login = () => {
     const { valid: validPassword } = password.validate();
 
     if (validUsername && validPassword) {
-      const { url, options } = LOGIN_POST(username.value, password.value);
+      const { url, options } = LOGIN_POST(username.value.trim(), password.value);
       const { response } = await request(url, options);
 
       if (response?.ok) {

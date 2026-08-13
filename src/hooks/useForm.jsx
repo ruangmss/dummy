@@ -11,6 +11,11 @@ const types = {
     message:
       'Por favor, insira uma senha forte: caracteres minúsculos e maiúsculos, caracteres especiais, dígitos e ao menos 8 caracteres.',
   },
+
+  user: {
+    regex: /^\S+$/,
+    message: 'Por favor, remova os espaços inseridos.',
+  },
 };
 
 const useForm = (type) => {
