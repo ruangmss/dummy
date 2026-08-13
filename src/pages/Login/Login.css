@@ -1,0 +1,100 @@
+.login-bg {
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  padding: 32px;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-lg);
+  max-width: 500px;
+  width: 100%;
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  text-align: center;
+}
+
+.login-header-icon {
+  display: flex;
+  place-self: center;
+  place-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  background-color: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+.login-header-icon img {
+  width: 24px;
+  height: 24px;
+  align-self: center;
+}
+
+.login-header h1 {
+  font: var(--heading-lg);
+}
+
+.login-header span {
+  font: var(--body-sm);
+  color: var(--muted);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.login-form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.login-form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.login-form-buttons button,
+.login-form-buttons a {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .login {
+    gap: var(--spacing-lg);
+  }
+
+  .login-form {
+    gap: var(--spacing-lg);
+  }
+
+  .login-form-inputs {
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .login-form-buttons button {
+    width: inherit;
+    order: -1;
+  }
+}

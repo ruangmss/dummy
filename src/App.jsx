@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound/NotFound';
 import User from './pages/User/User';
 import Bag from './pages/Bag/Bag';
 import Category from './pages/Category/Category';
+import Login from './pages/Login/Login';
 import { ToastProvider } from './contexts/ToastContext';
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
               <Route path="/pesquisa" element={<Search />} />
               <Route path="/usuario" element={<User />} />
               <Route path="/sacola" element={<Bag />} />
+              <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
