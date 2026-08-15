@@ -103,7 +103,7 @@
 }
 
 @media (hover: hover) {
-  .header a:hover {
+  .header a:not(.active):hover {
     color: var(--foreground);
   }
 
