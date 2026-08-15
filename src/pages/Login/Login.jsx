@@ -1,22 +1,22 @@
-import React from 'react';
-import './Login.css';
-import logo from '../../assets/icons/logo.svg';
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
-import useForm from '../../hooks/useForm';
-import { LOGIN_POST } from '../../api/api';
-import useFetch from '../../hooks/useFetch';
-import FormError from '../../components/FormError/FormError';
-import { ToastContext } from '../../contexts/ToastContext';
+import React from "react";
+import "./Login.css";
+import logo from "../../assets/icons/logo.svg";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
+import useForm from "../../hooks/useForm";
+import FormError from "../../components/FormError/FormError";
+import { ToastContext } from "../../contexts/ToastContext";
+import { UserContext } from "../../contexts/UserContext";
 
 const Login = () => {
-  const username = useForm('user');
+  const username = useForm("user");
   const password = useForm();
-  const { data, error, request, loading } = useFetch();
+
   const validForm = username.valid && password.valid;
-  const navigate = useNavigate();
+
   const showToast = React.useContext(ToastContext);
+  const { userLogin, error, loading } = React.useContext(UserContext);
 
   async function submitForm(event) {
     event.preventDefault();
@@ -25,19 +25,20 @@ const Login = () => {
     const { valid: validPassword } = password.validate();
 
     if (validUsername && validPassword) {
-      const { url, options } = LOGIN_POST(username.value.trim(), password.value);
-      const { response } = await request(url, options);
+      const success = await userLogin(username.value.trim(), password.value);
 
-      if (response?.ok) {
-        showToast('success', `Bem vindo(a), ${username.value.charAt(0).toUpperCase() + username.value.slice(1)}!`);
-        navigate('/');
+      if (success) {
+        showToast(
+          "success",
+          `Bem vindo(a), ${username.value.charAt(0).toUpperCase() + username.value.slice(1)}!`,
+        );
       }
     }
   }
 
   function setData() {
-    username.setValue('emilys');
-    password.setValue('emilyspass');
+    username.setValue("emilys");
+    password.setValue("emilyspass");
   }
 
   return (
@@ -86,7 +87,12 @@ const Login = () => {
             <Link to="/cadastro" className="button secondary">
               Cadastrar-se
             </Link>
-            <Button text="Login" type={loading ? 'loading' : ''} disabled={!validForm || loading} />
+
+            <Button
+              text="Login"
+              type={loading ? "loading" : ""}
+              disabled={!validForm || loading}
+            />
           </div>
         </form>
 
@@ -94,16 +100,21 @@ const Login = () => {
 
         <div className="login-form-information">
           <p>
-            Nota: a{' '}
-            <a href="https://dummyjson.com/" target="_blank" rel="noopener noreferrer">
+            Nota: a{" "}
+            <a
+              href="https://dummyjson.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               DummyJSON
-            </a>{' '}
-            apenas simula o cadastro e não adiciona novos usuários de forma permanente. Portanto, para fazer login,
-            utilize as credenciais abaixo.
+            </a>{" "}
+            apenas simula o cadastro e não adiciona novos usuários de forma
+            permanente. Portanto, para fazer login, utilize as credenciais
+            abaixo.
           </p>
         </div>
 
-        <button className="login-form-credentials" onClick={() => setData()}>
+        <button className="login-form-credentials" onClick={setData}>
           Usuário: emilys | Senha: emilyspass
         </button>
 

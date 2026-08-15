@@ -1,26 +1,31 @@
-import React from 'react';
-import Input from '../../components/Input/Input';
-import './Registration.css';
-import Button from '../../components/Button/Button';
-import useFetch from '../../hooks/useFetch';
-import useForm from '../../hooks/useForm';
-import { USER_ADD_POST } from '../../api/api';
-import { useNavigate } from 'react-router-dom';
-import { ToastContext } from '../../contexts/ToastContext';
-import FormError from '../../components/FormError/FormError';
+import React from "react";
+import Input from "../../components/Input/Input";
+import "./Registration.css";
+import Button from "../../components/Button/Button";
+import useForm from "../../hooks/useForm";
+import { ToastContext } from "../../contexts/ToastContext";
+import { UserContext } from "../../contexts/UserContext";
+import FormError from "../../components/FormError/FormError";
 
 const Registration = () => {
-  const { data, request, error, loading } = useFetch();
   const name = useForm();
   const lastName = useForm();
-  const username = useForm('user');
-  const email = useForm('email');
-  const password = useForm('password');
+  const username = useForm("user");
+  const email = useForm("email");
+  const password = useForm("password");
   const passwordConfirmation = useForm();
-  const navigate = useNavigate();
+
   const showToast = React.useContext(ToastContext);
-  const differentPasswords = passwordConfirmation.value.length > 0 && password.value !== passwordConfirmation.value;
-  const differentPasswordsText = differentPasswords ? 'As senhas não coincidem.' : '';
+  const { userRegister, error, loading } = React.useContext(UserContext);
+
+  const differentPasswords =
+    passwordConfirmation.value.length > 0 &&
+    password.value !== passwordConfirmation.value;
+
+  const differentPasswordsText = differentPasswords
+    ? "As senhas não coincidem."
+    : "";
+
   const validForm =
     name.valid &&
     lastName.valid &&
@@ -33,20 +38,18 @@ const Registration = () => {
   async function submitForm(event) {
     event.preventDefault();
 
-    if (validForm) {
-      const { url, options } = USER_ADD_POST({
-        firstName: name.value,
-        lastName: lastName.value,
-        username: username.value,
-        email: email.value,
-        password: password.value,
-      });
-      const { response } = await request(url, options);
+    if (!validForm) return;
 
-      if (response?.ok) {
-        showToast('success', 'Cadastro efetuado com sucesso!');
-        navigate('/login');
-      }
+    const success = await userRegister({
+      firstName: name.value,
+      lastName: lastName.value,
+      username: username.value,
+      email: email.value,
+      password: password.value,
+    });
+
+    if (success) {
+      showToast("success", "Cadastro efetuado com sucesso!");
     }
   }
 
@@ -55,14 +58,21 @@ const Registration = () => {
       <div className="registration">
         <div className="registration-header">
           <h1>Cadastro</h1>
+
           <p>
-            Nota: a{' '}
-            <a href="https://dummyjson.com/" target="_blank" rel="noopener noreferrer">
+            Nota: a{" "}
+            <a
+              href="https://dummyjson.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               DummyJSON
-            </a>{' '}
-            apenas simula o cadastro e não adiciona novos usuários de forma permanente.
+            </a>{" "}
+            apenas simula o cadastro e não adiciona novos usuários de forma
+            permanente.
           </p>
         </div>
+
         <form className="registration-form" onSubmit={submitForm}>
           <div className="registration-inputs">
             <Input
@@ -132,7 +142,11 @@ const Registration = () => {
             />
           </div>
 
-          <Button text="Cadastrar" disabled={!validForm || loading} type={loading ? 'loading' : ''} />
+          <Button
+            text="Cadastrar"
+            disabled={!validForm || loading}
+            type={loading ? "loading" : ""}
+          />
         </form>
 
         <FormError error={error && `Ocorreu um erro no cadastro: ${error}`} />
