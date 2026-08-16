@@ -1,11 +1,14 @@
-import React from 'react';
-import logo from '../../assets/icons/logo.svg';
-import { Link } from 'react-router-dom';
-import './Footer.css';
+import React from "react";
+import logo from "../../assets/icons/logo.svg";
+import { Link } from "react-router-dom";
+import "./Footer.css";
+import { UserContext } from "../../contexts/UserContext";
 
 const year = new Date().getFullYear();
 
 const Footer = () => {
+  const { login } = React.useContext(UserContext);
+
   return (
     <footer className="footer-bg">
       <div className="footer container">
@@ -37,7 +40,9 @@ const Footer = () => {
               <h3>Conta</h3>
 
               <div>
-                <Link to="/usuario">Usuário</Link>
+                <Link to={login ? "/usuario" : "/login"}>
+                  {login ? "Usuário" : "Login"}
+                </Link>
                 <Link to="/sacola">Sacola</Link>
               </div>
             </div>
