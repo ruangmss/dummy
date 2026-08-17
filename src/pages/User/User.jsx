@@ -1,6 +1,7 @@
-import React from "react";
-import { UserContext } from "../../contexts/UserContext";
-import Hero from "./components/Hero/Hero";
+import React from 'react';
+import { UserContext } from '../../contexts/UserContext';
+import Hero from './components/Hero/Hero';
+import Data from './components/Data/Data';
 
 const User = () => {
   const { data } = React.useContext(UserContext);
@@ -8,6 +9,7 @@ const User = () => {
   return (
     <>
       <Hero data={data} />
+      <Data data={data} />
     </>
   );
 };
