@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BagContext } from '../../contexts/BagContext';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
+  const { addItem } = React.useContext(BagContext);
   const hasDiscount = product.discountPercentage > 0;
   const lastUnits = product.stock <= 10 && product.stock > 0;
   const soldOut = product.stock === 0;
@@ -45,7 +47,7 @@ const ProductCard = ({ product }) => {
         </div>
       </Link>
 
-      <button type="button" disabled={soldOut}>
+      <button type="button" disabled={soldOut} onClick={() => addItem(product.id, product.title, 1, product.stock)}>
         +
       </button>
     </article>

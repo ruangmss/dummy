@@ -16,35 +16,38 @@ import Login from './pages/Login/Login';
 import { ToastProvider } from './contexts/ToastContext';
 import Registration from './pages/Registration/Registration';
 import { UserProvider } from './contexts/UserContext';
+import { BagProvider } from './contexts/BagContext';
 
 const App = () => {
   return (
     <BrowserRouter>
       <ToastProvider>
-        <UserProvider>
-          <div className="app">
-            <Header />
+        <BagProvider>
+          <UserProvider>
+            <div className="app">
+              <Header />
 
-            <main className="app-main">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/produtos" element={<Products />} />
-                <Route path="/produto/:id" element={<Product />} />
-                <Route path="/categorias/" element={<Categories />} />
-                <Route path="/categoria/:category" element={<Category />} />
-                <Route path="/pesquisa" element={<Search />} />
-                <Route path="/usuario" element={<User />} />
-                <Route path="/sacola" element={<Bag />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/cadastro" element={<Registration />} />
-                <Route path="/edicao-perfil" element={<Registration edition={true} />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
+              <main className="app-main">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/produtos" element={<Products />} />
+                  <Route path="/produto/:id" element={<Product />} />
+                  <Route path="/categorias/" element={<Categories />} />
+                  <Route path="/categoria/:category" element={<Category />} />
+                  <Route path="/pesquisa" element={<Search />} />
+                  <Route path="/usuario" element={<User />} />
+                  <Route path="/sacola" element={<Bag />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/cadastro" element={<Registration />} />
+                  <Route path="/edicao-perfil" element={<Registration edition={true} />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
 
-            <Footer />
-          </div>
-        </UserProvider>
+              <Footer />
+            </div>
+          </UserProvider>
+        </BagProvider>
       </ToastProvider>
     </BrowserRouter>
   );
