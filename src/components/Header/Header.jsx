@@ -1,29 +1,31 @@
-import React from "react";
-import "./Header.css";
-import logo from "../../assets/icons/logo.svg";
-import menu from "../../assets/icons/menu.svg";
-import searchIcon from "../../assets/icons/search.svg";
-import BagIcon from "../../assets/icons/bag.svg?react";
-import UserIcon from "../../assets/icons/user.svg?react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import useMedia from "../../hooks/useMedia";
-import Input from "../Input/Input";
-import { ToastContext } from "../../contexts/ToastContext";
-import { UserContext } from "../../contexts/UserContext";
+import React from 'react';
+import './Header.css';
+import logo from '../../assets/icons/logo.svg';
+import menu from '../../assets/icons/menu.svg';
+import searchIcon from '../../assets/icons/search.svg';
+import BagIcon from '../../assets/icons/bag.svg?react';
+import UserIcon from '../../assets/icons/user.svg?react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import useMedia from '../../hooks/useMedia';
+import Input from '../Input/Input';
+import { ToastContext } from '../../contexts/ToastContext';
+import { UserContext } from '../../contexts/UserContext';
+import { BagContext } from '../../contexts/BagContext';
 
 const Header = () => {
-  const mobile = useMedia("(max-width: 768px)");
+  const mobile = useMedia('(max-width: 768px)');
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileNav, setMobileNav] = React.useState(false);
   const [mobileSearch, setMobileSearch] = React.useState(false);
-  const [search, setSearch] = React.useState("");
+  const [search, setSearch] = React.useState('');
   const showToast = React.useContext(ToastContext);
   const { login } = React.useContext(UserContext);
+  const { bag } = React.useContext(BagContext);
 
   React.useEffect(() => {
-    if (location.pathname !== "/pesquisa") {
-      setSearch("");
+    if (location.pathname !== '/pesquisa') {
+      setSearch('');
     }
   }, [location.pathname, location.search]);
 
@@ -33,7 +35,7 @@ const Header = () => {
     const normalizedSearch = search.trim();
 
     if (!normalizedSearch) {
-      showToast("fail", "Insira caracteres para efetuar uma pesquisa.");
+      showToast('fail', 'Insira caracteres para efetuar uma pesquisa.');
       return;
     }
 
@@ -83,17 +85,18 @@ const Header = () => {
             </button>
           )}
 
-          <NavLink to={login ? "/usuario" : "/login"}>
+          <NavLink to={login ? '/usuario' : '/login'}>
             <UserIcon className="header-icon" />
           </NavLink>
-          <NavLink to="/sacola">
+          <NavLink to="/sacola" className="header-bag">
             <BagIcon className="header-icon" />
+            <span className="header-bag-quantity">{bag.length}</span>
           </NavLink>
 
           {mobile && (
             <button
               onClick={() => setMobileNav((mobileNav) => !mobileNav)}
-              className={`header-list-mobile-icon ${mobileNav ? "opened" : ""}`}
+              className={`header-list-mobile-icon ${mobileNav ? 'opened' : ''}`}
             >
               <img src={menu} alt="Ícone de menu" />
             </button>
@@ -102,7 +105,7 @@ const Header = () => {
       </div>
 
       {mobile && (
-        <div className={`header-list-mobile-bg ${mobileNav ? "opened" : ""}`}>
+        <div className={`header-list-mobile-bg ${mobileNav ? 'opened' : ''}`}>
           <nav>
             <ul className="header-list-mobile">
               <NavLink to="/">Início</NavLink>
@@ -114,10 +117,7 @@ const Header = () => {
       )}
 
       {mobile && (
-        <form
-          onSubmit={submitSearch}
-          className={`header-search-mobile-bg ${mobileSearch ? "opened" : ""}`}
-        >
+        <form onSubmit={submitSearch} className={`header-search-mobile-bg ${mobileSearch ? 'opened' : ''}`}>
           <Input
             variant="search"
             placeholder="Buscar produtos..."

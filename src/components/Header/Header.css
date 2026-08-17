@@ -90,6 +90,28 @@
   gap: var(--spacing-sm);
 }
 
+.header-bag {
+  position: relative;
+}
+
+.header-bag-quantity {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: grid;
+  min-width: 20px;
+  height: 20px;
+  padding-inline: 4px;
+  place-items: center;
+  color: var(--white);
+  background-color: var(--primary);
+  border: 2px solid var(--background);
+  border-radius: var(--radius-full);
+  font: var(--body-2sm);
+  font-weight: 600;
+  line-height: 1;
+}
+
 .header-buttons a.active {
   background-color: var(--muted-bg);
 }
