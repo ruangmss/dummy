@@ -10,7 +10,6 @@ export const UserProvider = ({ children }) => {
   const [login, setLogin] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
-  const showToast = React.useContext(ToastContext);
 
   const navigate = useNavigate();
 
@@ -71,7 +70,6 @@ export const UserProvider = ({ children }) => {
       await getUser(token);
     } catch (error) {
       userLogout();
-      showToast('fail', error.message);
     } finally {
       setLoading(false);
     }
