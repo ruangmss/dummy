@@ -1,0 +1,22 @@
+.spinner-container {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  margin: auto;
+  padding: var(--spacing-2xl);
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 6px solid var(--primary-light);
+  border-top-color: var(--primary);
+  border-radius: var(--radius-full);
+  animation: spinner-rotation 0.8s linear infinite;
+}
+
+@keyframes spinner-rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
