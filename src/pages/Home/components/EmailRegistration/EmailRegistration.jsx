@@ -18,8 +18,8 @@ const EmailRegistration = () => {
       return;
     }
 
-    showToast('success', 'Cadastro efetuado com sucesso!');
     email.reset();
+    showToast('success', 'Cadastro efetuado com sucesso!');
   }
 
   return (
