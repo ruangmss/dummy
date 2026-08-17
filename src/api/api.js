@@ -104,7 +104,7 @@ export function USER_UPDATE(id, user) {
   };
 }
 
-export function CART_ADD_POST(userId, products) {
+export function BAG_ADD_POST(userId, products) {
   return {
     url: `${BASE_URL}/carts/add`,
     options: {

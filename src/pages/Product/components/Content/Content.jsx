@@ -122,7 +122,7 @@ const Content = ({ product }) => {
           </div>
 
           <button
-            className="product-content-cart-button"
+            className="product-content-bag-button"
             type="button"
             disabled={quantity > product.stock || quantity === 0}
           >
