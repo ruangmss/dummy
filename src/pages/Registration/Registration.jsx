@@ -7,6 +7,7 @@ import { ToastContext } from '../../contexts/ToastContext';
 import { UserContext } from '../../contexts/UserContext';
 import FormError from '../../components/FormError/FormError';
 import Error from '../../components/Error/Error';
+import Spinner from '../../components/Spinner/Spinner';
 
 const Registration = ({ edition }) => {
   const { userRegister, userEdition, data, error, loading, login } = React.useContext(UserContext);
@@ -66,7 +67,11 @@ const Registration = ({ edition }) => {
     }
   }
 
-  if (!login && edition) {
+  if (edition && (loading || login === null) && !data) {
+    return <Spinner />;
+  }
+
+  if (edition && !login) {
     return <Error error={'Você não está logado. Por favor, efetue o login para acessar esta rota.'} />;
   }
 

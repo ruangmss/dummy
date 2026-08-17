@@ -4,7 +4,7 @@ import { PRODUCT_CATEGORIES_GET } from '../../api/api';
 import useFetch from '../../hooks/useFetch';
 import Products from '../Products/Products';
 import Error from '../../components/Error/Error';
-import NotFound from '../NotFound/NotFound';
+import Spinner from '../../components/Spinner/Spinner';
 
 const Category = () => {
   const { category } = useParams();
@@ -19,8 +19,8 @@ const Category = () => {
     fetchCategories();
   }, [request]);
 
-  if (loading) {
-    return null;
+  if (loading || (!data && !error)) {
+    return <Spinner />;
   }
 
   if (error) {
