@@ -91,6 +91,19 @@ export function USER_GET(id) {
   };
 }
 
+export function USER_UPDATE(id, user) {
+  return {
+    url: `https://dummyjson.com/users/${id}`,
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    },
+  };
+}
+
 export function CART_ADD_POST(userId, products) {
   return {
     url: `${BASE_URL}/carts/add`,

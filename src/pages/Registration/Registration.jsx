@@ -1,30 +1,38 @@
-import React from "react";
-import Input from "../../components/Input/Input";
-import "./Registration.css";
-import Button from "../../components/Button/Button";
-import useForm from "../../hooks/useForm";
-import { ToastContext } from "../../contexts/ToastContext";
-import { UserContext } from "../../contexts/UserContext";
-import FormError from "../../components/FormError/FormError";
+import React from 'react';
+import Input from '../../components/Input/Input';
+import './Registration.css';
+import Button from '../../components/Button/Button';
+import useForm from '../../hooks/useForm';
+import { ToastContext } from '../../contexts/ToastContext';
+import { UserContext } from '../../contexts/UserContext';
+import FormError from '../../components/FormError/FormError';
 
-const Registration = () => {
+const Registration = ({ edition }) => {
+  const { userRegister, userEdition, data, error, loading } = React.useContext(UserContext);
+
   const name = useForm();
   const lastName = useForm();
-  const username = useForm("user");
-  const email = useForm("email");
-  const password = useForm("password");
+  const username = useForm('user');
+  const email = useForm('email');
+  const password = useForm('password');
   const passwordConfirmation = useForm();
 
+  React.useEffect(() => {
+    if (edition && data) {
+      name.setValue(data.firstName);
+      lastName.setValue(data.lastName);
+      username.setValue(data.username);
+      email.setValue(data.email);
+    }
+  }, [edition, data]);
+
   const showToast = React.useContext(ToastContext);
-  const { userRegister, error, loading } = React.useContext(UserContext);
 
-  const differentPasswords =
-    passwordConfirmation.value.length > 0 &&
-    password.value !== passwordConfirmation.value;
+  const differentPasswords = passwordConfirmation.value.length > 0 && password.value !== passwordConfirmation.value;
 
-  const differentPasswordsText = differentPasswords
-    ? "As senhas não coincidem."
-    : "";
+  const differentPasswordsText = differentPasswords ? 'As senhas não coincidem.' : '';
+
+  console.log(data);
 
   const validForm =
     name.valid &&
@@ -40,16 +48,20 @@ const Registration = () => {
 
     if (!validForm) return;
 
-    const success = await userRegister({
+    const user = {
       firstName: name.value,
       lastName: lastName.value,
       username: username.value,
       email: email.value,
       password: password.value,
-    });
+    };
 
-    if (success) {
-      showToast("success", "Cadastro efetuado com sucesso!");
+    const success = edition ? await userEdition(data.id, user) : await userRegister(user);
+
+    if (success && !edition) {
+      showToast('success', 'Cadastro efetuado com sucesso!');
+    } else if (success && edition) {
+      showToast('success', 'Edições efetuadas com sucesso!');
     }
   }
 
@@ -57,20 +69,25 @@ const Registration = () => {
     <div className="registration-bg container">
       <div className="registration">
         <div className="registration-header">
-          <h1>Cadastro</h1>
+          <h1>{edition ? 'Editar perfil' : 'Cadastro'}</h1>
 
-          <p>
-            Nota: a{" "}
-            <a
-              href="https://dummyjson.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              DummyJSON
-            </a>{" "}
-            apenas simula o cadastro e não adiciona novos usuários de forma
-            permanente.
-          </p>
+          {edition ? (
+            <p>
+              Nota: a{' '}
+              <a href="https://dummyjson.com/" target="_blank" rel="noopener noreferrer">
+                DummyJSON
+              </a>{' '}
+              apenas simula a edição e não altera os dados dos usuários de forma permanente.
+            </p>
+          ) : (
+            <p>
+              Nota: a{' '}
+              <a href="https://dummyjson.com/" target="_blank" rel="noopener noreferrer">
+                DummyJSON
+              </a>{' '}
+              apenas simula o cadastro e não adiciona novos usuários de forma permanente.
+            </p>
+          )}
         </div>
 
         <form className="registration-form" onSubmit={submitForm}>
@@ -143,9 +160,9 @@ const Registration = () => {
           </div>
 
           <Button
-            text="Cadastrar"
+            text={edition ? 'Salvar Alterações' : 'Cadastrar'}
             disabled={!validForm || loading}
-            type={loading ? "loading" : ""}
+            type={loading ? 'loading' : ''}
           />
         </form>
 

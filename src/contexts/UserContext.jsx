@@ -1,7 +1,7 @@
-import React from "react";
-import { LOGIN_POST, AUTH_USER_GET, USER_ADD_POST } from "../api/api";
-import { useNavigate } from "react-router-dom";
-import { ToastContext } from "./ToastContext";
+import React from 'react';
+import { LOGIN_POST, AUTH_USER_GET, USER_ADD_POST, USER_UPDATE } from '../api/api';
+import { useNavigate } from 'react-router-dom';
+import { ToastContext } from './ToastContext';
 
 export const UserContext = React.createContext();
 
@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error("Erro ao validar usuário.");
+      throw new Error('Erro ao validar usuário.');
     }
 
     const json = await response.json();
@@ -41,11 +41,11 @@ export const UserProvider = ({ children }) => {
         throw new Error(json.message);
       }
 
-      localStorage.setItem("token", json.accessToken);
+      localStorage.setItem('token', json.accessToken);
 
       await getUser(json.accessToken);
 
-      navigate("/");
+      navigate('/');
 
       return true;
     } catch (error) {
@@ -58,7 +58,7 @@ export const UserProvider = ({ children }) => {
   }
 
   async function autoLogin() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     if (!token) {
       setLogin(false);
@@ -70,8 +70,8 @@ export const UserProvider = ({ children }) => {
       setLoading(true);
       await getUser(token);
     } catch (error) {
-      showToast("fail", error.message);
       userLogout();
+      showToast('fail', error.message);
     } finally {
       setLoading(false);
     }
@@ -82,9 +82,9 @@ export const UserProvider = ({ children }) => {
     setError(null);
     setLogin(false);
 
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
 
-    navigate("/login");
+    navigate('/login');
   }
 
   async function userRegister(user) {
@@ -100,7 +100,33 @@ export const UserProvider = ({ children }) => {
         throw new Error(json.message);
       }
 
-      navigate("/login");
+      navigate('/login');
+
+      return true;
+    } catch (error) {
+      setError(error.message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function userEdition(id, user) {
+    try {
+      setError(null);
+      setLoading(true);
+
+      const { url, options } = USER_UPDATE(id, user);
+      const response = await fetch(url, options);
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw new Error(json.message);
+      }
+
+      setData(json);
+
+      navigate('/usuario');
 
       return true;
     } catch (error) {
@@ -124,6 +150,7 @@ export const UserProvider = ({ children }) => {
         error,
         userLogin,
         userRegister,
+        userEdition,
         userLogout,
       }}
     >

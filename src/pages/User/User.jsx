@@ -4,11 +4,11 @@ import Hero from './components/Hero/Hero';
 import Data from './components/Data/Data';
 
 const User = () => {
-  const { data } = React.useContext(UserContext);
+  const { data, userLogout } = React.useContext(UserContext);
 
   return (
     <>
-      <Hero data={data} />
+      <Hero data={data} userLogout={userLogout} />
       <Data data={data} />
     </>
   );

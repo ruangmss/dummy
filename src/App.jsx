@@ -1,21 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home/Home";
-import Products from "./pages/Products/Products";
-import Product from "./pages/Product/Product";
-import Categories from "./pages/Categories/Categories";
-import Search from "./pages/Search/Search";
-import NotFound from "./pages/NotFound/NotFound";
-import User from "./pages/User/User";
-import Bag from "./pages/Bag/Bag";
-import Category from "./pages/Category/Category";
-import Login from "./pages/Login/Login";
-import { ToastProvider } from "./contexts/ToastContext";
-import Registration from "./pages/Registration/Registration";
-import { UserProvider } from "./contexts/UserContext";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Home from './pages/Home/Home';
+import Products from './pages/Products/Products';
+import Product from './pages/Product/Product';
+import Categories from './pages/Categories/Categories';
+import Search from './pages/Search/Search';
+import NotFound from './pages/NotFound/NotFound';
+import User from './pages/User/User';
+import Bag from './pages/Bag/Bag';
+import Category from './pages/Category/Category';
+import Login from './pages/Login/Login';
+import { ToastProvider } from './contexts/ToastContext';
+import Registration from './pages/Registration/Registration';
+import { UserProvider } from './contexts/UserContext';
 
 const App = () => {
   return (
@@ -37,6 +37,7 @@ const App = () => {
                 <Route path="/sacola" element={<Bag />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/cadastro" element={<Registration />} />
+                <Route path="/edicao-perfil" element={<Registration edition={true} />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
