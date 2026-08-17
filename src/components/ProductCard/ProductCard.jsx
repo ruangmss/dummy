@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BagContext } from '../../contexts/BagContext';
+import { ToastContext } from '../../contexts/ToastContext';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
-  const { addItem } = React.useContext(BagContext);
+  const { bag, addItem } = React.useContext(BagContext);
+  const showToast = React.useContext(ToastContext);
+  const quantityInBag = bag.find((item) => item.id === product.id)?.quantity ?? 0;
   const hasDiscount = product.discountPercentage > 0;
   const lastUnits = product.stock <= 10 && product.stock > 0;
   const soldOut = product.stock === 0;
@@ -12,6 +15,16 @@ const ProductCard = ({ product }) => {
 
   if (hasDiscount) {
     originalPrice = (product.price / (1 - product.discountPercentage / 100)).toFixed(2);
+  }
+
+  function addProduct() {
+    if (quantityInBag >= product.stock) {
+      showToast('fail', `Quantidade máxima de ${product.title} atingida.`);
+      return;
+    }
+
+    addItem(product.id, 1, product.stock);
+    showToast('success', `${product.title} adicionado à sacola!`);
   }
 
   return (
@@ -47,7 +60,7 @@ const ProductCard = ({ product }) => {
         </div>
       </Link>
 
-      <button type="button" disabled={soldOut} onClick={() => addItem(product.id, product.title, 1, product.stock)}>
+      <button type="button" disabled={soldOut} onClick={addProduct}>
         +
       </button>
     </article>

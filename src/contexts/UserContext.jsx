@@ -1,7 +1,6 @@
 import React from 'react';
 import { LOGIN_POST, AUTH_USER_GET, USER_ADD_POST, USER_UPDATE } from '../api/api';
 import { useNavigate } from 'react-router-dom';
-import { ToastContext } from './ToastContext';
 
 export const UserContext = React.createContext();
 

@@ -1,21 +1,34 @@
-import React from "react";
-import "./Content.css";
-import freight from "../../../../assets/icons/freight.svg";
-import shield from "../../../../assets/icons/shield.svg";
-import Bag from "../../../../assets/icons/bag.svg?react";
+import React from 'react';
+import './Content.css';
+import freight from '../../../../assets/icons/freight.svg';
+import shield from '../../../../assets/icons/shield.svg';
+import Bag from '../../../../assets/icons/bag.svg?react';
+import { BagContext } from '../../../../contexts/BagContext';
+import { ToastContext } from '../../../../contexts/ToastContext';
 
 const Content = ({ product }) => {
+  const { bag, addItem } = React.useContext(BagContext);
+  const showToast = React.useContext(ToastContext);
   const [quantity, setQuantity] = React.useState(0);
   const [image, setImage] = React.useState(product.images[0]);
+  const quantityInBag = bag.find((item) => item.id === product.id)?.quantity ?? 0;
   const hasDiscount = product.discountPercentage > 0;
   const soldOut = product.stock === 0;
   let originalPrice = 0;
 
   if (hasDiscount) {
-    originalPrice = (
-      product.price /
-      (1 - product.discountPercentage / 100)
-    ).toFixed(2);
+    originalPrice = (product.price / (1 - product.discountPercentage / 100)).toFixed(2);
+  }
+
+  function addProduct() {
+    if (quantityInBag + quantity > product.stock) {
+      showToast('fail', `Quantidade máxima de ${product.title} atingida.`);
+      return;
+    }
+
+    addItem(product.id, quantity, product.stock);
+    showToast('success', `${quantity}X ${product.title} adicionado à sacola!`);
+    setQuantity(0);
   }
 
   return (
@@ -25,7 +38,7 @@ const Content = ({ product }) => {
           <img src={image} alt={`Imagem do produto ${product.title}`} />
           {hasDiscount && (
             <span className="product-content-discount">
-              - {product.discountPercentage.toFixed(1).replace(".", ",")}%
+              - {product.discountPercentage.toFixed(1).replace('.', ',')}%
             </span>
           )}
         </div>
@@ -34,15 +47,9 @@ const Content = ({ product }) => {
           <nav>
             <ul className="product-content-images-list">
               {product.images.map((productImage, index) => (
-                <li
-                  key={productImage}
-                  className={`product-image ${productImage === image ? "active-photo" : ""}`}
-                >
+                <li key={productImage} className={`product-image ${productImage === image ? 'active-photo' : ''}`}>
                   <button type="button" onClick={() => setImage(productImage)}>
-                    <img
-                      src={productImage}
-                      alt={`Imagem ${index + 1} do produto ${product.title}`}
-                    />
+                    <img src={productImage} alt={`Imagem ${index + 1} do produto ${product.title}`} />
                   </button>
                 </li>
               ))}
@@ -54,34 +61,26 @@ const Content = ({ product }) => {
       <div className="product-content-general">
         <div className="product-content-top">
           <span className="product-content-category">
-            {product.category.charAt(0).toUpperCase() +
-              product.category.slice(1)}
+            {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
           </span>
-          {product.brand && (
-            <span className="product-content-brand">{product.brand}</span>
-          )}
-          <span className="product-content-stock">
-            {soldOut ? "Esgotado" : `Estoque: ${product.stock}`}
-          </span>
+          {product.brand && <span className="product-content-brand">{product.brand}</span>}
+          <span className="product-content-stock">{soldOut ? 'Esgotado' : `Estoque: ${product.stock}`}</span>
         </div>
 
         <div className="product-content-data">
           <h1>{product.title}</h1>
 
           <span className="product-content-data-rating">
-            <span className="star">★</span> <span>{product.rating}</span>{" "}
-            <span>({product.reviews.length})</span>
+            <span className="star">★</span> <span>{product.rating}</span> <span>({product.reviews.length})</span>
           </span>
 
           <strong>
-            R$ {product.price.toFixed(2).replace(".", ",")}{" "}
-            <span>{originalPrice.replace(".", ",")}</span>
+            R$ {product.price.toFixed(2).replace('.', ',')} <span>{originalPrice.replace('.', ',')}</span>
           </strong>
 
           {originalPrice && (
             <span className="product-content-saving">
-              Você economiza R${" "}
-              {(originalPrice - product.price).toFixed(2).replace(".", ",")}!
+              Você economiza R$ {(originalPrice - product.price).toFixed(2).replace('.', ',')}!
             </span>
           )}
         </div>
@@ -94,8 +93,7 @@ const Content = ({ product }) => {
 
         <ul className="product-content-benefits">
           <li>
-            <img src={freight} alt="Ícone de frete" /> Entrega em até duas
-            semanas
+            <img src={freight} alt="Ícone de frete" /> Entrega em até duas semanas
           </li>
           <li>
             <img src={shield} alt="Ícone de escudo" /> Um ano de garantia
@@ -106,17 +104,11 @@ const Content = ({ product }) => {
 
         <div className="product-content-shopping">
           <div className="product-content-quantity">
-            <button
-              disabled={quantity === 0}
-              onClick={() => setQuantity((quantity) => quantity - 1)}
-            >
+            <button disabled={quantity === 0} onClick={() => setQuantity((quantity) => quantity - 1)}>
               -
             </button>
             <span>{quantity}</span>
-            <button
-              disabled={quantity === product.stock}
-              onClick={() => setQuantity((quantity) => quantity + 1)}
-            >
+            <button disabled={quantity === product.stock} onClick={() => setQuantity((quantity) => quantity + 1)}>
               +
             </button>
           </div>
@@ -125,9 +117,10 @@ const Content = ({ product }) => {
             className="product-content-bag-button"
             type="button"
             disabled={quantity > product.stock || quantity === 0}
+            onClick={addProduct}
           >
-            {soldOut ? "" : <Bag />}
-            {`${soldOut ? "Produto Esgotado" : "Adicionar à Sacola"}`}
+            {soldOut ? '' : <Bag />}
+            {`${soldOut ? 'Produto Esgotado' : 'Adicionar à Sacola'}`}
           </button>
         </div>
       </div>

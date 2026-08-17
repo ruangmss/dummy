@@ -4,7 +4,6 @@ import Attributes from './components/Attributes/Attributes';
 import BestSeller from './components/BestSellers/BestSeller';
 import Categories from './components/Categories/Categories';
 import EmailRegistration from './components/EmailRegistration/EmailRegistration';
-import Toast from '../../components/Toast/Toast';
 
 const Home = () => {
   return (
