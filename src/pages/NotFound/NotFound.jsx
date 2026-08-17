@@ -7,7 +7,7 @@ const NotFound = () => {
 
   return (
     <section className="container not-found">
-      <div className="not-found-illustration" aria-hidden="true">
+      <div className="not-found-illustration">
         <span className="not-found-code">404</span>
         <div className="not-found-icon">
           <CartIcon />

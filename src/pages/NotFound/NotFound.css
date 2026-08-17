@@ -37,7 +37,6 @@
   border-radius: var(--radius-full);
   background-color: var(--primary);
   box-shadow: 0 12px 30px rgb(29 78 216 / 25%);
-  transform: rotate(-8deg);
 }
 
 .not-found-icon svg {
