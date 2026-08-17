@@ -6,9 +6,10 @@ import useForm from '../../hooks/useForm';
 import { ToastContext } from '../../contexts/ToastContext';
 import { UserContext } from '../../contexts/UserContext';
 import FormError from '../../components/FormError/FormError';
+import Error from '../../components/Error/Error';
 
 const Registration = ({ edition }) => {
-  const { userRegister, userEdition, data, error, loading } = React.useContext(UserContext);
+  const { userRegister, userEdition, data, error, loading, login } = React.useContext(UserContext);
 
   const name = useForm();
   const lastName = useForm();
@@ -63,6 +64,10 @@ const Registration = ({ edition }) => {
     } else if (success && edition) {
       showToast('success', 'Edições efetuadas com sucesso!');
     }
+  }
+
+  if (!login && edition) {
+    return <Error error={'Você não está logado. Por favor, efetue o login para acessar esta rota.'} />;
   }
 
   return (
