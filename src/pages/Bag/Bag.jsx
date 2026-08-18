@@ -5,6 +5,7 @@ import { BagContext } from '../../contexts/BagContext';
 import Products from './components/Products/Products';
 import Summary from './components/Summary/Summary';
 import Empty from './components/Empty/Empty';
+import './Bag.css';
 
 const Bag = () => {
   const [checkout, setCheckout] = React.useState(false);
@@ -40,7 +41,7 @@ const Bag = () => {
   return (
     <>
       <Top checkout={checkout} />
-      <div className="bag-content">
+      <div className="bag-content container">
         <Products products={products} />
         <Summary products={products} />
       </div>

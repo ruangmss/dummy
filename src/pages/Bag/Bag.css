@@ -1,0 +1,4 @@
+.bag-content {
+  display: flex;
+  gap: var(--spacing-2xl);
+}
