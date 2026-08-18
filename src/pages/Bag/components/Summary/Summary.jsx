@@ -71,7 +71,7 @@ const Summary = ({ products }) => {
 
         <span className="summary-security-text">
           <LockIcon />
-          Compra segura e protegida
+          Ambiente SSL | Compra segura
         </span>
       </div>
     </div>
