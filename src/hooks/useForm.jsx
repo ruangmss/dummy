@@ -22,11 +22,6 @@ const types = {
     message: 'Por favor, insira o nome e o sobrenome.',
   },
 
-  phone: {
-    regex: /^(?:\([1-9]{2}\)|[1-9]{2})\s?(?:9\d{4}|\d{4})-?\d{4}$/,
-    message: 'Por favor, insira um telefone válido com DDD.',
-  },
-
   street: {
     regex: /^(?=.{3,100}$)(?=.*\p{L})[\p{L}\d\s.,ºª°'#/-]+$/u,
     message: 'Por favor, insira um logradouro válido.',
