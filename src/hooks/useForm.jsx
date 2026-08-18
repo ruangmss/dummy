@@ -23,7 +23,7 @@ const types = {
   },
 
   street: {
-    regex: /^(?=.{3,100}$)(?=.*\p{L})[\p{L}\d\s.,ºª°'#/-]+$/u,
+    regex: /^(?=.{3,100}$)(?=.*\p{L})[\p{L}\s.,ºª°'#/-]+$/u,
     message: 'Por favor, insira um logradouro válido.',
   },
 
