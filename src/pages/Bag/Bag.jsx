@@ -6,6 +6,7 @@ import Products from './components/Products/Products';
 import Summary from './components/Summary/Summary';
 import Empty from './components/Empty/Empty';
 import './Bag.css';
+import Form from './components/Form/Form';
 
 const Bag = () => {
   const [checkout, setCheckout] = React.useState(false);
@@ -42,7 +43,7 @@ const Bag = () => {
     <>
       <Top checkout={checkout} setCheckout={setCheckout} />
       <div className="bag-content container">
-        <Products products={products} />
+        {checkout ? <Form /> : <Products products={products} />}
         <Summary products={products} setCheckout={setCheckout} />
       </div>
     </>
