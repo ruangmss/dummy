@@ -40,10 +40,10 @@ const Bag = () => {
 
   return (
     <>
-      <Top checkout={checkout} />
+      <Top checkout={checkout} setCheckout={setCheckout} />
       <div className="bag-content container">
         <Products products={products} />
-        <Summary products={products} />
+        <Summary products={products} setCheckout={setCheckout} />
       </div>
     </>
   );

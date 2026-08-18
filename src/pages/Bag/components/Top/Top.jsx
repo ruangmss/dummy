@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import arrow from '../../../../assets/icons/arrow.svg';
 import bagIcon from '../../../../assets/icons/bag.svg';
 
-const Top = ({ checkout }) => {
+const Top = ({ checkout, setCheckout }) => {
   const { bag } = React.useContext(BagContext);
 
   if (checkout) {
@@ -19,7 +19,9 @@ const Top = ({ checkout }) => {
             </li>
 
             <li>
-              <button type="button">Carrinho</button>
+              <button type="button" onClick={() => setCheckout(false)}>
+                Sacola
+              </button>
               <img src={arrow} alt="Ícone de seta" />
             </li>
 
