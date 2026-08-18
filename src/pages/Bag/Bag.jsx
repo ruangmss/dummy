@@ -3,6 +3,8 @@ import Top from './components/Top/Top';
 import { PRODUCT_GET } from '../../api/api';
 import { BagContext } from '../../contexts/BagContext';
 import Products from './components/Products/Products';
+import Summary from './components/Summary/Summary';
+import Empty from './components/Empty/Empty';
 
 const Bag = () => {
   const [checkout, setCheckout] = React.useState(false);
@@ -31,10 +33,17 @@ const Bag = () => {
     fetchBagProducts();
   }, [bag]);
 
+  if (bag.length === 0) {
+    return <Empty />;
+  }
+
   return (
     <>
       <Top checkout={checkout} />
-      <Products products={products} />
+      <div className="bag-content">
+        <Products products={products} />
+        <Summary products={products} />
+      </div>
     </>
   );
 };

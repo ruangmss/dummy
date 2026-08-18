@@ -8,24 +8,6 @@ import bagIcon from '../../../../assets/icons/bag.svg';
 const Top = ({ checkout }) => {
   const { bag } = React.useContext(BagContext);
 
-  if (bag.length === 0) {
-    return (
-      <section className="container empty-bag">
-        <div className="empty-bag-icon">
-          <img src={bagIcon} alt="Ícone de sacola" />
-        </div>
-
-        <div className="empty-bag-content">
-          <h1>Sua sacola está vazia</h1>
-          <p>Explore nossos produtos e encontre algo especial para adicionar à sua sacola.</p>
-          <Link to="/produtos" className="button">
-            Explorar Produtos
-          </Link>
-        </div>
-      </section>
-    );
-  }
-
   if (checkout) {
     return (
       <div className="container top">
