@@ -1,0 +1,131 @@
+.bag-products {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.bag-product {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.bag-product-left {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.bag-product-image-bg {
+  padding: 10px;
+  background-color: var(--muted-bg);
+  border-radius: var(--radius-lg);
+  place-content: center;
+}
+
+.bag-product-image-bg img {
+  max-width: 100px;
+}
+
+.bag-product-data span:first-child {
+  font: var(--body-2sm);
+  color: var(--muted);
+}
+
+.bag-product-data a {
+  display: block;
+  font: var(--body-md);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.bag-product-discount {
+  padding: 2px 8px;
+  background-color: var(--danger);
+  font: var(--body-2sm);
+  font-weight: 600;
+  color: var(--white);
+  border-radius: var(--radius-xl);
+}
+
+.bag-product-data-buttons {
+  border-radius: var(--radius-lg);
+  display: flex;
+  gap: var(--spacing-md);
+  border: 1px solid var(--border);
+  align-items: center;
+  max-width: max-content;
+
+  margin-top: var(--spacing-sm);
+}
+
+.bag-product-data-buttons button {
+  transition: background-color 0.2s ease;
+  padding: 3px 10px;
+  border-radius: var(--radius-lg);
+}
+
+.bag-product-data-buttons button:disabled {
+  cursor: not-allowed;
+}
+
+.bag-product-right {
+  display: flex;
+  flex-direction: column;
+  align-self: end;
+  text-align: end;
+}
+
+.bag-product-right strong {
+  font: var(--body-md);
+  font-weight: 600;
+}
+
+.bag-product-right span {
+  font: var(--body-sm);
+  color: var(--muted);
+}
+
+.bag-product-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font: var(--body-2sm);
+  font-weight: 600;
+  background-color: var(--danger);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  text-align: center;
+  color: var(--white);
+  transition: background-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .bag-product-data-buttons button:not(:disabled):hover {
+    background-color: var(--muted-bg);
+  }
+
+  .bag-product-data a:hover {
+    color: var(--primary);
+  }
+
+  .bag-product-close-btn:hover {
+    background-color: var(--danger-hover);
+  }
+}
+
+@media (max-width: 600px) {
+  .bag-product {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .bag-product-right {
+    place-self: start;
+    text-align: left;
+  }
+}
