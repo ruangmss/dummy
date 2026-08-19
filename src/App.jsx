@@ -17,6 +17,7 @@ import { ToastProvider } from './contexts/ToastContext';
 import Registration from './pages/Registration/Registration';
 import { UserProvider } from './contexts/UserContext';
 import { BagProvider } from './contexts/BagContext';
+import Payment from './pages/Payment/Payment';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
                   <Route path="/pesquisa" element={<Search />} />
                   <Route path="/usuario" element={<User />} />
                   <Route path="/sacola" element={<Bag />} />
+                  <Route path="/pagamento" element={<Payment />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/cadastro" element={<Registration />} />
                   <Route path="/edicao-perfil" element={<Registration edition={true} />} />

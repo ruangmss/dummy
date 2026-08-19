@@ -4,7 +4,7 @@ import Button from '../../../../components/Button/Button';
 import LockIcon from '../../../../assets/icons/lock.svg?react';
 import { Link } from 'react-router-dom';
 
-const Summary = ({ products, setCheckout }) => {
+const Summary = ({ products, payment = false }) => {
   const total = products.reduce((total, product) => {
     return total + product.quantity * product.price;
   }, 0);
@@ -66,9 +66,15 @@ const Summary = ({ products, setCheckout }) => {
         </span>
 
         <div className="summary-buttons">
-          <Button text="Finalizar Compra" onClick={() => setCheckout(true)} />
-          <Link to="/produtos" className="button secondary">
-            Continuar Comprando
+          {payment ? (
+            <Button text="Finalizar Pagamento" />
+          ) : (
+            <Link to="/pagamento" className="button">
+              Finalizar Compra
+            </Link>
+          )}
+          <Link to={payment ? '/sacola' : '/produtos'} className="button secondary">
+            {payment ? 'Voltar para a Sacola' : 'Continuar Comprando'}
           </Link>
         </div>
 

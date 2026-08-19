@@ -1,0 +1,293 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { PRODUCT_GET } from '../../api/api';
+import CardIcon from '../../assets/icons/payment-card.svg?react';
+import InvoiceIcon from '../../assets/icons/invoice.svg?react';
+import QrCodeIcon from '../../assets/icons/qr-code.svg?react';
+import arrow from '../../assets/icons/arrow.svg';
+import Input from '../../components/Input/Input';
+import { BagContext } from '../../contexts/BagContext';
+import useForm from '../../hooks/useForm';
+import Empty from '../Bag/components/Empty/Empty';
+import Summary from '../Bag/components/Summary/Summary';
+import './Payment.css';
+
+const Payment = () => {
+  const [products, setProducts] = React.useState([]);
+  const [paymentMethod, setPaymentMethod] = React.useState('');
+  const { bag } = React.useContext(BagContext);
+  const fullName = useForm('fullName');
+  const email = useForm('email');
+  const street = useForm('street');
+  const city = useForm('city');
+  const state = useForm('state');
+  const postalCode = useForm('postalCode');
+  const cardNumber = useForm('cardNumber');
+  const cardName = useForm('cardName');
+  const cardExpiration = useForm('cardExpiration');
+  const cardCvv = useForm('cardCvv');
+
+  React.useEffect(() => {
+    async function fetchPaymentProducts() {
+      const paymentProducts = await Promise.all(
+        bag.map(async (item) => {
+          const { url, options } = PRODUCT_GET(item.id);
+          const response = await fetch(url, options);
+          const product = await response.json();
+
+          return {
+            ...product,
+            quantity: item.quantity,
+          };
+        }),
+      );
+
+      setProducts(paymentProducts);
+    }
+
+    fetchPaymentProducts();
+  }, [bag]);
+
+  if (bag.length === 0) {
+    return <Empty />;
+  }
+
+  return (
+    <>
+      <div className="container payment-top">
+        <nav aria-label="Navegação estrutural">
+          <ol className="payment-breadcrumb">
+            <li>
+              <Link to="/">Início</Link>
+              <img src={arrow} alt="" />
+            </li>
+            <li>
+              <Link to="/sacola">Sacola</Link>
+              <img src={arrow} alt="" />
+            </li>
+            <li>
+              <strong>Pagamento</strong>
+            </li>
+          </ol>
+        </nav>
+        <h1>Finalizar Compra</h1>
+      </div>
+
+      <div className="payment-content container">
+        <form className="payment-form">
+          <section className="payment-form-section">
+            <h2>Dados Pessoais</h2>
+
+            <div className="payment-form-inputs">
+              <Input
+                className="form-input"
+                label="Nome completo"
+                name="fullName"
+                placeholder="Digite seu nome completo"
+                autoComplete="name"
+                fullWidth
+                value={fullName.value}
+                onChange={fullName.onChange}
+                onBlur={fullName.onBlur}
+                error={fullName.error}
+              />
+              <Input
+                className="form-input"
+                label="E-mail"
+                name="email"
+                type="email"
+                variant="email"
+                placeholder="exemplo@email.com"
+                autoComplete="email"
+                fullWidth
+                value={email.value}
+                onChange={email.onChange}
+                onBlur={email.onBlur}
+                error={email.error}
+              />
+            </div>
+          </section>
+
+          <section className="payment-form-section">
+            <h2>Endereço de Entrega</h2>
+
+            <div className="payment-form-inputs">
+              <Input
+                className="form-input"
+                label="Logradouro"
+                name="street"
+                placeholder="Rua, avenida ou travessa"
+                autoComplete="street-address"
+                fullWidth
+                value={street.value}
+                onChange={street.onChange}
+                onBlur={street.onBlur}
+                error={street.error}
+              />
+              <Input
+                className="form-input"
+                label="Cidade"
+                name="city"
+                placeholder="Digite sua cidade"
+                autoComplete="address-level2"
+                fullWidth
+                value={city.value}
+                onChange={city.onChange}
+                onBlur={city.onBlur}
+                error={city.error}
+              />
+              <Input
+                className="form-input"
+                label="Estado"
+                name="state"
+                placeholder="SP"
+                autoComplete="address-level1"
+                maxLength={2}
+                fullWidth
+                value={state.value}
+                onChange={state.onChange}
+                onBlur={state.onBlur}
+                error={state.error}
+              />
+              <Input
+                className="form-input"
+                label="CEP"
+                name="postalCode"
+                placeholder="00000-000"
+                inputMode="numeric"
+                autoComplete="postal-code"
+                fullWidth
+                value={postalCode.value}
+                onChange={postalCode.onChange}
+                onBlur={postalCode.onBlur}
+                error={postalCode.error}
+              />
+            </div>
+          </section>
+
+          <section className="payment-form-section">
+            <h2>Forma de Pagamento</h2>
+
+            <ul className="payment-methods">
+              <li>
+                <button
+                  type="button"
+                  className={`payment-method ${paymentMethod === 'credit' ? 'active' : ''}`}
+                  onClick={() => setPaymentMethod('credit')}
+                >
+                  <CardIcon />
+                  <span>Cartão de Crédito</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className={`payment-method ${paymentMethod === 'debit' ? 'active' : ''}`}
+                  onClick={() => setPaymentMethod('debit')}
+                >
+                  <CardIcon />
+                  <span>Cartão de Débito</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className={`payment-method ${paymentMethod === 'pix' ? 'active' : ''}`}
+                  onClick={() => setPaymentMethod('pix')}
+                >
+                  <QrCodeIcon />
+                  <span>PIX</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className={`payment-method ${paymentMethod === 'invoice' ? 'active' : ''}`}
+                  onClick={() => setPaymentMethod('invoice')}
+                >
+                  <InvoiceIcon />
+                  <span>Boleto Bancário</span>
+                </button>
+              </li>
+            </ul>
+
+            {(paymentMethod === 'credit' || paymentMethod === 'debit') && (
+              <div className="payment-form-inputs">
+                <Input
+                  className="form-input"
+                  label="Número do cartão"
+                  name="cardNumber"
+                  placeholder="0000 0000 0000 0000"
+                  inputMode="numeric"
+                  autoComplete="cc-number"
+                  fullWidth
+                  value={cardNumber.value}
+                  onChange={cardNumber.onChange}
+                  onBlur={cardNumber.onBlur}
+                  error={cardNumber.error}
+                />
+                <Input
+                  className="form-input"
+                  label="Nome no cartão"
+                  name="cardName"
+                  placeholder="Nome impresso no cartão"
+                  autoComplete="cc-name"
+                  fullWidth
+                  value={cardName.value}
+                  onChange={cardName.onChange}
+                  onBlur={cardName.onBlur}
+                  error={cardName.error}
+                />
+                <Input
+                  className="form-input"
+                  label="Validade"
+                  name="cardExpiration"
+                  placeholder="MM/AA"
+                  inputMode="numeric"
+                  autoComplete="cc-exp"
+                  fullWidth
+                  value={cardExpiration.value}
+                  onChange={cardExpiration.onChange}
+                  onBlur={cardExpiration.onBlur}
+                  error={cardExpiration.error}
+                />
+                <Input
+                  className="form-input"
+                  label="CVV"
+                  name="cardCvv"
+                  type="password"
+                  placeholder="000"
+                  inputMode="numeric"
+                  autoComplete="cc-csc"
+                  fullWidth
+                  value={cardCvv.value}
+                  onChange={cardCvv.onChange}
+                  onBlur={cardCvv.onBlur}
+                  error={cardCvv.error}
+                />
+              </div>
+            )}
+
+            {paymentMethod === 'pix' && (
+              <p className="pix-method">
+                Após a confirmação da compra, um QR Code PIX será gerado para pagamento. Você terá 15 minutos para
+                concluir a transação. Assim que o pagamento for confirmado, você receberá um e-mail de confirmação.
+              </p>
+            )}
+
+            {paymentMethod === 'invoice' && (
+              <div className="invoice-method">
+                <span>1234.56789 01234.567890 12345.678901 1 00000000000000</span>
+                <p>O boleto vence em 3 dias úteis. O pagamento pode levar até 2 dias para ser confirmado.</p>
+              </div>
+            )}
+          </section>
+        </form>
+
+        <Summary products={products} payment />
+      </div>
+    </>
+  );
+};
+
+export default Payment;
