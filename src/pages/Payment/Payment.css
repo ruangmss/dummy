@@ -116,12 +116,32 @@
   color: var(--muted);
   font: var(--body-sm);
   text-align: center;
-  padding: 10px 15px;
+  padding: 10px 20px;
   background-color: var(--muted-bg);
   border-radius: var(--radius-xl);
 }
 
 .invoice-method {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  place-content: center;
+}
+
+.invoice-method span {
+  color: var(--muted);
+  font: var(--body-2sm);
+  text-align: center;
+  padding: 10px 20px;
+  background-color: var(--muted-bg);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+
+.invoice-method p {
+  color: var(--muted);
+  text-align: center;
+  font: var(--body-sm);
 }
 
 @media (hover: hover) {
@@ -134,7 +154,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .payment-content {
     flex-direction: column;
   }

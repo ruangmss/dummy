@@ -7,6 +7,14 @@ import QrCodeIcon from '../../assets/icons/qr-code.svg?react';
 import arrow from '../../assets/icons/arrow.svg';
 import Input from '../../components/Input/Input';
 import { BagContext } from '../../contexts/BagContext';
+import {
+  maskCardExpiration,
+  maskCardNumber,
+  maskCvv,
+  maskLetters,
+  maskPostalCode,
+  maskState,
+} from '../../helpers/inputMasks';
 import useForm from '../../hooks/useForm';
 import Empty from '../Bag/components/Empty/Empty';
 import Summary from '../Bag/components/Summary/Summary';
@@ -16,16 +24,16 @@ const Payment = () => {
   const [products, setProducts] = React.useState([]);
   const [paymentMethod, setPaymentMethod] = React.useState('');
   const { bag } = React.useContext(BagContext);
-  const fullName = useForm('fullName');
+  const fullName = useForm('fullName', maskLetters);
   const email = useForm('email');
   const street = useForm('street');
-  const city = useForm('city');
-  const state = useForm('state');
-  const postalCode = useForm('postalCode');
-  const cardNumber = useForm('cardNumber');
-  const cardName = useForm('cardName');
-  const cardExpiration = useForm('cardExpiration');
-  const cardCvv = useForm('cardCvv');
+  const city = useForm('city', maskLetters);
+  const state = useForm('state', maskState);
+  const postalCode = useForm('postalCode', maskPostalCode);
+  const cardNumber = useForm('cardNumber', maskCardNumber);
+  const cardName = useForm('cardName', maskLetters);
+  const cardExpiration = useForm('cardExpiration', maskCardExpiration);
+  const cardCvv = useForm('cardCvv', maskCvv);
 
   React.useEffect(() => {
     async function fetchPaymentProducts() {
@@ -84,7 +92,6 @@ const Payment = () => {
                 label="Nome completo"
                 name="fullName"
                 placeholder="Digite seu nome completo"
-                autoComplete="name"
                 fullWidth
                 value={fullName.value}
                 onChange={fullName.onChange}
@@ -98,7 +105,6 @@ const Payment = () => {
                 type="email"
                 variant="email"
                 placeholder="exemplo@email.com"
-                autoComplete="email"
                 fullWidth
                 value={email.value}
                 onChange={email.onChange}
@@ -117,7 +123,6 @@ const Payment = () => {
                 label="Logradouro"
                 name="street"
                 placeholder="Rua, avenida ou travessa"
-                autoComplete="street-address"
                 fullWidth
                 value={street.value}
                 onChange={street.onChange}
@@ -129,7 +134,6 @@ const Payment = () => {
                 label="Cidade"
                 name="city"
                 placeholder="Digite sua cidade"
-                autoComplete="address-level2"
                 fullWidth
                 value={city.value}
                 onChange={city.onChange}
@@ -141,7 +145,6 @@ const Payment = () => {
                 label="Estado"
                 name="state"
                 placeholder="SP"
-                autoComplete="address-level1"
                 maxLength={2}
                 fullWidth
                 value={state.value}
@@ -155,7 +158,7 @@ const Payment = () => {
                 name="postalCode"
                 placeholder="00000-000"
                 inputMode="numeric"
-                autoComplete="postal-code"
+                maxLength={9}
                 fullWidth
                 value={postalCode.value}
                 onChange={postalCode.onChange}
@@ -219,7 +222,7 @@ const Payment = () => {
                   name="cardNumber"
                   placeholder="0000 0000 0000 0000"
                   inputMode="numeric"
-                  autoComplete="cc-number"
+                  maxLength={24}
                   fullWidth
                   value={cardNumber.value}
                   onChange={cardNumber.onChange}
@@ -231,7 +234,6 @@ const Payment = () => {
                   label="Nome no cartão"
                   name="cardName"
                   placeholder="Nome impresso no cartão"
-                  autoComplete="cc-name"
                   fullWidth
                   value={cardName.value}
                   onChange={cardName.onChange}
@@ -244,7 +246,7 @@ const Payment = () => {
                   name="cardExpiration"
                   placeholder="MM/AA"
                   inputMode="numeric"
-                  autoComplete="cc-exp"
+                  maxLength={5}
                   fullWidth
                   value={cardExpiration.value}
                   onChange={cardExpiration.onChange}
@@ -256,9 +258,9 @@ const Payment = () => {
                   label="CVV"
                   name="cardCvv"
                   type="password"
-                  placeholder="000"
+                  placeholder="000 | 0000"
                   inputMode="numeric"
-                  autoComplete="cc-csc"
+                  maxLength={4}
                   fullWidth
                   value={cardCvv.value}
                   onChange={cardCvv.onChange}
@@ -270,15 +272,19 @@ const Payment = () => {
 
             {paymentMethod === 'pix' && (
               <p className="pix-method">
-                Após a confirmação da compra, um QR Code PIX será gerado para pagamento. Você terá 15 minutos para
-                concluir a transação. Assim que o pagamento for confirmado, você receberá um e-mail de confirmação.
+                Após a confirmação da compra, um QR Code PIX será gerado para pagamento. Você terá
+                15 minutos para concluir a transação. Assim que o pagamento for confirmado, você
+                receberá um e-mail de confirmação.
               </p>
             )}
 
             {paymentMethod === 'invoice' && (
               <div className="invoice-method">
                 <span>1234.56789 01234.567890 12345.678901 1 00000000000000</span>
-                <p>O boleto vence em 3 dias úteis. O pagamento pode levar até 2 dias para ser confirmado.</p>
+                <p>
+                  O boleto vence em 3 dias úteis. O pagamento pode levar até 2 dias para ser
+                  confirmado.
+                </p>
               </div>
             )}
           </section>
