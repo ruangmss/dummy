@@ -56,6 +56,15 @@ const Payment = () => {
     fetchPaymentProducts();
   }, [bag]);
 
+  React.useEffect(() => {
+    if (paymentMethod === 'credit' || paymentMethod === 'debit') return;
+
+    cardCvv.reset();
+    cardExpiration.reset();
+    cardName.reset();
+    cardNumber.reset();
+  }, [paymentMethod]);
+
   if (bag.length === 0) {
     return <Empty />;
   }

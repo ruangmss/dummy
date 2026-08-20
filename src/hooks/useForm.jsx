@@ -33,7 +33,8 @@ const types = {
   },
 
   state: {
-    regex: /^(?:AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/i,
+    regex:
+      /^(?:AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/i,
     message: 'Por favor, insira uma UF válida. Exemplo: SP.',
   },
 
@@ -58,7 +59,7 @@ const types = {
   },
 
   cardCvv: {
-    regex: /^\d{3}$/,
+    regex: /^\d{3,4}$/,
     message: 'Por favor, insira um CVV válido.',
   },
 };
