@@ -18,17 +18,17 @@ const types = {
   },
 
   fullName: {
-    regex: /^\p{L}+(?:[ '-]\p{L}+)+$/u,
+    regex: /^\p{L}+(?:[ '\-]\p{L}+)+$/u,
     message: 'Por favor, insira o nome e o sobrenome.',
   },
 
   street: {
-    regex: /^(?=.{3,100}$)(?=.*\p{L})[\p{L}\s.,ºª°'#/-]+$/u,
+    regex: /^(?=.{3,100}$)(?=.*\p{L})[\p{L}\p{N} .,ºª°'#/-]+$/u,
     message: 'Por favor, insira um logradouro válido.',
   },
 
   city: {
-    regex: /^\p{L}+(?:[ '-]\p{L}+)*$/u,
+    regex: /^\p{L}+(?:[ '\-]\p{L}+)*$/u,
     message: 'Por favor, insira uma cidade válida.',
   },
 
@@ -43,12 +43,12 @@ const types = {
   },
 
   cardNumber: {
-    regex: /^(?:\d[ -]?){12,18}\d$/,
+    regex: /^(?:\d[ -]?){12,19}\d$/,
     message: 'Por favor, insira um número de cartão válido.',
   },
 
   cardName: {
-    regex: /^\p{L}+(?:[ '-]\p{L}+)+$/u,
+    regex: /^\p{L}+(?:[ '\-]\p{L}+)+$/u,
     message: 'Por favor, insira o nome completo como está no cartão.',
   },
 
@@ -58,12 +58,12 @@ const types = {
   },
 
   cardCvv: {
-    regex: /^\d{3,4}$/,
+    regex: /^\d{3}$/,
     message: 'Por favor, insira um CVV válido.',
   },
 };
 
-const useForm = (type) => {
+const useForm = (type, formatValue = (currentValue) => currentValue) => {
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(null);
 
@@ -104,10 +104,12 @@ const useForm = (type) => {
   }
 
   function onChange({ target }) {
-    setValue(target.value);
+    const formattedValue = formatValue(target.value);
+
+    setValue(formattedValue);
 
     if (error) {
-      setError(getValidation(target.value).message); // Valida o input enquanto houver erro
+      setError(getValidation(formattedValue).message); // Valida o input enquanto houver erro
     }
   }
 
