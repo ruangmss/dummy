@@ -75,7 +75,7 @@
 .payment-methods {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-lg);
 }
 
 .payment-methods {
@@ -168,5 +168,6 @@
   .payment-form-inputs,
   .payment-methods {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 }
