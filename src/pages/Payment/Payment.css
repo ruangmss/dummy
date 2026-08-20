@@ -158,10 +158,6 @@
   .payment-content {
     flex-direction: column;
   }
-
-  .payment-content .summary-bg {
-    max-width: none !important;
-  }
 }
 
 @media (max-width: 480px) {

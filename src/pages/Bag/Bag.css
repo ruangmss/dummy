@@ -2,3 +2,9 @@
   display: flex;
   gap: var(--spacing-xl);
 }
+
+@media (max-width: 992px) {
+  .bag-content {
+    flex-direction: column;
+  }
+}
