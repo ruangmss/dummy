@@ -38,6 +38,17 @@ const Payment = () => {
   const cardCvv = useForm('cardCvv', maskCvv);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const validForm =
+    fullName.valid &&
+    email.valid &&
+    street.valid &&
+    city.valid &&
+    state.valid &&
+    postalCode.valid &&
+    cardNumber.valid &&
+    cardName.valid &&
+    cardExpiration.valid &&
+    cardCvv.valid;
 
   React.useEffect(() => {
     async function fetchBagProducts() {
@@ -326,7 +337,7 @@ const Payment = () => {
           </section>
         </form>
 
-        <Summary products={products} payment />
+        <Summary products={products} payment={true} validForm={validForm} />
       </div>
     </>
   );

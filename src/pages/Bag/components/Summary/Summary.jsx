@@ -5,7 +5,7 @@ import LockIcon from '../../../../assets/icons/lock.svg?react';
 import { Link } from 'react-router-dom';
 import SummaryProducts from './components/SummaryProducts/SummaryProducts';
 
-const Summary = ({ products, payment = false }) => {
+const Summary = ({ products, payment, validForm }) => {
   const total = products.reduce((total, product) => {
     return total + product.quantity * product.price;
   }, 0);
@@ -71,7 +71,7 @@ const Summary = ({ products, payment = false }) => {
 
         <div className="summary-buttons">
           {payment ? (
-            <Button text="Finalizar Pagamento" />
+            <Button text="Finalizar Pagamento" disabled={!validForm} />
           ) : (
             <Link to="/pagamento" className="button">
               Finalizar Compra
