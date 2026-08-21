@@ -18,6 +18,7 @@ import Registration from './pages/Registration/Registration';
 import { UserProvider } from './contexts/UserContext';
 import { BagProvider } from './contexts/BagContext';
 import Payment from './pages/Payment/Payment';
+import OrderCompletion from './pages/OrderCompletion/OrderCompletion';
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
                   <Route path="/usuario" element={<User />} />
                   <Route path="/sacola" element={<Bag />} />
                   <Route path="/pagamento" element={<Payment />} />
+                  <Route path="/pedido-concluido" element={<OrderCompletion />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/cadastro" element={<Registration />} />
                   <Route path="/edicao-perfil" element={<Registration edition={true} />} />

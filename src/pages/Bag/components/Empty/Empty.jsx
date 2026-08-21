@@ -1,13 +1,13 @@
 import React from 'react';
 import './Empty.css';
-import bagIcon from '../../../../assets/icons/bag.svg';
+import BagIcon from '../../../../assets/icons/bag.svg?react';
 import { Link } from 'react-router-dom';
 
 const Empty = () => {
   return (
     <section className="container empty-bag">
       <div className="empty-bag-icon">
-        <img src={bagIcon} alt="Ícone de sacola" />
+        <BagIcon aria-label="Ícone de sacola" />
       </div>
 
       <div className="empty-bag-content">

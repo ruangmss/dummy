@@ -1,4 +1,4 @@
-.empty-bag {
+.order-completion {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-.empty-bag-icon {
+.order-completion-icon {
   display: grid;
   place-items: center;
   width: 96px;
@@ -17,13 +17,13 @@
   background-color: var(--primary-light);
 }
 
-.empty-bag-icon svg {
+.order-completion-icon svg {
   width: 44px;
   height: 44px;
   stroke: var(--primary);
 }
 
-.empty-bag-content {
+.order-completion-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,15 +31,24 @@
   max-width: 460px;
 }
 
-.empty-bag-content h1 {
+.order-completion-content h1 {
   font: var(--heading-lg);
 }
 
-.empty-bag-content p {
+.order-completion-content p {
   color: var(--muted);
   font: var(--body-md);
 }
 
-.empty-bag-content .button {
+.order-completion-buttons {
+  display: flex;
+  gap: var(--spacing-md);
   margin-top: var(--spacing-sm);
+}
+
+@media (max-width: 480px) {
+  .order-completion-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
 }

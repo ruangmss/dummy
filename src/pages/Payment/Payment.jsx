@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { PRODUCT_GET } from '../../api/api';
 import CardIcon from '../../assets/icons/payment-card.svg?react';
 import InvoiceIcon from '../../assets/icons/invoice.svg?react';
@@ -23,6 +23,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import Error from '../../components/Error/Error';
 
 const Payment = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = React.useState([]);
   const [paymentMethod, setPaymentMethod] = React.useState('');
   const { bag } = React.useContext(BagContext);
@@ -38,17 +39,19 @@ const Payment = () => {
   const cardCvv = useForm('cardCvv', maskCvv);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
-  const validForm =
+  const validCustomerData =
     fullName.valid &&
     email.valid &&
     street.valid &&
     city.valid &&
     state.valid &&
-    postalCode.valid &&
-    cardNumber.valid &&
-    cardName.valid &&
-    cardExpiration.valid &&
-    cardCvv.valid;
+    postalCode.valid;
+  const cardPayment = paymentMethod === 'credit' || paymentMethod === 'debit';
+  const validCardData =
+    cardNumber.valid && cardName.valid && cardExpiration.valid && cardCvv.valid;
+  const validPaymentMethod =
+    paymentMethod === 'pix' || paymentMethod === 'invoice' || (cardPayment && validCardData);
+  const validForm = validCustomerData && validPaymentMethod;
 
   React.useEffect(() => {
     async function fetchBagProducts() {
@@ -337,7 +340,12 @@ const Payment = () => {
           </section>
         </form>
 
-        <Summary products={products} payment={true} validForm={validForm} />
+        <Summary
+          products={products}
+          payment={true}
+          validForm={validForm}
+          onFinish={() => navigate('/pedido-concluido')}
+        />
       </div>
     </>
   );
