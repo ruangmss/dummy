@@ -8,12 +8,13 @@ import { UserContext } from '../../contexts/UserContext';
 import FormError from '../../components/FormError/FormError';
 import Error from '../../components/Error/Error';
 import Spinner from '../../components/Spinner/Spinner';
+import { maskLetters } from '../../helpers/inputMasks';
 
 const Registration = ({ edition }) => {
   const { userRegister, userEdition, data, error, loading, login } = React.useContext(UserContext);
 
-  const name = useForm();
-  const lastName = useForm();
+  const name = useForm('name', maskLetters);
+  const lastName = useForm('name', maskLetters);
   const username = useForm('user');
   const email = useForm('email');
   const password = useForm('password');

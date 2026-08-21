@@ -17,6 +17,11 @@ const types = {
     message: 'Por favor, remova os espaços inseridos.',
   },
 
+  name: {
+    regex: /^\p{L}+(?:[ '\-]\p{L}+)*$/u,
+    message: 'Por favor, insira apenas letras.',
+  },
+
   fullName: {
     regex: /^\p{L}+(?:[ '\-]\p{L}+)+$/u,
     message: 'Por favor, insira o nome e o sobrenome.',
