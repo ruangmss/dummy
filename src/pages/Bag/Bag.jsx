@@ -6,28 +6,46 @@ import Products from './components/Products/Products';
 import Summary from './components/Summary/Summary';
 import Empty from './components/Empty/Empty';
 import './Bag.css';
+import Spinner from '../../components/Spinner/Spinner';
+import Error from '../../components/Error/Error';
 
 const Bag = () => {
   const [products, setProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
   const { bag } = React.useContext(BagContext);
 
   React.useEffect(() => {
     async function fetchBagProducts() {
-      const products = await Promise.all(
-        bag.map(async (item) => {
-          const { url, options } = PRODUCT_GET(item.id);
+      try {
+        setLoading(true);
+        setError(null);
 
-          const response = await fetch(url, options);
-          const product = await response.json();
+        const products = await Promise.all(
+          bag.map(async (item) => {
+            const { url, options } = PRODUCT_GET(item.id);
 
-          return {
-            ...product,
-            quantity: item.quantity,
-          };
-        }),
-      );
+            const response = await fetch(url, options);
 
-      setProducts(products);
+            if (!response.ok) {
+              throw new Error(`Erro ao buscar o produto ${item.id}.`);
+            }
+
+            const product = await response.json();
+
+            return {
+              ...product,
+              quantity: item.quantity,
+            };
+          }),
+        );
+
+        setProducts(products);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchBagProducts();
@@ -35,6 +53,14 @@ const Bag = () => {
 
   if (bag.length === 0) {
     return <Empty />;
+  }
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   return (

@@ -19,6 +19,8 @@ import useForm from '../../hooks/useForm';
 import Empty from '../Bag/components/Empty/Empty';
 import Summary from '../Bag/components/Summary/Summary';
 import './Payment.css';
+import Spinner from '../../components/Spinner/Spinner';
+import Error from '../../components/Error/Error';
 
 const Payment = () => {
   const [products, setProducts] = React.useState([]);
@@ -34,26 +36,43 @@ const Payment = () => {
   const cardName = useForm('cardName', maskLetters);
   const cardExpiration = useForm('cardExpiration', maskCardExpiration);
   const cardCvv = useForm('cardCvv', maskCvv);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    async function fetchPaymentProducts() {
-      const paymentProducts = await Promise.all(
-        bag.map(async (item) => {
-          const { url, options } = PRODUCT_GET(item.id);
-          const response = await fetch(url, options);
-          const product = await response.json();
+    async function fetchBagProducts() {
+      try {
+        setLoading(true);
+        setError(null);
 
-          return {
-            ...product,
-            quantity: item.quantity,
-          };
-        }),
-      );
+        const products = await Promise.all(
+          bag.map(async (item) => {
+            const { url, options } = PRODUCT_GET(item.id);
 
-      setProducts(paymentProducts);
+            const response = await fetch(url, options);
+
+            if (!response.ok) {
+              throw new Error(`Erro ao buscar o produto ${item.id}.`);
+            }
+
+            const product = await response.json();
+
+            return {
+              ...product,
+              quantity: item.quantity,
+            };
+          }),
+        );
+
+        setProducts(products);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
-    fetchPaymentProducts();
+    fetchBagProducts();
   }, [bag]);
 
   React.useEffect(() => {
@@ -67,6 +86,14 @@ const Payment = () => {
 
   if (bag.length === 0) {
     return <Empty />;
+  }
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
   }
 
   return (
