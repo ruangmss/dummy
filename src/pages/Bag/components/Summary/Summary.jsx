@@ -27,6 +27,34 @@ const Summary = ({ products, payment = false }) => {
     <div className="container summary-bg">
       <div className="summary">
         <h2>Resumo do Pedido</h2>
+
+        {payment && (
+          <ul className="summary-products">
+            {products.map((product) => (
+              <li className="summary-product" key={product.id}>
+                <div className="summary-product">
+                  <div className="summary-product-image">
+                    <img src={product.thumbnail} alt={`Imagem do produto ${product.title}`} />
+                  </div>
+
+                  <div className="summary-product-data">
+                    <div>
+                      <span className="summary-product-data-title">{product.title}</span>
+                      <span className="summary-product-data-quantity">
+                        Quantidade: {product.quantity}
+                      </span>
+                    </div>
+
+                    <span className="summary-product-data-price">
+                      R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}
+                    </span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+
         <div className="summary-data">
           <span className="summary-data-item">
             {' '}
