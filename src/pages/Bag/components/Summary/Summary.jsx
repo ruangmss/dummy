@@ -3,6 +3,7 @@ import './Summary.css';
 import Button from '../../../../components/Button/Button';
 import LockIcon from '../../../../assets/icons/lock.svg?react';
 import { Link } from 'react-router-dom';
+import SummaryProducts from './components/SummaryProducts/SummaryProducts';
 
 const Summary = ({ products, payment = false }) => {
   const total = products.reduce((total, product) => {
@@ -28,32 +29,7 @@ const Summary = ({ products, payment = false }) => {
       <div className="summary">
         <h2>Resumo do Pedido</h2>
 
-        {payment && (
-          <ul className="summary-products">
-            {products.map((product) => (
-              <li className="summary-product" key={product.id}>
-                <div className="summary-product">
-                  <div className="summary-product-image">
-                    <img src={product.thumbnail} alt={`Imagem do produto ${product.title}`} />
-                  </div>
-
-                  <div className="summary-product-data">
-                    <div>
-                      <span className="summary-product-data-title">{product.title}</span>
-                      <span className="summary-product-data-quantity">
-                        Quantidade: {product.quantity}
-                      </span>
-                    </div>
-
-                    <span className="summary-product-data-price">
-                      R$ {(product.price * product.quantity).toFixed(2).replace('.', ',')}
-                    </span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+        {payment && <SummaryProducts products={products} />}
 
         <div className="summary-data">
           <span className="summary-data-item">
