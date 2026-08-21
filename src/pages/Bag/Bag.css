@@ -3,8 +3,19 @@
   gap: var(--spacing-xl);
 }
 
+.bag-content > .summary-bg {
+  position: sticky;
+  top: 85px;
+  align-self: flex-start;
+}
+
 @media (max-width: 992px) {
   .bag-content {
     flex-direction: column;
+  }
+
+  .bag-content > .summary-bg {
+    position: static;
+    align-self: stretch;
   }
 }
