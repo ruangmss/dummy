@@ -72,7 +72,7 @@ const Payment = () => {
   return (
     <>
       <div className="container payment-top">
-        <nav aria-label="Navegação estrutural">
+        <nav>
           <ol className="payment-breadcrumb">
             <li>
               <Link to="/">Início</Link>
