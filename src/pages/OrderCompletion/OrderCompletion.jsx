@@ -1,9 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SuccessIcon from '../../assets/icons/success.svg?react';
 import './OrderCompletion.css';
+import Error from '../../components/Error/Error';
 
 const OrderCompletion = () => {
+  const location = useLocation();
+  const purchaseCompleted = location.state?.purchaseCompleted;
+
+  if (!purchaseCompleted) {
+    return <Error error="Você não possui um pedido recém-finalizado." />;
+  }
+
   return (
     <section className="container order-completion">
       <div className="order-completion-icon">

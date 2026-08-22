@@ -94,7 +94,10 @@ const Payment = () => {
 
   function finishPayment() {
     cleanCart();
-    navigate('/pedido-concluido');
+    navigate('/pedido-concluido', {
+      state: { purchaseCompleted: true },
+      replace: true,
+    });
   }
 
   if (bag.length === 0) {
