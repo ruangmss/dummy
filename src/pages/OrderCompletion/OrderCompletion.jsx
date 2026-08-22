@@ -12,7 +12,10 @@ const OrderCompletion = () => {
 
       <div className="order-completion-content">
         <h1>Compra concluída!</h1>
-        <p>Seu pedido foi realizado com sucesso. Obrigado por comprar com a Dummy.</p>
+        <p>
+          Recebemos seu pedido e enviaremos a confirmação para o e-mail cadastrado. Obrigado por
+          comprar com a Dummy.
+        </p>
 
         <div className="order-completion-buttons">
           <Link to="/" className="button secondary">
