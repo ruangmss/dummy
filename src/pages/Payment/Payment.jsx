@@ -26,7 +26,7 @@ const Payment = () => {
   const navigate = useNavigate();
   const [products, setProducts] = React.useState([]);
   const [paymentMethod, setPaymentMethod] = React.useState('');
-  const { bag } = React.useContext(BagContext);
+  const { bag, cleanCart } = React.useContext(BagContext);
   const fullName = useForm('fullName', maskLetters);
   const email = useForm('email');
   const street = useForm('street');
@@ -91,6 +91,11 @@ const Payment = () => {
     cardName.reset();
     cardNumber.reset();
   }, [paymentMethod]);
+
+  function finishPayment() {
+    cleanCart();
+    navigate('/pedido-concluido');
+  }
 
   if (bag.length === 0) {
     return <Empty />;
@@ -338,7 +343,7 @@ const Payment = () => {
           products={products}
           payment={true}
           validForm={validForm}
-          onFinish={() => navigate('/pedido-concluido')}
+          onFinish={finishPayment}
         />
       </div>
     </>

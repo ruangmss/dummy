@@ -23,7 +23,9 @@ export const BagProvider = ({ children }) => {
       // Quando encontra um produto já existente, retorna um novo array com a quantidade do produto atualizada
       if (product) {
         return bag.map((item) =>
-          item.id === id && item.quantity + quantity <= stock ? { ...item, quantity: item.quantity + quantity } : item,
+          item.id === id && item.quantity + quantity <= stock
+            ? { ...item, quantity: item.quantity + quantity }
+            : item,
         );
       }
 
@@ -58,6 +60,10 @@ export const BagProvider = ({ children }) => {
     });
   }
 
+  function cleanCart() {
+    setBag([]);
+  }
+
   return (
     <BagContext.Provider
       value={{
@@ -66,6 +72,7 @@ export const BagProvider = ({ children }) => {
         removeItem,
         decreaseQuantity,
         increaseQuantity,
+        cleanCart,
       }}
     >
       {children}
