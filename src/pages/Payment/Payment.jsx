@@ -40,15 +40,9 @@ const Payment = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const validCustomerData =
-    fullName.valid &&
-    email.valid &&
-    street.valid &&
-    city.valid &&
-    state.valid &&
-    postalCode.valid;
+    fullName.valid && email.valid && street.valid && city.valid && state.valid && postalCode.valid;
   const cardPayment = paymentMethod === 'credit' || paymentMethod === 'debit';
-  const validCardData =
-    cardNumber.valid && cardName.valid && cardExpiration.valid && cardCvv.valid;
+  const validCardData = cardNumber.valid && cardName.valid && cardExpiration.valid && cardCvv.valid;
   const validPaymentMethod =
     paymentMethod === 'pix' || paymentMethod === 'invoice' || (cardPayment && validCardData);
   const validForm = validCustomerData && validPaymentMethod;
@@ -272,7 +266,7 @@ const Payment = () => {
                   name="cardNumber"
                   placeholder="0000 0000 0000 0000"
                   inputMode="numeric"
-                  maxLength={24}
+                  maxLength={19}
                   fullWidth
                   value={cardNumber.value}
                   onChange={cardNumber.onChange}
