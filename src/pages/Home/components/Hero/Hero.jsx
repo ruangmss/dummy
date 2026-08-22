@@ -28,12 +28,19 @@ const Hero = () => {
         <div className="hero-left">
           <div className="hero-texts">
             <h1>PRODUTOS PENSADOS PARA VOCÊ</h1>
-            <p>Explore tecnologia, beleza, moda, decoração e diversas outras categorias em um só lugar.</p>
+            <p>
+              Explore tecnologia, beleza, moda, decoração e diversas outras categorias em um só
+              lugar.
+            </p>
           </div>
 
           <nav className="hero-links">
-            <Link to="/produtos">Explorar produtos</Link>
-            <Link to="/categorias">Ver categorias</Link>
+            <Link to="/categorias" className="button secondary">
+              Ver categorias
+            </Link>
+            <Link to="/produtos" className="button primart">
+              Explorar produtos
+            </Link>
           </nav>
 
           <ul className="hero-attributes">
@@ -46,7 +53,9 @@ const Hero = () => {
         <div className="hero-right">
           {loading
             ? Array.from({ length: 3 }).map((_, index) => <HeroProductSkeleton key={index} />)
-            : data?.products?.map((product) => <HeroProductCard key={product.id} product={product} />)}
+            : data?.products?.map((product) => (
+                <HeroProductCard key={product.id} product={product} />
+              ))}
         </div>
       </div>
     </section>

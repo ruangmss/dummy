@@ -54,16 +54,6 @@
     background-color 0.2s ease;
 }
 
-.hero-links a:first-child {
-  background-color: var(--primary);
-}
-
-.hero-links a:last-child {
-  color: var(--foreground);
-  background-color: var(--muted-bg);
-  border: 1px solid var(--border);
-}
-
 .hero-attributes {
   display: flex;
   flex-wrap: wrap;
@@ -117,6 +107,10 @@
 
   .hero-links a {
     width: 100%;
+  }
+
+  .hero-links a:first-child {
+    order: 2;
   }
 
   .hero-attributes {
