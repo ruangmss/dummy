@@ -93,9 +93,15 @@ const Payment = () => {
   }, [paymentMethod]);
 
   function finishPayment() {
+    const pixExpiresAt = paymentMethod === 'pix' ? Date.now() + 15 * 60 * 1000 : null;
+
     cleanCart();
     navigate('/pedido-concluido', {
-      state: { purchaseCompleted: true },
+      state: {
+        purchaseCompleted: true,
+        paymentMethod,
+        pixExpiresAt,
+      },
       replace: true,
     });
   }

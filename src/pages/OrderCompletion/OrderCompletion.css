@@ -40,6 +40,37 @@
   font: var(--body-md);
 }
 
+.order-completion-pix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.order-completion-qr-code {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin: 5px 0;
+}
+
+.order-completion-timer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  color: var(--muted);
+  font: var(--body-sm);
+}
+
+.order-completion-timer strong {
+  color: var(--foreground);
+}
+
+.order-completion-timer.expired span,
+.order-completion-content .order-completion-expired-message {
+  color: var(--danger);
+}
+
 .order-completion-buttons {
   display: flex;
   gap: var(--spacing-md);
@@ -50,5 +81,9 @@
   .order-completion-buttons {
     flex-direction: column;
     width: 100%;
+  }
+
+  .order-completion-buttons a:first-child {
+    order: 2;
   }
 }
