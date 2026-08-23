@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { PRODUCT_GET } from '../../api/api';
+import { BAG_ADD_POST, PRODUCT_GET } from '../../api/api';
 import CardIcon from '../../assets/icons/payment-card.svg?react';
 import InvoiceIcon from '../../assets/icons/invoice.svg?react';
 import QrCodeIcon from '../../assets/icons/qr-code.svg?react';
@@ -22,6 +22,7 @@ import './Payment.css';
 import Spinner from '../../components/Spinner/Spinner';
 import Error from '../../components/Error/Error';
 import { UserContext } from '../../contexts/UserContext';
+import useFetch from '../../hooks/useFetch';
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Payment = () => {
     paymentMethod === 'pix' || paymentMethod === 'invoice' || (cardPayment && validCardData);
   const validForm = validCustomerData && validPaymentMethod;
   const { data } = React.useContext(UserContext);
+  const { request, loading: apiLoading, error: apiError } = useFetch();
 
   React.useEffect(() => {
     async function fetchBagProducts() {
@@ -103,18 +105,23 @@ const Payment = () => {
     email.setValue(data.email);
   }, [data]);
 
-  function finishPayment() {
-    const pixExpiresAt = paymentMethod === 'pix' ? Date.now() + 15 * 60 * 1000 : null;
+  async function finishPayment() {
+    const { url, options } = BAG_ADD_POST(data?.id ?? 1, bag);
+    const { response } = await request(url, options);
 
-    cleanCart();
-    navigate('/pedido-concluido', {
-      state: {
-        purchaseCompleted: true,
-        paymentMethod,
-        pixExpiresAt,
-      },
-      replace: true,
-    });
+    if (response?.ok) {
+      const pixExpiresAt = paymentMethod === 'pix' ? Date.now() + 15 * 60 * 1000 : null;
+
+      cleanCart();
+      navigate('/pedido-concluido', {
+        state: {
+          purchaseCompleted: true,
+          paymentMethod,
+          pixExpiresAt,
+        },
+        replace: true,
+      });
+    }
   }
 
   if (bag.length === 0) {
@@ -125,8 +132,8 @@ const Payment = () => {
     return <Spinner />;
   }
 
-  if (error) {
-    return <Error error={error} />;
+  if (error || apiError) {
+    return <Error error={error || apiError} />;
   }
 
   return (
@@ -363,6 +370,7 @@ const Payment = () => {
           products={products}
           payment={true}
           validForm={validForm}
+          apiLoading={apiLoading}
           onFinish={finishPayment}
         />
       </div>
