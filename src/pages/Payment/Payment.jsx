@@ -21,6 +21,7 @@ import Summary from '../Bag/components/Summary/Summary';
 import './Payment.css';
 import Spinner from '../../components/Spinner/Spinner';
 import Error from '../../components/Error/Error';
+import { UserContext } from '../../contexts/UserContext';
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const Payment = () => {
   const validPaymentMethod =
     paymentMethod === 'pix' || paymentMethod === 'invoice' || (cardPayment && validCardData);
   const validForm = validCustomerData && validPaymentMethod;
+  const { data } = React.useContext(UserContext);
 
   React.useEffect(() => {
     async function fetchBagProducts() {
@@ -91,6 +93,15 @@ const Payment = () => {
     cardName.reset();
     cardNumber.reset();
   }, [paymentMethod]);
+
+  React.useEffect(() => {
+    if (!data) {
+      return;
+    }
+
+    fullName.setValue(`${data.firstName} ${data.lastName}`);
+    email.setValue(data.email);
+  }, [data]);
 
   function finishPayment() {
     const pixExpiresAt = paymentMethod === 'pix' ? Date.now() + 15 * 60 * 1000 : null;
