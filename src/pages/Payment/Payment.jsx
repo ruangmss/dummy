@@ -178,7 +178,6 @@ const Payment = () => {
                 className="form-input"
                 label="E-mail"
                 name="email"
-                type="email"
                 variant="email"
                 placeholder="exemplo@email.com"
                 fullWidth

@@ -32,14 +32,17 @@ const EmailRegistration = () => {
 
         <div className="email-registration-right">
           <Input
-            type="email"
             placeholder="seu@email.com"
             required
             value={email.value}
             onChange={email.onChange}
             onBlur={email.onBlur}
           />
-          <Button text="Cadastrar" type="secondary email-registration-button" disabled={email.value.length < 1} />
+          <Button
+            text="Cadastrar"
+            type="secondary email-registration-button"
+            disabled={email.value.length < 1}
+          />
         </div>
       </div>
     </form>
