@@ -6,6 +6,7 @@ import useFetch from '../../hooks/useFetch';
 import Catalog from './components/Catalog/Catalog';
 import Error from '../../components/Error/Error';
 import Pagination from './components/Pagination/Pagination';
+import useHead from '../../hooks/useHead';
 
 const Products = ({ category, headerSearch }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,6 +15,21 @@ const Products = ({ category, headerSearch }) => {
   const order = searchParams.get('order') || 'asc';
   const page = Number(searchParams.get('page')) || 1;
   const [query, setQuery] = React.useState(search);
+  const categoryName = category
+    ? category.replaceAll('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
+    : '';
+  const headTitle = headerSearch
+    ? `Busca por "${headerSearch}" | Dummy`
+    : category
+      ? `${categoryName} | Dummy`
+      : 'Produtos | Dummy';
+  const headDescription = headerSearch
+    ? `Confira os produtos encontrados para "${headerSearch}" na Dummy.`
+    : category
+      ? `Explore os produtos da categoria ${categoryName} disponíveis na Dummy.`
+      : 'Explore o catálogo completo de produtos da Dummy e encontre as melhores opções para você.';
+
+  useHead(headTitle, headDescription);
 
   const { data, request, loading, error } = useFetch();
 

@@ -23,6 +23,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import Error from '../../components/Error/Error';
 import { UserContext } from '../../contexts/UserContext';
 import useFetch from '../../hooks/useFetch';
+import useHead from '../../hooks/useHead';
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -50,6 +51,11 @@ const Payment = () => {
   const validForm = validCustomerData && validPaymentMethod;
   const { data } = React.useContext(UserContext);
   const { request, loading: apiLoading, error: apiError } = useFetch();
+
+  useHead(
+    'Pagamento | Dummy',
+    'Informe seus dados e escolha a forma de pagamento para finalizar sua compra.',
+  );
 
   React.useEffect(() => {
     async function fetchBagProducts() {

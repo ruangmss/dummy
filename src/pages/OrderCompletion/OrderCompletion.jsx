@@ -4,6 +4,7 @@ import SuccessIcon from '../../assets/icons/success.svg?react';
 import qrCode from '../../assets/images/qr-code.png';
 import './OrderCompletion.css';
 import Error from '../../components/Error/Error';
+import useHead from '../../hooks/useHead';
 
 const OrderCompletion = () => {
   const location = useLocation();
@@ -11,6 +12,14 @@ const OrderCompletion = () => {
   const paymentMethod = location.state?.paymentMethod;
   const pixExpiresAt = location.state?.pixExpiresAt;
   const isPix = paymentMethod === 'pix';
+
+  useHead(
+    isPix ? 'Pagamento PIX | Dummy' : 'Pedido Concluído | Dummy',
+    isPix
+      ? 'Escaneie o QR Code e conclua o pagamento PIX do seu pedido dentro do prazo informado.'
+      : 'Seu pedido foi recebido e concluído com sucesso na Dummy.',
+  );
+
   const [remainingSeconds, setRemainingSeconds] = React.useState(() => {
     if (!isPix || !pixExpiresAt) {
       return 0;

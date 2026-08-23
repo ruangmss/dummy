@@ -1,9 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
 import CartIcon from '../../assets/icons/logo.svg?react';
 import './NotFound.css';
+import useHead from '../../hooks/useHead';
 
 const NotFound = () => {
   const navigate = useNavigate();
+
+  useHead(
+    'Página não Encontrada | Dummy',
+    'A página que você tentou acessar não existe, foi removida ou mudou de endereço.',
+  );
 
   return (
     <section className="container not-found">

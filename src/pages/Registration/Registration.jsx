@@ -9,9 +9,17 @@ import FormError from '../../components/FormError/FormError';
 import Error from '../../components/Error/Error';
 import Spinner from '../../components/Spinner/Spinner';
 import { maskLetters } from '../../helpers/inputMasks';
+import useHead from '../../hooks/useHead';
 
 const Registration = ({ edition }) => {
   const { userRegister, userEdition, data, error, loading, login } = React.useContext(UserContext);
+
+  useHead(
+    edition ? 'Editar Perfil | Dummy' : 'Cadastro | Dummy',
+    edition
+      ? 'Atualize seus dados pessoais e informações de acesso na Dummy.'
+      : 'Crie sua conta na Dummy para aproveitar uma experiência de compra personalizada.',
+  );
 
   const name = useForm('name', maskLetters);
   const lastName = useForm('name', maskLetters);
@@ -31,7 +39,8 @@ const Registration = ({ edition }) => {
 
   const showToast = React.useContext(ToastContext);
 
-  const differentPasswords = passwordConfirmation.value.length > 0 && password.value !== passwordConfirmation.value;
+  const differentPasswords =
+    passwordConfirmation.value.length > 0 && password.value !== passwordConfirmation.value;
 
   const differentPasswordsText = differentPasswords ? 'As senhas não coincidem.' : '';
 
@@ -73,7 +82,9 @@ const Registration = ({ edition }) => {
   }
 
   if (edition && !login) {
-    return <Error error={'Você não está logado. Por favor, efetue o login para acessar esta rota.'} />;
+    return (
+      <Error error={'Você não está logado. Por favor, efetue o login para acessar esta rota.'} />
+    );
   }
 
   return (

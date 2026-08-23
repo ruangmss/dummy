@@ -8,12 +8,18 @@ import Empty from './components/Empty/Empty';
 import './Bag.css';
 import Spinner from '../../components/Spinner/Spinner';
 import Error from '../../components/Error/Error';
+import useHead from '../../hooks/useHead';
 
 const Bag = () => {
   const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const { bag } = React.useContext(BagContext);
+
+  useHead(
+    'Minha Sacola | Dummy',
+    'Revise os produtos e as quantidades da sua sacola antes de finalizar a compra.',
+  );
 
   React.useEffect(() => {
     async function fetchBagProducts() {

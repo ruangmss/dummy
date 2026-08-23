@@ -8,10 +8,16 @@ import Reviews from './components/Reviews/Reviews';
 import ReletadProducts from './components/ReletadProducts/ReletadProducts';
 import ProductSkeleton from '../../components/Skeletons/ProductSkeleton/ProductSkeleton';
 import Error from '../../components/Error/Error';
+import useHead from '../../hooks/useHead';
 
 const Product = () => {
   const { id } = useParams();
   const { data, request, error, loading } = useFetch();
+
+  useHead(
+    data ? `${data.title} | Dummy` : 'Produto | Dummy',
+    data?.description || 'Confira os detalhes, avaliações e produtos relacionados na Dummy.',
+  );
 
   React.useEffect(() => {
     async function fetchProduct() {

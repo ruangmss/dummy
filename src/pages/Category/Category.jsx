@@ -5,10 +5,19 @@ import useFetch from '../../hooks/useFetch';
 import Products from '../Products/Products';
 import Error from '../../components/Error/Error';
 import Spinner from '../../components/Spinner/Spinner';
+import useHead from '../../hooks/useHead';
 
 const Category = () => {
   const { category } = useParams();
   const { data, request, loading, error } = useFetch();
+  const categoryName = category
+    ? category.replaceAll('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
+    : 'Categoria';
+
+  useHead(
+    `${categoryName} | Dummy`,
+    `Explore os produtos da categoria ${categoryName} disponíveis na Dummy.`,
+  );
 
   React.useEffect(() => {
     async function fetchCategories() {

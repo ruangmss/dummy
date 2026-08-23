@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './Categories.css';
 import Error from '../../components/Error/Error';
 import CategoriesSkeleton from '../../components/Skeletons/CategoriesSkeleton/CategoriesSkeleton';
+import useHead from '../../hooks/useHead';
 
 const categoryIcons = import.meta.glob('../../assets/icons/*.svg', {
   eager: true,
@@ -14,6 +15,11 @@ const categoryIcons = import.meta.glob('../../assets/icons/*.svg', {
 
 const Categories = () => {
   const { data, request, error, loading } = useFetch();
+
+  useHead(
+    'Categorias | Dummy',
+    'Navegue pelas categorias de produtos da Dummy e encontre exatamente o que procura.',
+  );
 
   React.useEffect(() => {
     async function fetchCategories() {

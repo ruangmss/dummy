@@ -8,8 +8,14 @@ import useForm from "../../hooks/useForm";
 import FormError from "../../components/FormError/FormError";
 import { ToastContext } from "../../contexts/ToastContext";
 import { UserContext } from "../../contexts/UserContext";
+import useHead from "../../hooks/useHead";
 
 const Login = () => {
+  useHead(
+    "Login | Dummy",
+    "Acesse sua conta na Dummy para consultar e gerenciar seus dados pessoais.",
+  );
+
   const username = useForm("user");
   const password = useForm();
 
