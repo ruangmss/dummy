@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: var(--spacing-sm);
   padding-bottom: 0 !important;
+  padding-top: 20px !important;
 }
 
 .payment-top h1 {
