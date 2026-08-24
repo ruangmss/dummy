@@ -106,28 +106,6 @@ O projeto utiliza:
 
 ---
 
-# ▶️ Como Executar
-
-Clone o repositório e instale as dependências:
-
-```bash
-npm install
-```
-
-Inicie o servidor de desenvolvimento:
-
-```bash
-npm run dev
-```
-
-Para gerar a versão de produção:
-
-```bash
-npm run build
-```
-
----
-
 # 👤 Desenvolvedor
 
 Projeto desenvolvido por **Ruan Gomes** como parte da evolução prática nos estudos de React.
