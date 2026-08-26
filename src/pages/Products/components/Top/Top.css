@@ -45,4 +45,9 @@
   .top-filters {
     flex-direction: column;
   }
+
+  .top-filters select {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
