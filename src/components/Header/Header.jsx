@@ -108,9 +108,9 @@ const Header = () => {
         <div className={`header-list-mobile-bg ${mobileNav ? 'opened' : ''}`}>
           <nav>
             <ul className="header-list-mobile">
-              <NavLink to="/">Início</NavLink>
-              <NavLink to="/produtos">Produtos</NavLink>
-              <NavLink to="/categorias">Categorias</NavLink>
+              <NavLink to="/" onClick={() => setMobileNav(false)}>Início</NavLink>
+              <NavLink to="/produtos" onClick={() => setMobileNav(false)}>Produtos</NavLink>
+              <NavLink to="/categorias" onClick={() => setMobileNav(false)}>Categorias</NavLink>
             </ul>
           </nav>
         </div>
