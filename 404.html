@@ -2,29 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8" />
+
     <script>
       const pathSegmentsToKeep = 1;
+      const currentLocation = window.location;
 
-      const location = window.location;
-
-      location.replace(
-        location.protocol +
+      currentLocation.replace(
+        currentLocation.protocol +
           '//' +
-          location.hostname +
-          (location.port ? ':' + location.port : '') +
-          location.pathname
+          currentLocation.hostname +
+          (currentLocation.port ? ':' + currentLocation.port : '') +
+          currentLocation.pathname
             .split('/')
             .slice(0, 1 + pathSegmentsToKeep)
             .join('/') +
           '/?/' +
-          location.pathname
+          currentLocation.pathname
             .slice(1)
             .split('/')
             .slice(pathSegmentsToKeep)
             .join('/')
             .replace(/&/g, '~and~') +
-          (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
-          location.hash,
+          (currentLocation.search
+            ? '&' + currentLocation.search.slice(1).replace(/&/g, '~and~')
+            : '') +
+          currentLocation.hash,
       );
     </script>
   </head>
