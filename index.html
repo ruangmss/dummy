@@ -5,6 +5,24 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <script>
+      ((location) => {
+        if (location.search[1] === '/') {
+          const decoded = location.search
+            .slice(1)
+            .split('&')
+            .map((s) => s.replace(/~and~/g, '&'))
+            .join('?');
+
+          window.history.replaceState(
+            null,
+            '',
+            location.pathname.slice(0, -1) + decoded + location.hash,
+          );
+        }
+      })(window.location);
+    </script>
+
     <link rel="icon" type="image/x-icon" href="/dummy/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,11 +32,11 @@
     />
 
     <title>Dummy</title>
-    <script type="module" crossorigin src="/dummy/assets/index-C0Cc0Vas.js"></script>
+    <script type="module" crossorigin src="/dummy/assets/index-DFlXWYww.js"></script>
     <link rel="stylesheet" crossorigin href="/dummy/assets/index-DpnyaU5t.css">
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>
