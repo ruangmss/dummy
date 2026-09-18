@@ -22,7 +22,7 @@ import OrderCompletion from './pages/OrderCompletion/OrderCompletion';
 
 const App = () => {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename="/dummy">
       <ToastProvider>
         <BagProvider>
           <UserProvider>
